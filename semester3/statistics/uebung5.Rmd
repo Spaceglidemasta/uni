@@ -1,0 +1,48 @@
+
+
+
+
+library(rdwd)
+library(dplyr)
+library(readr)
+
+options(max.print=1000000)
+
+
+meta <- selectDWD(id = 1420, res = "daily", var = "kl", period = "recent")
+2
+
+meta
+
+file <- dataDWD(meta, read = FALSE)
+df <- readDWD(file)
+
+df <- df %>% select(-eor) 
+df <- df %>% drop_na() 
+df$MESS_DATUM <- as.Date(df$MESS_DATUM)
+
+
+print(df)
+"""
+## Legend
+
+• STATIONS ID: Station identifier
+• MESS DATUM: Date of measurement
+• QN 3: Quality level for precipitation-related variables
+• FX: Maximum wind gust (m/s)
+• FM: Mean wind speed (m/s)
+• QN 4: Quality code for temperature, humidity, radiation
+• RSK: Daily precipitation amount (mm)
+• RSKF: Precipitation form (0=no precipitation, 6=rain, etc.)
+• SDK: Sunshine duration (hours)
+• SHK TAG: Snow depth (cm)
+• NM: Cloud cover
+• VPM: Water vapor pressure (hPa)
+• PM: Air pressure (hPa)
+• TMK: Mean daily air temperature (°C)
+• UPM: Relative humidity (%)
+• TXK: Daily maximum temperature (°C)
+• TNK: Daily minimum temperature (°C)
+• TGK: Minimum ground-level temperature (°C)
+• eor: End-of-record marker (can be removed)
+"""

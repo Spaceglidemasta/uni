@@ -1,0 +1,100 @@
+---
+title: "Ex04: Probability Theory III"
+author: "Martin Simon"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+  pdf_document: default
+editor_options:
+  chunk_output_type: console
+---
+
+# Exercise 4.2.4: Weak LLN
+
+**Exercise text:**\
+Let $X_i \sim \mathrm{Uniform}[0,1]$ i.i.d. Prove with pen and paper that\
+$$
+\bar X_n = \frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{P} \frac12.
+$$ Simulate\
+$$
+P(|\bar X_n - 1/2| > 0.05)
+$$ for various $n$ and confirm the Weak LLN empirically.
+
+```{}
+```
+
+# Bonus: Chebyshev Inequality Comparison
+
+**Exercise text:**\
+Using Chebyshev’s inequality, bound\
+$$
+P(|\bar X_n - 1/2|\ge 0.05)
+$$ for $X_i \sim \mathrm{Uniform}[0,1]$. Compare your bound to the empirical values in Exercise 1.
+
+```{}
+```
+
+# Exercise 4.4.4: CLT Approximation
+
+**Exercise text:**\
+Let $Y_i \sim \mathrm{Exp}(3)$. Approximate\
+$$
+P\left(\sum_{i=1}^{1600} Y_i \le 540\right)
+$$ using the CLT and compare with an empirical Monte Carlo estimate.
+
+```{}
+```
+
+```{}
+```
+
+# Exercise 4.4.5: Convergence in Distribution
+
+**Exercise text:**\
+Show with pen and paper that if $X_n \sim N(0, 1/n)$, then $X_n \xrightarrow{D} 0$.\
+Illustrate this using simulation histograms.
+
+```{}
+```
+
+# Bonus: Convergence in Probability but not Almost Surely
+
+**Exercise text.**\
+Consider independent random variables $(X_n)_{n \ge 1}$ with $$
+P(X_n = 1) = \frac{1}{n}, \qquad P(X_n = 0) = 1 - \frac{1}{n}.
+$$
+
+1.  Show analytically that $X_n \xrightarrow{P} 0$.\
+2.  (Theory) One can prove that with probability 1, $X_n = 1$ occurs infinitely often; hence $X_n$ does **not** converge almost surely to 0.\
+3.  Use simulation to:
+    -   illustrate convergence in probability (for each fixed $n$, $P(X_n = 1) \approx 1/n$), and
+
+    -   give empirical evidence that 1's keep occurring at large indices, hinting at the lack of almost sure convergence.
+
+## (a) Convergence in probability: empirical P(X_n = 1)
+
+```{}
+```
+
+## (b) Number of ones per path (up to N_max)
+
+```{}
+```
+
+## (c) 1's still appear at large indices
+
+```{}
+```
+
+## (d) Sample paths view (first few paths, first 500 steps)
+
+```{}
+```
+
+**Interpretation.**\
+- You should see from the table in 6(a) that $P(X_n = 1)$ decays like $1/n$, matching convergence in probability to 0.\
+- The histogram and tail probabilities in 6(b)–(c) show that each path contains many 1's, and even after large indices $k$, the chance of seeing another 1 is still high.\
+- This mirrors the theoretical statement that $X_n = 1$ happens infinitely often with probability 1, so $X_n$ does not converge almost surely to 0.\
+- Thus, this example demonstrates concretely that almost sure convergence is strictly stronger than convergence in probability.

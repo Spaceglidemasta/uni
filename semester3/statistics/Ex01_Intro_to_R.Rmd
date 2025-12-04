@@ -1,0 +1,330 @@
+---
+title: "Ex01: Intro to R — Practice Set (10 Exercises + Bonus)"
+author: "Martin Simon"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    df_print: paged
+  pdf_document: default
+geometry: margin=1in
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE)
+set.seed(1234)
+```
+
+This sheet contains 10 self‑contained exercises + one bonus exercise that mirror the core topics of *An Introduction to R*.
+
+------------------------------------------------------------------------
+
+## 1) Objects, Assignment, and Basic Arithmetic
+
+Create two numeric objects `a <- 7.5` and `b <- 2`. Compute:
+
+1.  `a + b`, `a - b`, `a * b`, `a / b`
+
+2.  The integer quotient and remainder of dividing `a` by `b`.
+
+3.  Replace `a` with `a^b`, then remove `b` from the workspace.
+
+Solution
+
+```R
+a <- 7.5
+b <- 2
+
+print(a + b)
+print(a - b)
+print(a * b)
+print(a / b)
+
+quotient = floor(a / b)
+rest     = a %% b
+
+print(quotient)
+print(rest)
+
+a = a^b
+
+rm(b)
+```
+
+------------------------------------------------------------------------
+
+## 2) Vectors and Vectorized Operations
+
+Construct a numeric vector `x` of length 8 with the values `1:8`. Compute:
+
+1.  `x^2 - 3*x + 2`
+
+2.  The mean, variance, and standard deviation of `x`.
+
+3.  A logical vector indicating which elements of `x` are even.
+
+Solution
+
+```R
+x <- 1:8
+
+print(x^2 - 3*x + 2)
+
+print(mean(x))
+print(var(x))
+print(sd(x))
+
+even <- x %% 2
+print(even)
+```
+
+------------------------------------------------------------------------
+
+## 3) Subsetting and Recycling
+
+Let `y <- c(10, 20, 30, 40, 50)`. Perform:
+
+1.  Select elements 2 through 4.
+2.  Exclude element 1.
+3.  Add the vector `c(1,2)` to `y` and explain the result.
+
+Solution
+
+```R
+y <- c(10, 20, 30, 40, 50)
+
+y <- y[-1]
+
+print(y)
+
+y <- y + c(1,2)
+
+print(y)
+
+#the vector is getting mapped onto y, with the operation of add (+)
+```
+
+------------------------------------------------------------------------
+
+## 4) Factors and Tables
+
+Create a character vector `sex <- c("male","female","female","male","male")` and convert it to a factor. Then produce a frequency table and a proportion table.
+
+Solution
+
+```R
+sex <- c("male", "female", "female", "male", "male")
+facsex <- factor(sex)
+print(facsex)
+
+#proportion table
+table(sex)
+
+#frequenzy table
+prop.table(table(sex))
+```
+
+------------------------------------------------------------------------
+
+## 5) Matrices and Matrix Algebra
+
+Create a 3×3 matrix `M` filled by rows with the numbers 1 to 9. Compute:
+
+1.  `M %*% t(M)`
+
+2.  Column sums and row means
+
+3.  Extract the second column and replace the (3,3) entry with `0`.
+
+Solution
+
+```R
+M <- array(1:9, dim = c(3,3))
+print(M)
+
+M %*% t(M)
+
+print(sum(M[1, ]))
+print(sum(M[2, ]))
+print(sum(M[3, ]))
+
+print(mean(M[ ,1]))
+print(mean(M[ ,2]))
+print(mean(M[ ,3]))
+
+M <- M[-2, ]
+
+print(M)
+
+M[2,3] <- 0
+
+print(M)
+```
+
+------------------------------------------------------------------------
+
+## 6) Lists and Data Frames
+
+Construct a list with components: a numeric vector `x <- rnorm(5)`, a character vector of your initials repeated 5 times, and the matrix `M` from exercise 5. Convert the list to a data frame where possible (hint: use `data.frame()` on compatible components). What happens to incompatible shapes?
+
+Solution
+
+```R
+initials <- rnorm(5)
+for(x in 1:5){
+    initials[x] <- "LDS"
+}
+print(initials)
+
+dfinitials <- data.frame(initials)
+```
+
+------------------------------------------------------------------------
+
+## 7) Reading/Writing and Basic Plotting
+
+This is a preview - we will discuss linear models and least squares in detail later. Try to get a rough understanding of what is happening here, having this intuition will make your life easier later on.
+
+Create a small data frame with `x = rnorm(10, 5, 2), y = rnorm(10, 10, 3)` and write it to a temporary CSV file, then read it back. Produce a scatter plot with a fitted least‑squares line.
+
+Solution
+
+```R
+print(dfinitials)
+
+smalldf <- data.frame(
+    x = rnorm(10, 5, 2),
+    y = rnorm(10, 10, 3)
+)
+
+print(smalldf)
+
+tmpfile <- tempfile(fileext = ".csv")
+write.csv(smalldf, tmpfile, row.names = FALSE)
+
+df_from_csv <- read.csv(tmpfile)
+print(df_from_csv)
+
+
+plot(df_from_csv$x, df_from_csv$y,
+     main = "Scatter plot with fitted least-squares line",
+     xlab = "x",
+     ylab = "y",
+     pch = 19, col = "blue")
+
+
+fit <- lm(y ~ x, data = df_from_csv)
+
+
+abline(fit, col = "red", lwd = 2)
+
+
+print(fit)
+```
+
+------------------------------------------------------------------------
+
+## 8) Control Flow and Functions
+
+This is a preview - we will discuss mean, sd, etc. in detail later. Try to get a rough understanding of what is happening here, having this intuition will make your life easier later on.
+
+Write a function `z_score(x)` that returns standardized values `(x - mean(x))/sd(x)` but warns if `sd(x) == 0`. Apply it to `c(5,5,5)` and to `c(1,2,3,4)`.
+
+Solution
+
+```R
+zscore <- function(x){
+    if(sd(x) == 0){
+        cat("WARNING: sd(x) = 0\n")
+        return()
+    }
+    return(x - mean(x)) / sd(x)
+}
+
+zscore(c(5, 5, 5))
+zscore(c(1, 2, 3, 4))
+```
+
+------------------------------------------------------------------------
+
+## 9) The *apply* Family
+
+This is a preview - we will discuss quantiles, etc. in detail later. Try to get a rough understanding of what is happening here, having this intuition will make your life easier later on.
+
+Using the built‑in dataset `mtcars`, compute for each column:
+
+1.  The column mean with `sapply()`
+
+2.  The 0.25 and 0.75 quantiles via `apply()`
+
+3.  A new data frame with column means for groups defined by `cyl` using `aggregate()`
+
+Solution
+
+```R
+sapply(mtcars, mean)
+
+apply(mtcars, 2, quantile, probs = c(0.25, 0.75))
+
+aggregate(. ~ cyl, data = mtcars, FUN = mean)
+
+mtcars
+```
+
+------------------------------------------------------------------------
+
+## 10) Simple Linear Models and Diagnostics
+
+This is a preview - we will discuss linear models in detail later. Try to get a rough understanding of what is happening here, having this intuition will make your life easier later on.
+
+Simulate data from a linear model `y = 3 + 2x + e` where `x ~ N(0,1)` and `e ~ N(0,1)` for `n = 100`. Fit `lm(y ~ x)` and report the estimated coefficients, $R^2$, and residual standard error. Make a residuals vs fitted plot.
+
+Solution
+
+```R
+n <- 100
+
+x <- rnorm(n, mean = 0, sd = 1)
+
+e <- rnorm(n, mean = 0, sd = 1)
+
+y <- 3 + 2*x + e
+
+dfy <- data.frame(x = x, y = y)
+print(dfy)
+
+fit <- lm(y ~ x, data = dfy)
+summary(fit)
+```
+
+------------------------------------------------------------------------
+
+### Bonus (Optional): Distributions and Random Numbers
+
+This is a preview - we will discuss sampling from distributions in detail later. Try to get a rough understanding of what is happening here, having this intuition will make your life easier later on.
+
+1.  Simulate 10,000 draws from `N(0,1)` and plot a histogram; overlay a normal density.
+
+2.  Use `set.seed()` to make results replicable and confirm that calling `rnorm(5)` twice with the same seed yields identical vectors.
+
+Solution
+
+```R
+set.seed(69)
+
+if(all(rnorm(5)) == all(rnorm(5))){
+    print("The seed works!")
+}
+
+drawing <- rnorm(10000, mean = 0, sd = 1)
+
+history <- hist(drawing,
+                breaks = 30,
+                col = "lightblue",
+                main = "Histogram of 1000 draws from N(0,1)",
+                xlab = "x values",
+                ylab = "Frequency")
+
+history
+```
