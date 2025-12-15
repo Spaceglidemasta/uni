@@ -4,7 +4,7 @@
 #include <array>
 
 #define DEBUG false
-#define BEUTEL std::vector<std::array<std::string, 2>>
+typedef std::vector<std::array<std::string, 2>> Beutel;
 
 
 class Fisch
@@ -101,8 +101,8 @@ bool operator>(Fisch& f1, Fisch& f2){
     return f1.get_gramm_gewicht() > f2.get_gramm_gewicht();
 }
 
-BEUTEL angeln(){
-    BEUTEL beutel;
+Beutel angeln(){
+    Beutel beutel;
     bool running = true;
     std::string antwort;
     std::string fischtyp;
@@ -146,7 +146,7 @@ void info(const Fisch& fang){
     std::cout << fang.get_sorte() << ": " << fang.get_gramm_gewicht() / 1000 << "kg\n";
 }
 
-void fischen_im_see(BEUTEL beutel){
+void fischen_im_see(Beutel beutel){
 
     for(const auto& eintrag : beutel) {
         if(eintrag[0] == "Lachs"){
@@ -163,7 +163,7 @@ void fischen_im_see(BEUTEL beutel){
 int main(){
 
 
-    BEUTEL beutel = angeln();
+    Beutel beutel = angeln();
     
     for(const auto& eintrag : beutel) {
         std::cout << eintrag[0] << ": " << eintrag[1] << "kg\n";
