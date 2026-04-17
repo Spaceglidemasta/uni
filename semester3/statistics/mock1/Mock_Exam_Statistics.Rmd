@@ -1,0 +1,397 @@
+---
+title: "Mock Exam — Statistics"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  pdf_document: default
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+geometry: margin=1in
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+set.seed(123)
+```
+
+**Instructions**
+
+-   Answer directly in this file and knit to HTML or PDF at the end.
+-   Provide both **R output** and **short written interpretation** where requested.
+-   Total: **100 points**.
+
+------------------------------------------------------------------------
+
+# Part A — R Basics and Probability Theory (40 points)
+
+## A1. Data types and factors (7 points)
+
+Create the following object and answer the questions.
+
+```{r}
+x <- c(1, 2, 2, 3, 3, 3)
+g <- factor(c("A","B","A","B","B","A"))
+df <- data.frame(x = x, g = g)
+str(df)
+```
+
+1.  What does one **row** in `df` represent?
+
+    each row represents a value of x mapped to the corresponding value of g at the
+    same index, representing a value mapped to a group
+
+2.  How many observations are in group `A` and in group `B`?\
+
+    A:3
+    B:3
+
+3.  Compute the **mean of `x`** separately for each group.
+
+    ```{r}
+    aggregate(df[1], list(df$g), mean)
+    ```
+
+## A2. Monte Carlo simulation (8 points)
+
+Let $\Omega = \{1,2,\dots,100\}$. Draw $N=50{,}000$ values uniformly from $\Omega$ (with replacement). Estimate:
+
+$$
+P(\text{multiple of 3} \mid \text{multiple of 3 or 5})
+$$
+
+1.  Compute the Monte Carlo estimate in R.
+
+    ```{r}
+    omega <- 1:100
+
+    drawsize <- 50000
+    
+    drawN <- sample(omega, drawsize, replace = TRUE)
+    
+    
+    
+    count <- 0
+    maxcount <- 0
+    for(draw in drawN){
+      
+      if(draw %% 3 == 0 || draw %% 5 == 0){
+        maxcount <- maxcount + 1
+        
+        if(draw %% 3 == 0){
+            count <- count + 1
+        }
+        
+      }
+      
+    }
+    Pmul35 <- count / maxcount
+    Pmul35
+
+    ```
+
+2.  Compute the exact value by counting and compare.
+
+    div3 <- floor(100 / 3)
+    div5 <- 100 / 5
+    div15 <- floor(100 / 15)
+    
+    exactPmul35 <- div3 / (div3 + div5 - div15)
+
+## A3. Sampling from a non-normal distribution (25 points)
+
+The goal of this exercise is to illustrate the **Central Limit Theorem** using simulation.
+
+Let $X \sim \text{Exponential}(\lambda = 1)$.
+
+1.  Draw $N = 10{,}000$ independent samples of size\
+    $n = 5$, $n = 30$, and $n = 100$.
+
+    ```{r}
+    drawsize <- 10000
+    
+    X <- rexp(drawsize, 1)
+    
+    
+    n5 <- sample(X, 5)
+    n30 <- sample(X, 30)
+    n100 <- sample(X, 100)
+
+    ```
+
+2.  For each $n$, compute the **sample mean**.
+
+    ```{r}
+    mean(n5)
+    mean(n30)
+    mean(n100)
+
+    ```
+
+3.  For each $n$, create a **histogram of the sample means** and overlay a **normal density** with the appropriate mean and variance.
+
+    ```{r}
+    hist(n5, probability = TRUE)
+    curve(
+      dnorm(x, mean = mean(n5), sd = sd(n5)),
+      add=TRUE
+    )
+    
+    hist(n30, probability = TRUE)
+    curve(
+      dnorm(x, mean = mean(n30), sd = sd(n30)),
+      add=TRUE
+    )
+    
+    hist(n100, probability = TRUE)
+    curve(
+      dnorm(x, mean = mean(n100), sd = sd(n100)),
+      add=TRUE,
+    )
+    ```
+
+4.  For each sample size $n$, define the standardized mean
+
+$$
+Z_n = \frac{\bar X_n - \mu}{\sigma / \sqrt{n}},
+$$
+
+where $\mu$ and $\sigma$ are the true mean and standard deviation of the exponential distribution.
+
+a)  Compute $Z_n$ for $n = 5, 30, 100$.
+
+    ```{r}
+    Z5 <- (mean(n5) - 1) / (1 / sqrt(5))
+    Z5
+    
+    Z30 <- (mean(n30) - 1) / (1 / sqrt(30))
+    Z30
+    
+    Z100 <- (mean(n100) - 1) / (1 / sqrt(100))
+    Z100
+
+    ```
+
+b)  Create histograms of $Z_n$ and compare them to the standard normal distribution.
+
+    ```{r}
+    hist(Z5, probability = TRUE, main = "Z5")
+    curve(dnorm(x), add = TRUE, col = "red")
+    hist(Z30, probability = TRUE, main = "Z30")
+    curve(dnorm(x), add = TRUE, col = "red")
+    hist(Z100, probability = TRUE, main = "Z100")
+    curve(dnorm(x), add = TRUE, col = "red")
+
+    ```
+
+Answer the following:
+
+c)  How does the distribution of $\bar X_n$ change as $n$ increases?
+
+    the dist. of X_n gets more dense the higher n is, e.g. it gets closer to lamdba (1)
+
+d)  Why does the CLT apply even though the original data are not normally distributed?
+
+    CLT still works because for high sample sizes (10000), every distribution approaches normal distribution
+
+e)  What is the purpose of standardization in the CLT?
+
+    standardization makes it possible to compare Z_n's of different n's and lambda's,
+    as they normally have completely different means and distributions.
+
+------------------------------------------------------------------------
+
+# Part B — Descriptive statistics (45 points)
+
+We use `birthwt` from the MASS package.
+
+```{r}
+library(MASS)
+library(dplyr)
+library(ggplot2)
+library(forcats)
+
+data(birthwt)
+
+bwt <- birthwt %>%
+  mutate(
+    smoke = factor(smoke, levels = c(0,1), labels = c("No","Yes")),
+    ht    = factor(ht, levels = c(0,1), labels = c("No","Yes")),
+    ui    = factor(ui, levels = c(0,1), labels = c("No","Yes")),
+    low   = factor(low, levels = c(0,1), labels = c("No","Yes"))
+  )
+```
+
+## B1. Variable overview (6 points)
+
+1.  In your own words: what does one row of `bwt` represent?
+
+    one row of bwt represents data from one birth
+
+2.  List **two categorical** and **two numeric** variables in `bwt`.
+
+    cat.: low / smoke / race / ht / ui
+    num.: age / lwt  / ptl / ftv / bwt
+
+## B2. Histograms + ECDF (10 points)
+
+For the numeric variable `bwt$bwt` (birth weight in grams):
+
+1.  Create two histograms with different bin widths (e.g. 150 and 400).
+
+    ```{r}
+    hist(bwt$bwt ,breaks=5000 / 150)
+    hist(bwt$bwt ,breaks=5000 / 400)
+
+    ```
+
+2.  Create an ECDF plot.
+
+    ```{r}
+    plot(ecdf(bwt$bwt), xlab = "bwt", ylab = "frequency", main = "ECDF of bwt")
+    ```
+
+3.  From the ECDF (or in R), estimate the proportion of babies with birth weight $\le 2500$ g. Write a sentence or two interpreting 1) how bin width affects the histogram and 2) what you see in the ECDF.
+
+    ```{r}
+    '
+    My estimate: 0.3 -> 30%
+    1)Higher bin witdh makes the graph more smooth, but makes it harder to find outsiders within the graph.
+    2) the ECDF shows that most babies weigh 3kg or more after birth, and that the weight stagnates at ~800g
+    for low values and ~5kg for high values. Most babies weigh between ~3kg and ~5kg.
+    '
+    ```
+
+    *Write your answer here.*
+
+## B3. Group comparison: smokers vs non-smokers (9 points)
+
+1.  Create a **boxplot** of `bwt` by `smoke`.
+
+    ```{r}
+    boxplot(bwt$bwt ~ bwt$smoke,
+        xlab = "Smoking status", ylab = "Birth weight",
+        names = c("Non Smoker", "Smoker"),
+        main= "Zaza plot")
+
+    ```
+
+2.  Report the median birth weight for each group.
+
+    ```{r}
+    #Median weight for non-smokers
+    median(bwt$bwt[bwt$smoke == "No"])
+    #Median weight for smokers
+    median(bwt$bwt[bwt$smoke == "Yes"])
+
+    ```
+
+3.  In 3–4 sentences, summarize how smoking relates to birth weight using (i) the boxplot and (ii) the medians.
+
+    ```{r}
+    '
+    Like seen in the boxplot and the median values, smoking during pregnancy can
+    substantially reduce the birth weight of the child. Babies from smoking mothers
+    also have a smaller interval for their birth weight, following the median of ~2.8kg
+    much more closeley then the non-smoker-babies follow the median of 3.1kg.
+    '
+    ```
+
+    *Write your answer here.*
+
+## B4. Contingency table + chi-square (10 points)
+
+Consider the relationship between `smoke` and `low`.
+
+1.  Create the contingency table.
+
+    ```{r}
+    table(bwt$smoke , bwt$low)
+    ```
+
+2.  Compute **row-wise proportions** (within smoking status).
+
+    ```{r}
+    prop.table(table(bwt$smoke , bwt$low))
+    ```
+
+3.  Perform a chi-square test of independence and state the null hypothesis in words.
+
+    ```{r}
+    #H0: if p > 0.05, bwt$smoke and bwt$low are not related
+    chisq.test(bwt$smoke, bwt$low)
+    # p) 0.03958 -> H0 gets thrown away
+
+    ```
+
+## B5. Scatterplot + correlation (10 points)
+
+Study the relationship between maternal weight `lwt` and birth weight `bwt`.
+
+1.  Make a scatterplot (`bwt` vs `lwt`).
+
+    ```{r}
+    ggplot(bwt, aes(x = bwt, y = lwt)) +
+      geom_point(colour = "magenta") +
+      labs(title = "Scatterplot: bwt vs lwt")
+    ```
+
+2.  Compute the correlation and interpret the sign and magnitude.
+
+    ```{r}
+    cor(bwt$bwt, bwt$lwt)
+    # -> 0.1857333
+    # sign -> positive -> the higher the $lwt, the higher the $bwt
+    # magnitude ->  ~0.18 -> weak correlation
+    ```
+
+------------------------------------------------------------------------
+
+# Part C — Inferential statistics (15 points)
+
+## C1. Fit and interpret a linear model (15 points)
+
+Fit the model
+
+$$
+\texttt{bwt} \sim \texttt{lwt}.
+$$
+
+1.  Fit the model and print the summary.
+
+    ```{r}
+    bwtlm <- lm(bwt$bwt ~ bwt$lwt)
+
+    summary(bwtlm)
+    ```
+
+2.  Write down the estimated regression equation.
+
+    f: estimated regression equation; f(x) = 4.429x + 2369.624
+
+3.  Interpret the slope in context (one sentence).
+
+    interpretation of the slope (4.429): On average, the $bwt is estimated to be 
+    4.429x as big as the $lwt, e.g. multiplying the $lwt with 4.429 results in an
+    estimation of the respective $bwt
+
+4.  Add the regression line to your scatterplot.
+
+```{r}
+    ggplot(bwt, aes(x = bwt, y = lwt)) +
+      geom_point(colour = "black") +
+      geom_smooth(method = "lm", colour = "red") +
+      labs(
+        title = "Scatterplot + Regression for bwt ~ lwt",
+        x = "Bwt",
+        y = "Lwt"
+      )
+
+```
+
+# Submission checklist (not graded)
+
+-   [ ] The file knits without errors.
+-   [ ] All plots have readable axis labels and titles.
+-   [ ] Each requested interpretation is written in full sentences.

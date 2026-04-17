@@ -1,28 +1,140 @@
+from __future__ import annotations
+from typing import Callable
+import inspect
+import math
+
 #TRENNZEICHEN HIER EINSTELLEN:
 SEPERATOR = " "
+DEBUG = True
 
-eingabe = input("Geben Sie ein arithmetischen Ausdruck in UPN an: ")
-eingabe = eingabe.split(SEPERATOR)
 
-arithmetics = ["+","-","*","/"]
+class Operator:
 
-def calculate(array: list):
+    def __init__(self,
+                 symbol:str,
+                 grade:int,
+                 fun: Callable[..., float]
+                 ) -> None:
+        
+        self.symbol = symbol
+        self.grade = grade
+        self.fun = fun
 
-    if len(array) == 1:
-        return array[0]
+        count:int = 0;
+        for param in inspect.signature(fun).parameters.values():
+            if param.kind in (
+                inspect.Parameter.POSITIONAL_ONLY,
+                inspect.Parameter.POSITIONAL_OR_KEYWORD
+            ):
+                count += 1
+        
+        if(count != grade):
+            raise Exception("Grade needs to be equal to the amount of parameters")
 
-    for letter in array:
-        if letter in arithmetics:
-            i = array.index(letter)
-            print(array[:i - 2] + [str(eval(array[i - 2] + letter + array[i - 1]))] + array[i + 1:])
-            #                alles vorher  +   ergebnis von a[i-2] und a[i-1] auf operator     + alles danach
-            return calculate(array[:i - 2] + [str(eval(array[i - 2] + letter + array[i - 1]))] + array[i + 1:])
+    
+    def __eq__(self, other: Operator) -> bool:
+        '''
+        Operator overloading for ==
+        '''
+        return self.symbol == other.symbol
+    
+    
+    def evaluate(self, *ins: float) -> float:
+        return self.fun(*ins)
+        
+
+
+
+def calculate(tokens: list[str], arith: dict[str, Operator]) -> float:
+    stack: list[float] = []
+
+    for token in tokens:
+        if token in arith:
+            op = arith[token]
+
+            if len(stack) < op.grade:
+                raise ValueError("Not enough operands")
+
+            args = stack[-op.grade:]
+            del stack[-op.grade:]
+
+            result = op.evaluate(*args)
+            stack.append(result)
+        else:
+            stack.append(float(token))
+
+    if len(stack) != 1:
+        raise ValueError("Invalid UPN expression")
+
+    return stack[0]
+
+
+
+    
+    
             
 
 
-#Beispiel Eingabe: 2 3 * 4 5 + - 5 4 * /    => -0.15
-#Bitte trennzeichen einstellen
-print(calculate(eingabe))
+if __name__ == "__main__":
+
+    
+    plus:Operator = Operator("+",
+                             2,
+                             lambda a, b : a + b)
+    
+    sub: Operator = Operator("-",
+                             2,
+                             lambda a, b : a - b)
+    
+    mult:Operator = Operator("*",
+                             2,
+                             lambda a, b : a * b)
+    
+    divide: Operator = Operator("/",
+                             2,
+                             lambda a, b : a / b)
+    
+    power:Operator = Operator("**",
+                             2,
+                             lambda a, b : a ** b)
+    
+    # trigonometry
+
+    sin: Operator = Operator("sin",
+                             1,
+                             lambda a : math.sin(a))
+    
+    cos: Operator = Operator("cos",
+                             1,
+                            lambda a : math.cos(a))
+    
+    tan: Operator = Operator("tan",
+                             1,
+                            lambda a : math.tan(a))
+    
+    sqrt: Operator = Operator("sqrt",
+                              1,
+                              lambda a: math.sqrt(a))
+    
+
+    arithmetics: dict[str, Operator] = {
+        "+" : plus,
+        "-" : sub,
+        "*" : mult,
+        "/" : divide,
+        "**" : power,
+        "sin" : sin,
+        "cos" : cos,
+        "tan" : tan,
+        "sqrt" : sqrt
+        }
+
+    upn = input("Geben Sie ein arithmetischen Ausdruck in UPN an: ")
+    upn = upn.split(SEPERATOR)
+
+    #Beispiel Eingabe: 2 3 * 4 5 + - 5 4 * /    => -0.15
+    #Bitte trennzeichen einstellen
+    print(calculate(upn, arithmetics))
 
 
 

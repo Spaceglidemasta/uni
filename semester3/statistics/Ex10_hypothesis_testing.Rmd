@@ -1,0 +1,505 @@
+---
+title: 'Exercise Sheet 10: Hypothesis Testing'
+author: ''
+date: ''
+output:
+  pdf_document:
+    toc: true
+    toc_depth: '3'
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+subtitle: "One-sample procedures (z / t / chi-square, proportions) + selected two-sample
+  and chi-square methods"
+editor_options:
+  markdown:
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+set.seed(42)
+```
+
+# Quick reference: hypothesis testing building blocks
+
+## Core objects
+
+-   **Null hypothesis** $H_0$: baseline claim about a parameter (e.g.
+    $\mu=\mu_0$).
+-   **Alternative** $H_1$: departures from $H_0$ we want to detect
+    (two-sided or one-sided).
+-   **Test statistic** $W$: a function of the sample data.
+-   **Rejection region** $R$: reject $H_0$ iff $W_{\text{obs}}\in R$.
+-   **Type I error**: reject $H_0$ although $H_0$ is true. Probability
+    $\alpha$.
+-   **Type II error**: fail to reject $H_0$ although $H_1$ is true.
+    Probability $\beta$.
+-   **Power**: $1-\beta$.
+
+## Quantiles and p-values in R
+
+-   Normal critical value: `qnorm(1 - alpha/2)` and CDF: `pnorm()`
+-   t critical value: `qt(1 - alpha/2, df)` and CDF: `pt()`
+-   chi-square quantile: `qchisq(p, df)` and CDF: `pchisq()`
+
+## Common tests in R (and what they correspond to)
+
+-   One-sample mean (unknown $\sigma$): `t.test(x, mu = mu0)`
+-   One-sample mean (known $\sigma$): compute $Z$ and use `pnorm()`
+-   One-sample variance (normal model): compute $Q$ and use `pchisq()`
+-   One-sample proportion (approx):
+    `prop.test(x, n, p = p0, correct = FALSE)`
+-   One-sample proportion (exact): `binom.test(x, n, p = p0)`
+-   Two-sample means (Welch): `t.test(x, y)` (default is Welch)
+-   Two-sample means (pooled, equal variances):
+    `t.test(x, y, var.equal = TRUE)`
+-   F test for equal variances (normal): `var.test(x, y)`
+-   Chi-square test of independence (contingency table):
+    `chisq.test(tab)`
+-   Wilcoxon–Mann–Whitney (rank-based): `wilcox.test(x, y)`
+-   Paired t-test: `t.test(x, y, paired = TRUE)`
+
+------------------------------------------------------------------------
+
+# Part A — Logic of hypothesis testing (conceptual)
+
+## Exercise 1 (conceptual): $H_0$, $H_1$, statistic, rejection region
+
+We use `mtcars$mpg` as a sample.
+
+```{r}
+data(mtcars)
+x <- mtcars$mpg
+n <- length(x)
+c(n = n, mean = mean(x), sd = sd(x))
+```
+
+**Tasks**
+
+1.  Write down $H_0$ and $H_1$ for each case (in symbols and one short
+    sentence):
+
+    -   
+
+        (a) Two-sided: “the mean mpg equals 20”.
+        H0: The mean mpg equals 20
+        H1: The mean mpg does not equal 20
+
+    -   
+
+        (b) Right-tailed: “the mean mpg is larger than 20”.
+        H0: The mean mpg is smaller or equal to 20 
+        H1: The mean mpg is larger than 20
+
+    -   
+
+        (c) Left-tailed: “the mean mpg is smaller than 20”.
+        H0: The mean mpg is larger or equal to 20 
+        H1: The mean mpg is smaller than 20
+
+
+2.  For the one-sample $t$-test, the test statistic is 
+    $$
+    T=\frac{\bar X-\mu_0}{S/\sqrt{n}}.
+    $$
+    Explain (in 2–3 sentences) what “large” values of $T$ mean in words.
+
+    A: A large value for T indicates that he sample mean X is far away from the
+    actual mean, arguing against H0.
+
+3.  What is a **rejection region** $R$ for a two-sided test at level
+    $\alpha=0.05$? (Answer using a critical value $t_{n-1,0.975}$.)
+    
+    $$R = \{T: T < -t_{n-1, 0.975}\text{ or }T > t_{n-1, 0.975}\}$$
+
+4.  In 1–2 sentences each: define Type I error, Type II error, and
+    power.
+    
+    Type I Error: Falsely rejecting $H_0$
+    
+    Type II Error: Failing to reject $H_0$ when it should be.
+    
+    Power: Probability of correctly rejecting $H_0$
+
+------------------------------------------------------------------------
+
+# Part B — One-sample tests in the normal model
+
+## Exercise 2: One-sample $t$-test for a mean (unknown $\sigma$) + p-value
+
+We test the mean mpg in `mtcars`.
+
+Let $\mu_0=20$ and $\alpha=0.05$.
+
+**Tasks**
+
+1.  Compute $\bar x$, $s$, $n$, and the observed test statistic
+    $$
+    t_{\text{obs}}=\frac{\bar x-\mu_0}{s/\sqrt{n}}.
+    $$
+
+```{r}
+meanx <- mean(mtcars$mpg)
+s <- sd(mtcars$mpg)
+n <- length(mtcars$mpg)
+```
+
+2.  Compute the **two-sided p-value** manually using the
+    $t$-distribution:
+    $$
+      p = 2\,P\left(T\ge |t_{\text{obs}}|\right),\quad T\sim t_{n-1}.
+    $$
+
+```{r}
+t_obs <- (meanx - 20)/(s / sqrt(n))
+p_2sided <- 2 * (1 - pt(abs(t_obs), df = n-1))
+```
+
+3.  Check with `t.test()` and confirm that the p-value matches.
+
+```{r}
+t.test(mtcars$mpg)
+```
+
+4.  State your decision at $\alpha=0.05$: reject or not reject $H_0$?
+    (Write 1–2 sentences: include p-value and conclusion in context.)
+
+    The p-value is ~0.9328, which is much larger then 0.05. $\rightarrow$ $H_0$ cannot be rejected. $\rightarrow$ There is no signifitant evidence that the mean of mpg differs from 20.
+
+------------------------------------------------------------------------
+
+## Exercise 3: CI–test duality for the mean
+
+Use the same data and $H_0:\mu=\mu_0$ with $\mu_0=20$ and $\alpha=0.05$.
+
+**Tasks**
+
+1.  Compute the **95% confidence interval** for $\mu$ using `t.test()`.
+
+```{r}
+ttest <-t.test(mtcars$mpg)
+ttest$conf.int[1:2]
+```
+
+2.  Verify CI–test duality: check whether $\mu_0$ lies inside the CI.
+    Explain why this agrees with your test decision in Exercise 2.
+
+    $\mu_0$ lies inside the CI. This is because both the calculation for the CI aswell 
+    as the calculation for $\mu_0$ use the same logic / formula, just isolated on another value.
+    Because you can also derive from $\mu_0 \in$ CI that we cannot drop $H_0$, the same result
+    as the t-test. This shows the duality of both approaches.
+    
+    
+3.  Repeat (conceptually only): what happens to the decision rule if you
+    change the confidence level from 95% to 99%?
+
+    The CI grows.
+
+------------------------------------------------------------------------
+
+## Exercise 4: One-sample z-test for a mean (known $\sigma$) (illustration)
+
+In practice $\sigma$ is rarely known. Here we do an **illustration**
+using `airquality$Ozone`.
+
+Assume (for this exercise) that the population standard deviation is
+known and equals $\sigma_0=20$. We test $H_0:\mu=40$ vs $H_1:\mu\neq 40$
+at $\alpha=0.05$.
+
+```{r}
+x <- airquality$Ozone
+sigma <- 20
+mu_0 <- 40
+alpha <- .05
+```
+
+**Tasks**
+
+1.  Compute the z-statistic
+    $$
+    z_{\text{obs}}=\frac{\bar x-\mu_0}{\sigma_0/\sqrt{n}}
+    $$ with $\mu_0=40$ and $\sigma_0=20$.
+
+```{r}
+z_obs <- (mean(x, na.rm=T) - mu_0) / (sigma / sqrt(length(x)))
+z_obs
+```
+
+2.  Compute the two-sided p-value using the standard normal
+    distribution.
+
+```{r}
+p_2sided <- 2 * (1 - pnorm(abs(z_obs)))
+p_2sided
+```
+
+3.  Compute the critical value $z_{0.975}$ and decide whether to reject.
+
+```{r}
+z_crit <- qnorm(1 - alpha / 2)
+z_crit
+#-> I do not reject H_0
+```
+
+4.  In 1–2 sentences: why is the z-test “more optimistic” than the
+    t-test when $n$ is small?
+
+    Because the z test assumes normal distrobution, allowing it to assume a bigger interval,
+    as it therefore assumes that the standard deviation is known. This underestimated the true
+    variability of the given distribution.
+
+------------------------------------------------------------------------
+
+## Exercise 5: One-sample chi-square test for a variance
+
+Assume that `mtcars$mpg` is approximately normal. We test
+$$
+H_0:\sigma^2=\sigma_0^2\quad \text{with }\sigma_0^2 = 36
+$$ (two-sided, $\alpha=0.05$).
+
+Under $H_0$,
+$$
+Q=\frac{(n-1)S^2}{\sigma_0^2}\sim \chi^2_{n-1}.
+$$
+
+**Tasks**
+
+1.  Compute $S^2$, $Q_{\text{obs}}$, and the two-sided p-value.
+
+```{r}
+S_squared <- sd(mtcars$mpg, na.rm=T)^2 
+Q <- 31 * S_squared / 36
+p_2sided <- 2 * min(
+  pchisq(Q, df=31),      
+  1 - pchisq(Q, df=31)  
+)
+```
+
+```{r}
+p_2sided
+```
+
+2.  Decide at $\alpha=0.05$. (Reject if in either tail.)
+
+```{r}
+p_2sided <= .05
+```
+The p-value is bigger then alpha $\rightarrow$ don't reject $H_0$
+
+
+3.  State $H_0$ in words, and interpret the result in 1–2 sentences.
+
+$H_0$: $\sigma_0^2 = 36$
+
+Result: There is not enough evidence to reject $H_0$. This is the case, because the calculated
+p-value is much bigger the given alpha, resulting in failure of disproving $H_0$
+
+------------------------------------------------------------------------
+
+# Part C — One-sample tests for a proportion (Bernoulli/binomial)
+
+## Exercise 6: Proportion test (normal approximation vs exact)
+
+We use the built-in table `Titanic` and focus on the overall survival
+proportion.
+
+Let $n$ = total passengers, $x$ = number of survivors, $\hat p=x/n$.
+Test $H_0:p=0.38$ vs $H_1:p>0.38$ at $\alpha=0.05$.
+
+```{r}
+data(Titanic)
+tab <- Titanic
+n <- sum(tab)
+x <- sum(tab[,,, "Yes"])
+phat <- x / n
+c(n = n, x = x, phat = phat)
+```
+
+**Tasks**
+
+1.  Compute the normal-approximation z-statistic under $H_0$:
+$$
+    Z=\frac{\hat p-p_0}{\sqrt{p_0(1-p_0)/n}}.
+    $$
+
+```{r}
+Z <- (phat - .38) / (sqrt(.38 * (1 - .38) / n))
+```
+
+2.  Compute the one-sided p-value $p=P(Z\ge z_{\text{obs}})$ and decide
+    at $\alpha=0.05$.
+
+```{r}
+p_1sided <- 1 - pnorm(Z) 
+p_1sided
+```
+Because the p-value is much bigger then alpha: 1 > 0.05, $H_1$ is not support and $H_0$
+can definitely not be rejected.
+
+3.  Compute the **exact** binomial p-value using `binom.test()`
+    (one-sided, alternative = "greater"). Compare the two p-values and
+    comment briefly.
+
+```{r}
+binom.test(x, n, .38, alternative = "greater")$p.value
+```
+identical.
+
+4.  Check the rule of thumb for the normal approximation: are $np_0$ and
+    $n(1-p_0)$ at least 10?
+
+```{r}
+n * .38 > 10
+n * (1 - .38) > 10
+```
+$\rightarrow$ yes
+
+------------------------------------------------------------------------
+
+## Exercise 7: p-values for two-sided vs one-sided alternatives
+
+Use your $t_{\text{obs}}$ from Exercise 2.
+
+**Tasks**
+
+1.  
+```{r}
+t_obs
+```
+<!-- -->
+
+(a) two-sided $H_1:\mu\neq\mu_0$,
+
+(b) right-tailed $H_1:\mu>\mu_0$,
+
+(c) left-tailed $H_1:\mu<\mu_0$.
+
+```{r}
+#a 
+2 * (1 - pt(abs(t_obs), df = 31))
+#b
+1 - pt(t_obs, df=31)
+#c
+pt(t_obs, df=31)
+```
+
+2.  Explain in 2–3 sentences why one-sided p-values are (typically)
+    about half of two-sided p-values when $t_{\text{obs}}$ is in the
+    direction of $H_1$.
+
+The closer $t_{obs}$ is to $H_0$, the more equal both one-sided p-values become,
+as the bigger one is getting smaller and the smaller one is getting bigger (trivial).
+Because the 2-sided p-value is the p-value in both directions, it's getting closer
+to $\text{left-sided-p} + \text{right-sided-p}$, which, if both are ~ equal, is
+~ equal to $2 * \text{*-sided-p}$.
+
+------------------------------------------------------------------------
+
+# Part D — Type I/II error and power (simulation)
+
+## Exercise 8: Power vs significance level (one-sample t-test)
+
+We simulate a one-sample t-test for $H_0:\mu=\mu_0$ (two-sided). Assume
+the data are normal with $\sigma=4$, $n=25$, and $\mu_0=20$.
+
+We estimate: - $\alpha$ (Type I error) when the true mean is $\mu=20$, -
+power when the true mean is $\mu=22$.
+
+```{r}
+sigma <- 4
+n <- 25
+mu_0 <- 20
+```
+
+**Tasks**
+
+1.  Interpret the four numbers:
+    -   Why is $\widehat\alpha$ close to the chosen $\alpha$?
+    -   Why does power drop when you lower $\alpha$ from 0.05 to 0.01?
+
+-
+
+2.  (Conceptual) Explain why a one-sided test can have higher power than
+    a two-sided test at the same $\alpha$. When is a one-sided test not
+    justified?
+
+-
+
+------------------------------------------------------------------------
+
+# Part E — Selected two-sample and chi-square methods (extension)
+
+## Exercise 9: Two-sample means (pooled vs Welch) using `sleep`
+
+The dataset `sleep` contains increases in sleep for two drugs.
+
+```{r}
+data(sleep)
+head(sleep)
+```
+
+Let $X$ be group 1 and $Y$ group 2 (`extra` by `group`).
+
+```{r}
+x <- sleep$extra[sleep$group == 1]
+y <- sleep$extra[sleep$group == 2]
+c(n1 = length(x), n2 = length(y), mean1 = mean(x), mean2 = mean(y), sd1 = sd(x), sd2 = sd(y))
+```
+
+**Tasks**
+
+1.  Perform Welch's two-sample test (default) and report the p-value.
+2.  Perform the pooled two-sample t-test (`var.equal=TRUE`) and report
+    the p-value.
+3.  In 2–3 sentences: when would you prefer Welch over pooled?
+
+```{r}
+t.test(x, y, alternative = "two.sided", var.equal = FALSE)$p.value
+```
+```{r}
+t.test(x, y, alternative = "two.sided", var.equal = TRUE)$p.value
+```
+
+I prefer the Welch test, as the pooled test needs very precise preconditions, like 
+almost identical variance and n with reason (which is not given)
+
+------------------------------------------------------------------------
+
+## Exercise 10: Chi-square test of independence using `Titanic`
+
+Test whether survival is independent of sex (ignoring other dimensions).
+
+```{r}
+tab2 <- apply(Titanic, c("Sex", "Survived"), sum)
+tab2
+```
+
+**Tasks**
+
+1.  State $H_0$ in words.
+2.  Compute the chi-square test and interpret the p-value.
+3.  Check whether expected counts are all at least 5.
+
+$H_0$: Survival is independent of sex.
+
+
+```{r}
+ct <- chisq.test(tab2)
+ct
+```
+p-value = $2.2e-16$
+
+$\rightarrow$ The p-value is essentially zero, providing overwhelming evidence against the null hypothesis. We reject $H_0$ and conclude that survival is not independent of sex.
+
+```{r}
+ct$expected
+```
+
+All expected counts are above 5.
+------------------------------------------------------------------------

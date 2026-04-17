@@ -39,7 +39,6 @@ All of them, because the CRC16-CCITT has a hamming distance of 2, and therefore 
 ### 1
 
 8-Bit payload => 7 Bits are beeing appended.
-
 Message: 11010011 0000000
 ```
 110100110000000 ^

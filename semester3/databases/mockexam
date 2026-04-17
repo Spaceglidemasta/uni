@@ -1,0 +1,133 @@
+1. 
+Persistance data: Data doesnt change on its own or in unexpected ways
+
+Redundancy free: Only necessary data is beeing stored, data is not stored multiple times.
+
+Management options: We can manage the content of the DB
+
+3. 
+Application Layer: External layer where the user can see the data of the DB
+-> can be relational
+
+Implementation layer: Internal / Conceptional layer where the content of the DB can be modified, defining all 
+connections between tables 
+-> should be relational
+
+Physical Layer: The physical storage of the data
+
+4. 
+DML 
+
+Data Manipulation Language -> used by moderators of the DB to modify the content of the DB
+-> queue and modify tables and relations
+
+DDL
+
+Data Definition Language
+-> used by the moderators of the DB to create tables and relations, aswell as the attributes contained by it
+
+5. 
+A Primary Key (PK) is an attribute or an attribute combination which identifies each tupel of a table uniquely
+- it must be unique for every tupel / row
+- it must not be NULL
+- it should be simple
+
+7. 
+pro: allows for optional attributes
+con: can cause problems when filtering for certain values of a nullable attribute, cause the 3-boolean problem
+
+8. 
+Product     x
+Union       + comp
+Difference  - comp
+Divide      / 
+
+Join
+Intersect     comp
+project
+Restrict
+
+9. 
+A Foreign key is a relation between to tables, allowing one to map one Data to multiple other sets of data, without
+putting multiple values in one attribute.
+
+10. 
+
+When setting up relations, you can setup two ways to handle deletions:
+
+    Restrict:   This restricts the deletion completely of the foreign key completely.
+    Cascade:    This causes the deletion to cascade into all related values, causing the deletion of a connected keys to the foreign key.
+
+    The standard is Restrict.
+
+11. 
+
+a: A => B
+b: (A ∧ B) => A
+c: ((A => B) ∧ (B => C)) => (A => C)
+
+12. 
+NF1: Only one value per attribute
+NF2: NF1 + not CK attributes cannot be dependent from PK attributes
+NF3: NF2 + no transistive dependency
+
+13. 
+
+```SQL
+
+create table `lieferant` (
+
+    lieferant_id    int primary key auto_increment,
+    lieferant_name  varchar(60),
+    addresse        varchar(100),
+    tel_num         varchar(32),
+    email           varchar(50)
+
+);
+
+create table `artikelgruppe` (
+
+    group_id        int primary key auto_increment,
+    group_name      varchar(60),
+    needs_cooling   boolean,
+    bio             boolean,
+    vegan           boolean
+
+);
+
+create table `artikel` (
+
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    art_name varchar(60) NOT NULL,
+    art_price float,
+    group_id int not null,
+    deliv_id int not null,
+
+    constraint fk_artikel2artikelgruppe
+        foreign key (group_id) references artikelgruppe(group_id),
+
+    constraint fk_artikel2lieferant
+        foreign key (deliv_id) references lieferant(lieferant_id)
+
+);
+
+lock table artikel write;
+lock table artikelgruppe write;
+lock table lieferant write;
+
+insert into artikelgruppe (group_name) values
+    ('nachtisch'), ('fruehstueck');
+
+insert into lieferant (lieferant_name) values
+    ('UPS'), ('DHL');    
+
+insert into artikel (art_name, art_price, group_id, deliv_id) values
+    ('Eis', 1.68, 1, 2);
+
+
+update artikelgruppe set group_name='suess' where group_name='nachtisch';  
+
+delete from lieferant where lieferant_id=1;
+
+unlock tables;
+```

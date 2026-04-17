@@ -1,0 +1,59 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.3.3">
+  <diagram name="Page-1" id="38otFBvzH0s_XIf7zECF">
+    <mxGraphModel dx="826" dy="444" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KybXm_5BGBn90d3WCoRW-17" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlActor;" value="" vertex="1">
+          <mxGeometry height="270" width="20" x="80" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KybXm_5BGBn90d3WCoRW-18" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value=":GazeTracker" vertex="1">
+          <mxGeometry height="270" width="100" x="250" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KybXm_5BGBn90d3WCoRW-25" parent="KybXm_5BGBn90d3WCoRW-18" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="50" width="10" x="45" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KybXm_5BGBn90d3WCoRW-19" parent="1" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value=":SmartGlassesApp" vertex="1">
+          <mxGeometry height="270" width="110" x="120" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="KybXm_5BGBn90d3WCoRW-20" parent="KybXm_5BGBn90d3WCoRW-19" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="160" width="10" x="50" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="Wi65ZqrzcHCqBjuxIMhJ-2" edge="1" parent="KybXm_5BGBn90d3WCoRW-19" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" value="loginWithIris(IrisData)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="150" />
+              <mxPoint x="90" y="150" />
+              <mxPoint x="90" y="190" />
+            </Array>
+            <mxPoint x="60" y="140" as="sourcePoint" />
+            <mxPoint x="70" y="190" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Wi65ZqrzcHCqBjuxIMhJ-1" parent="KybXm_5BGBn90d3WCoRW-19" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
+          <mxGeometry height="40" width="10" x="60" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="KybXm_5BGBn90d3WCoRW-21" edge="1" parent="1" source="KybXm_5BGBn90d3WCoRW-17" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;" target="KybXm_5BGBn90d3WCoRW-20" value="set on Glasses">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="125" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KybXm_5BGBn90d3WCoRW-22" edge="1" parent="1" source="KybXm_5BGBn90d3WCoRW-20" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;" target="KybXm_5BGBn90d3WCoRW-17" value="system logs the&lt;div&gt;&amp;nbsp;user in&lt;/div&gt;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="195" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KybXm_5BGBn90d3WCoRW-26" edge="1" parent="1" source="KybXm_5BGBn90d3WCoRW-20" style="html=1;verticalAlign=bottom;endArrow=block;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;" target="KybXm_5BGBn90d3WCoRW-25" value="scanIris()">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="175" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KybXm_5BGBn90d3WCoRW-27" edge="1" parent="1" source="KybXm_5BGBn90d3WCoRW-25" style="html=1;verticalAlign=bottom;endArrow=open;dashed=1;endSize=8;curved=0;rounded=0;exitX=0;exitY=1;exitDx=0;exitDy=-5;" target="KybXm_5BGBn90d3WCoRW-20" value="IrisData">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="220" y="245" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

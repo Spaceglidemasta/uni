@@ -1,0 +1,275 @@
+---
+title: "Exercise Sheet 9: Confidence Intervals with Real R Datasets"
+subtitle: "Point estimation, variability, and confidence intervals (mean, variance, proportion, regression)"
+author: 
+date: 
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    number_sections: true
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+set.seed(42)
+```
+
+# Quick reference: common CI building blocks
+
+## Quantiles in R
+
+-   Normal critical value: `qnorm(1 - alpha/2)`
+-   t critical value: `qt(1 - alpha/2, df)`
+-   chi-square quantiles: `qchisq(p, df)`
+
+## Typical CI shapes
+
+-   **Mean, sigma known (z interval):**
+    $\bar x \pm z_{1-\alpha/2}\,\sigma/\sqrt{n}$
+-   **Mean, sigma unknown (t interval):**
+    $\bar x \pm t_{n-1,1-\alpha/2}\,s/\sqrt{n}$
+-   **Variance (normal data):**
+    $\sigma^2 \in \left[\frac{(n-1)s^2}{\chi^2_{n-1,1-\alpha/2}},\frac{(n-1)s^2}{\chi^2_{n-1,\alpha/2}}\right]$
+-   **Proportion (normal approx):**
+    $\hat p \pm z_{1-\alpha/2}\sqrt{\hat p(1-\hat p)/n}$
+-   **Exact binomial interval:** `binom.test(x, n)$conf.int`
+
+------------------------------------------------------------------------
+
+# Exercise 1 — Populations, samples, parameters, statistics
+
+In this exercise we use `mtcars$mpg`.
+
+> **Idea:** Treat the full dataset as the “population” for this
+> exercise.
+
+```{r}
+data(mtcars)
+mpg_pop <- mtcars$mpg
+mu_pop  <- mean(mpg_pop)  # "population mean" for this exercise
+sigma_pop <- sd(mpg_pop)  # "population sd" for this exercise
+c(mu_pop = mu_pop, sigma_pop = sigma_pop, N = length(mpg_pop))
+```
+
+**Tasks**
+
+1.  In 1–2 sentences each, define (in your own words): - population,
+    sample, parameter, statistic.
+
+<!-- -->
+
+2.  Identify in this context: - population = ? - parameter $\mu$ = ? - a
+    sample of size $n=10$ = ? - an estimator for $\mu$ = ? - an estimate
+    = ?
+
+3.  Draw one random sample of size $n=10$ (with replacement) and compute
+    the sample mean.
+
+```{r}
+# TODO: draw a sample of size 10 and compute its mean
+
+```
+
+4.  Explain briefly: why will your answer in (3) change if you re-run
+    the code with a different random seed?
+
+------------------------------------------------------------------------
+
+# Exercise 2 — CI for a mean (t-interval)
+
+We want a **95% CI for the mean mpg** of the `mtcars` cars (treating
+them as a sample from a broader population).
+
+**Tasks**
+
+1\. Compute $\bar x$, $s$, $n$.
+
+2\. Compute the 95% t-interval for $\mu$ *by hand* using `qt()`.
+
+3\. Check your result with `t.test()`.
+
+```{r}
+
+```
+
+```{r}
+# Check with built-in t.test
+
+```
+
+**Questions (write short answers):** - Why do we use a **t** critical
+value here instead of a **z** critical value? - Interpret the 95% CI
+correctly in frequentist terms (repeated sampling interpretation).
+
+------------------------------------------------------------------------
+
+# Exercise 3 — How CI width changes (confidence level and sample size)
+
+## Part A: Change confidence level (90%, 95%, 99%)
+
+Compute CIs at three confidence levels and compare widths.
+
+```{r}
+
+```
+
+**Tasks**
+
+1\. Compute the **length** of each interval.
+
+2\. Explain: why does higher confidence produce a wider interval?
+
+```{r}
+# TODO: compute interval lengths
+
+```
+
+## Part B: Change sample size (subsampling)
+
+Randomly select half the cars (without replacement) and compute the 95%
+CI again.
+
+```{r}
+
+```
+
+**Questions** - Which CI is wider? Why? - What role does the factor
+$1/\sqrt{n}$ play?
+
+------------------------------------------------------------------------
+
+# Exercise 4 — CI for a variance (chi-square interval)
+
+Assume (for this exercise) that mpg is approximately normal.
+
+**Tasks**
+
+1\. Compute the sample variance $s^2$.
+
+2\. Build a 95% CI for $\sigma^2$ using the chi-square quantiles.
+
+3\. Optionally convert it to a CI for $\sigma$ by taking square roots.
+
+```{r}
+
+```
+
+```{r}
+# Optional: CI for sigma
+
+```
+
+**Questions** - Why do chi-square quantiles appear here? - What
+assumption is crucial for this variance CI to be exact?
+
+------------------------------------------------------------------------
+
+# Exercise 5 — CI for a proportion 
+
+`Titanic` is a contingency table. We'll compute the proportion of
+passengers who survived.
+
+```{r}
+data(Titanic)
+Titanic
+```
+
+## Part A: Overall survival proportion
+
+Let: - $n$ = total passengers, - $x$ = number of survivors, -
+$\hat p = x/n$.
+
+```{r}
+
+```
+
+### Normal-approximate 95% CI
+
+```{r}
+
+```
+
+### Comparision: Exact (Clopper–Pearson) CI
+
+```{r}
+ci_exact <- binom.test(x, n, conf.level = 0.95)$conf.int
+ci_exact
+```
+
+**Questions** - Compare the widths: which interval is wider, and why is
+that expected? - Check the rule of thumb: are $n\hat p$ and
+$n(1-\hat p)$ at least 10?
+
+## Part B: A smaller subgroup (children)
+
+Compute the survival proportion among children only (this subgroup is
+smaller).
+
+```{r}
+
+```
+
+**Tasks**
+
+1\. Compute normal-approx CI and exact CI for children.
+
+2\. Comment: which method seems more trustworthy here and why?
+
+```{r}
+# TODO: compute both CIs for children
+
+```
+
+------------------------------------------------------------------------
+
+# Exercise 6 — CI for a mean with missing data
+
+The dataset `airquality` has missing values (NA), especially in `Ozone`.
+
+```{r}
+data(airquality)
+str(airquality)
+summary(airquality$Ozone)
+```
+
+## Part A: 95% CI for mean Ozone (ignoring missing values)
+
+**Tasks**
+
+1\. Remove NAs from `Ozone`.
+
+2\. Compute $\bar x$, $s$, $n$.
+
+3\. Compute a 95% t-interval for the mean Ozone level.
+
+```{r}
+
+```
+
+## Part B: Compare months (June vs August)
+
+**Tasks**
+
+1\. Make separate vectors of Ozone for Month 6 and Month 8 (remove NAs).
+
+2\. Compute a 95% CI for each mean.
+
+3\. Compare widths and explain differences (think: sample size and
+variability).
+
+```{r}
+
+```
+
+**Conceptual question** - Does “non-overlapping 95% CIs” automatically
+imply a significant difference at 5%? (Discuss briefly.)
+
+------------------------------------------------------------------------

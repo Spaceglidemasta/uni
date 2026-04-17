@@ -1,0 +1,12 @@
+restrict
+(cross & theta & natural) join
+intersect (all)
+
+project     = pi
+select      = theta
+
+Union       +
+difference  - (Except)
+product     *
+divide      /
+

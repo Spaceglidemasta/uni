@@ -1,0 +1,554 @@
+---
+title: "Mock Exam — Statistics"
+date: "`r format(Sys.Date(), '%Y-%m-%d')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: true
+  pdf_document: default
+geometry: margin=1in
+fontsize: 11pt
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+set.seed(123)
+```
+
+**Instructions**
+
+-   Answer directly in this file and knit to HTML or PDF at the end.
+-   Provide both **R output** and **short written interpretation** where
+    requested.
+-   Total: **130 points**.
+
+------------------------------------------------------------------------
+
+# Part A — R Basics and Probability Theory (40 points)
+
+## A1. Data types and factors (7 points)
+
+Create the following object and answer the questions.
+
+```{r}
+x <- c(1, 2, 2, 3, 3, 3)
+g <- factor(c("A","B","A","B","B","A"))
+df <- data.frame(x = x, g = g)
+str(df)
+```
+
+1.  What does one **row** in `df` represent?
+
+    *Write your answer here.*
+
+2.  How many observations are in group `A` and in group `B`?\
+    *Write your answer here.*
+
+3.  Compute the **mean of `x`** separately for each group.
+
+    ```{r}
+    aggregate(df[1], FUN = mean, by = list(df$g))
+
+    ```
+
+## A2. Monte Carlo simulation (8 points)
+
+Let $\Omega = \{1,2,\dots,100\}$. Draw $N=50{,}000$ values uniformly
+from $\Omega$ (with replacement). Estimate:
+
+$$
+P(\text{multiple of 3} \mid \text{multiple of 3 or 5})
+$$
+
+1.  Compute the Monte Carlo estimate in R.
+
+    ```{r}
+    omega <- 1:100
+    ssize <- 50000
+    
+    count <- 0
+    success <- 0
+    
+    draws <- sample(omega, ssize, replace= TRUE)
+    
+    for(i in draws){
+      
+      if (i %% 3 == 0 || i %% 5 == 0){
+        
+        count <- count + 1
+        
+        if (i %% 3 == 0){
+          
+          success <- success + 1
+          
+        }
+        
+      }
+        
+    }
+    
+    success / count
+
+    ```
+
+2.  Compute the exact value by counting and compare.
+
+    
+    (P(i %% 3 == 0)) / (P(i %% 3 == 0) + P(i %% 5 == 0) - P(i %% 15 == 0))
+    
+    = 33 / (33 + 20 - 6) = 0.7010636
+    
+    monte carlo method result: 0.7018081
+    
+    delta_Results = abs(0.7018081 - 0.7010636) = 0.0007445
+    
+    => very precise awnser for such a context-loose question (P)
+    
+
+## A3. Sampling from a non-normal distribution (25 points)
+
+The goal of this exercise is to illustrate the **Central Limit Theorem**
+using simulation.
+
+Let $X \sim \text{Exponential}(\lambda = 1)$.
+
+1.  Draw $N = 10{,}000$ independent samples of size\
+    $n = 5$, $n = 30$, and $n = 100$.
+
+    ```{r}
+    drawsize <- 10000
+    
+    X <- rexp(drawsize, 1)
+    
+    n5 <- sample(X , 5)
+    
+    n30 <- sample(X , 30)
+    
+    
+    n100 <- sample(X , 100)
+    
+    ```
+
+2.  For each $n$, compute the **sample mean**.
+
+    ```{r}
+    mean(n5)
+    mean(n30)
+    mean(n100)
+
+    ```
+
+3.  For each $n$, create a **histogram of the sample means** and overlay
+    a **normal density** with the appropriate mean and variance.
+
+    ```{r}
+    hist(n5, probability = T)
+    curve(dnorm(x, mean = mean(n5), sd = sd(n5)), add=T)
+    
+    hist(n30, probability = T)
+    curve(dnorm(x, mean = mean(n30), sd = sd(n30)), add=T)
+    
+    hist(n100, probability = T)
+    curve(dnorm(x, mean = mean(n100), sd = sd(n100)), add=T)
+
+    ```
+
+4.  For each sample size $n$, define the standardized mean
+
+$$
+Z_n = \frac{\bar X_n - \mu}{\sigma / \sqrt{n}},
+$$
+
+where $\mu$ and $\sigma$ are the true mean and standard deviation of the
+exponential distribution.
+
+a)  Compute $Z_n$ for $n = 5, 30, 100$.
+
+    ```{r}
+    
+    compZ_n <- function(x_n, mu, sigma, n){
+      return (x_n - mu) / (sigma / sqrt(n))
+    }
+    
+    Z_5 <- compZ_n(mean(n5),1, 1, 5)
+    Z_30 <- compZ_n(mean(n30),1, 1, 30)
+    Z_100 <- compZ_n(mean(n100),1, 1, 100)
+    
+
+    ```
+
+b)  Create histograms of $Z_n$ and compare them to the standard normal
+    distribution.
+
+    ```{r}
+    hist(compZ_n(sample(X, n), mean(n), sd(n), n) + 2202, probability = T)
+    curve(dnorm(x, mean = 1, sd = 1) * 2, add=T)
+    ```
+
+Answer the following:
+
+c)  How does the distribution of $\bar X_n$ change as $n$ increases?
+
+    It comes closer to the normal distribution
+
+d)  Why does the CLT apply even though the original data are not
+    normally distributed?
+
+    Because:
+    1. The sample size is big
+    2. The chance to pull each value of the data is equally distributed
+
+e)  What is the purpose of standardization in the CLT?
+
+    It makes it possible to compare samples of different n's and lambda's, as
+    they would normally have completely different means and distributions
+
+------------------------------------------------------------------------
+
+# Part B — Descriptive statistics (45 points)
+
+We use `birthwt` from the MASS package.
+
+```{r}
+library(MASS)
+library(dplyr)
+library(ggplot2)
+library(forcats)
+
+data(birthwt)
+
+bwt <- birthwt %>%
+  mutate(
+    smoke = factor(smoke, levels = c(0,1), labels = c("No","Yes")),
+    ht    = factor(ht, levels = c(0,1), labels = c("No","Yes")),
+    ui    = factor(ui, levels = c(0,1), labels = c("No","Yes")),
+    low   = factor(low, levels = c(0,1), labels = c("No","Yes"))
+  )
+```
+
+## B1. Variable overview (6 points)
+
+1.  In your own words: what does one row of `bwt` represent?
+
+    1 birth
+
+2.  List **two categorical** and **two numeric** variables in `bwt`.
+
+    cat: ht & smoke
+    numeric: age & lwt
+
+## B2. Histograms + ECDF (10 points)
+
+For the numeric variable `bwt$bwt` (birth weight in grams):
+
+1.  Create two histograms with different bin widths (e.g. 150 and 400).
+
+    ```{r}
+    hist(bwt$bwt, 5000 / 150)# -> gets rounded up to 200
+    hist(bwt$bwt, 5000 / 400)# -> gets rounded up to 500
+    
+    
+    ```
+
+2.  Create an ECDF plot.
+
+    ```{r}
+    plot(ecdf(bwt$bwt))
+    
+
+    ```
+
+3.  From the ECDF (or in R), estimate the proportion of babies with
+    birth weight $\le 2500$ g. Write a sentence or two interpreting 1)
+    how bin width affects the histogram and 2) what you see in the ECDF.
+
+    ```{r}
+
+    ```
+
+    *Write your answer here.*
+
+## B3. Group comparison: smokers vs non-smokers (9 points)
+
+1.  Create a **boxplot** of `bwt` by `smoke`.
+
+    ```{r}
+    boxplot(bwt$bwt ~ bwt$smoke,
+            xlab="Smoking (No / Yes)", ylab="Birth Weight", main = "How smoking during pregnancy relates to Birthweight")
+    ```
+
+2.  Report the median birth weight for each group.
+
+    ```{r}
+    mean_nonsmok <- mean(bwt$bwt[bwt$smoke == "No"], na.rm =T)
+    mean_smok <- mean(bwt$bwt[bwt$smoke == "Yes"], na.rm = T)
+    
+    mean_nonsmok
+    mean_smok
+    ```
+
+3.  In 3–4 sentences, summarize how smoking relates to birth weight
+    using (i) the boxplot and (ii) the medians.
+
+    ```{r}
+     
+    ```
+
+    *Write your answer here.*
+
+## B4. Contingency table + chi-square (10 points)
+
+Consider the relationship between `smoke` and `low`.
+
+1.  Create the contingency table.
+
+    ```{r}
+    library(dplyr)
+    
+    table(bwt$smoke, bwt$low)
+    ```
+
+2.  Compute **row-wise proportions** (within smoking status).
+
+    ```{r}
+    prop.table(table(bwt$smoke, bwt$low))
+    ```
+
+3.  Perform a chi-square test of independence and state the null
+    hypothesis in words.
+
+    ```{r}
+    chisq.test(bwt$smoke, bwt$low)
+    
+    ```
+
+    *Write your answer here.*
+
+## B5. Scatterplot + correlation (10 points)
+
+Study the relationship between maternal weight `lwt` and birth weight
+`bwt`.
+
+1.  Make a scatterplot (`bwt` vs `lwt`).
+
+    ```{r}
+    ggplot(bwt, aes(bwt, lwt)) +
+      geom_point(size = 1) +
+      labs(title = "birthweight vs maternal weight")
+    ```
+
+2.  Compute the correlation and interpret the sign and magnitude.
+
+    ```{r}
+    cor(bwt$bwt, bwt$lwt)
+    ```
+    Postive correlation (sign) -> the higher the bwt, the higher the lwt
+    magnitude: the average lwt mapped to its bwt is lwt = bwt * 0.1857333
+
+------------------------------------------------------------------------
+
+# Part C — Inferential statistics (45 points)
+
+We continue with the `birthwt` data (`bwt`) from Part B.
+
+## C1. Linear regression inference + residual independence
+
+Fit the simple linear regression model
+$$
+\texttt{bwt} = \beta_0 + \beta_1\,\texttt{lwt} + \varepsilon,
+$$ where $\texttt{bwt}$ is birth weight (grams) and $\texttt{lwt}$ is
+maternal weight (pounds).
+
+### (a) Fit and summarize the model (5 points)
+
+1.  Fit the model and print the summary output.
+
+```{r}
+    model <- lm(bwt$bwt ~ bwt$lwt)
+    summary(model)
+```
+
+### (b) Point estimates and interpretation (5 points)
+
+2.  Write down the estimated regression equation
+    $\widehat{\texttt{bwt}} = b_0 + b_1\,\texttt{lwt}$.
+
+        4.429 * lwt + 2369.624
+
+3.  Interpret the slope $b_1$ **in context** (one sentence).
+
+*Write your answer here.*
+
+### (c) Confidence interval + hypothesis test for the slope (5 points)
+
+We test whether there is evidence of a linear relationship between
+maternal weight and birth weight.
+
+4.  Compute a 95% confidence interval for $\beta_1$ (slope) using
+    `confint()`.
+
+```{r}
+confint(model)
+
+```
+
+5.  Test $H_0:\beta_1=0$ vs $H_1:\beta_1\neq 0$ at $\alpha=0.05$. Report
+    the observed $t$-statistic, the p-value, and your decision.
+
+```{r}
+sum_model <- summary(model)
+
+t_stat <- sum_model$coefficients[2,3]
+p_value <- sum_model$coefficients[2,4]
+
+cat("t-Statistic:", t_stat, "\n")
+cat("p-Wert:", p_value, "\n")
+```
+
+6.  Verify the CI–test duality: explain (in 1–2 sentences) why the
+    decision in (5) agrees with whether $0$ lies inside/outside the 95%
+    CI from (4).
+
+*Write your answer here.*
+
+### (d) Mean response CI vs prediction interval (5 points)
+
+Let $x_0=130$ (maternal weight 130 lb).
+
+7.  Use `predict()` to compute:
+    -   a 95% confidence interval for the **mean** response
+        $m(x_0)=E[\texttt{bwt}\mid \texttt{lwt}=x_0]$,
+    -   a 95% **prediction** interval for a new observation
+        $\texttt{bwt}_{new}$ at $\texttt{lwt}=x_0$.
+
+```{r}
+pred <- predict(model, newdata = data.frame(lwt = 130), interval = "confidence", level=.95)
+colMeans(pred)
+predict(model, newdata = data.frame(lwt = 130), interval = "prediction", level=.95) %>% colMeans
+```
+    CI: [2807.704 : 3081.470]
+
+
+8.  Which interval is wider, and why? (1–3 sentences.)
+
+*Write your answer here.*
+
+### (e) Residual diagnostics (5 points)
+
+9.  Extract the residuals $e_i$ and create:
+    -   a plot of residuals versus observation index $i$,
+    -   a Q-Q plot
+
+```{r}
+
+res <- residuals(model)
+
+plot(res, main = "Residuals vs observation index", xlab = "observation index", ylab= "residuals", pch=19)
+abline(h=0, col="red", lty=3)
+```
+
+## C2. Point estimation and confidence intervals (based on the lecture notes)
+
+In this part you connect the regression work from C1 with the general
+concepts from the lecture notes (estimators, bias/variance/MSE,
+consistency, MLE, confidence intervals).
+
+### (a) Population, sample, parameter, statistic (4 points)
+
+1.  In the context of the variable `bwt$bwt` (birth weight in grams),
+    describe:
+    -   the **population** (conceptually),
+    -   the **parameter** $\mu = \mathbb{E}[X]$,
+    -   the **sample** $X_1,\dots,X_n$,
+    -   one **statistic** $T(X_1,\dots,X_n)$.
+
+    - all birth weights on earth
+    - the true average / to be expected birth weight
+    - the 189 birth samples in bwt
+    - the expected birth weight / mean from the samples
+    
+### (b) Estimator vs estimate (2 points)
+
+2.  Let $\bar X=\frac{1}{n}\sum_{i=1}^n X_i$. Explain the difference
+    between the **estimator** $\bar X$ and the **estimate** $\bar x$.
+
+    the estimator is the function / statistic, which returns an estimate upon recieving the
+    necessary data, e.g. the lwt, race, etc.
+    
+    the estimate is the result of this
+
+### (c) Bias, variance, MSE (4 points)
+
+3.  Suppose an estimator $T$ of $\theta$ is unbiased and
+    $\mathrm{Var}(T)=4$. Compute $\mathrm{MSE}(T)$.
+    
+    MSE = Bias² + Var
+    MSE = 0² + 4 = 4
+
+4.  Suppose another estimator $T'$ has $\mathrm{Bias}(T')=-1$ and
+    $\mathrm{Var}(T')=1$. Compute $\mathrm{MSE}(T')$. Which estimator
+    has smaller MSE?
+    
+    MSE = (-1)² + 1 = 2
+    
+    T' has the smaller MSE <!>
+
+*Write your answer here.*
+
+### (d) MLE in the uniform model (5 points)
+
+5.  Assume $T_1,\dots,T_n \stackrel{iid}{\sim}\mathrm{Unif}(0,\theta)$
+    and you observe
+
+    beispieltext
+    $$ t=(1.2,\ 0.7,\ 1.6,\ 0.9). $$
+
+    Compute:
+
+-   the MLE $\hat\theta_{\mathrm{MLE}}$,
+-   the unbiased estimator $\tilde\theta=\frac{n+1}{n}\max_i t_i$.
+
+
+<!>
+```{r}
+t= c(1.2,0.7, 1.6, 0.9)
+n <- length(t)
+
+MLE <- max(t)
+
+unbest <- (n + 1) / n * MLE
+
+MLE
+unbest
+
+```
+
+*Write your answer here.*
+
+### (e) Confidence interval for a mean + interpretation (5 points)
+
+6.  Compute a 95% $t$-confidence interval for the mean birth weight
+    $\mu$ using `t.test()`.
+
+```{r}
+t.test(bwt$bwt)$conf.int[1:2]
+
+```
+
+7.  Qualitative questions (no computation required):
+    -   What happens to CI **length** if the confidence level increases
+        from 95% to 99% (with the same data)?
+    -   What happens to CI **length** if the sample size doubles (and
+        the standard deviation stays roughly the same)?
+
+*Write your answer here.*
+
+# Submission checklist
+
+-   [ ] The file knits without errors.
+-   [ ] All plots have readable axis labels and titles.
+-   [ ] Each requested interpretation is written in full sentences.
