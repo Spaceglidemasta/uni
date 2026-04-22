@@ -1,8 +1,6 @@
 package ex1;
 import java.util.ArrayList;
 
-import ex1.Publication;
-
 
 public class Main {
 
