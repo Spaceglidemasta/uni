@@ -1,9 +1,22 @@
+# Specific files and folders
+
 semester3/javp/
 
 semester3/Java_Project/
 
-*/.vscode
-
 semester3/compnet/aufgabe44.c
 
+# auto generated folders & files
+
+*/.vscode
+
+*/__pycache__
+
+
+# File Formats
+
 *.exe
+
+*.docx
+
+*.ser
