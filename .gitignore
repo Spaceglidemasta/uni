@@ -20,7 +20,3 @@ semester3/compnet/aufgabe44.c
 *.docx
 
 *.ser
-
-# linguist Filters
-
-*.ipynb linguist-detectable=false
