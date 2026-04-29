@@ -1,0 +1,102 @@
+//LOAD AN EXAMPLE TO TRY
+//then load an input and click play
+
+//Syntax:
+
+//-------CONFIGURATION
+name: copy
+init: q0
+accept: qf
+
+//-------DELTA FUNCTION:
+q0,a
+q1,0,>
+
+q0,b
+q2,1,>
+
+q0,i
+q4,i,>
+
+q0,j
+q4,j,>
+
+q1,a
+q1,a,>
+
+q1,b
+q1,b,>
+
+q1,i
+q1,i,>
+
+q1,j
+q1,j,>
+
+q1,_
+q3,i,<
+
+q2,a
+q2,a,>
+
+q2,b
+q2,b,>
+
+q2,i
+q2,i,>
+
+q2,j
+q2,j,>
+
+q2,_
+q3,j,<
+
+
+q3,a
+q3,a,<
+
+q3,b
+q3,b,<
+
+q3,i
+q3,i,<
+
+q3,j
+q3,j,<
+
+q3,1
+q0,1,>
+
+q3,0
+q0,0,>
+
+
+q4,i
+q4,i,>
+
+q4,j
+q4,j,>
+
+q4,_
+q5,_,<
+
+q5,i
+q5,a,<
+
+q5,0
+q5,a,<
+
+q5,j
+q5,b,<
+
+q5,1
+q5,b,<
+
+q5,_
+qf,_,>
+
+
+//States and symbols are case-sensitive
+
+//Load your code and click COMPILE.
+//or load an example (top-right).

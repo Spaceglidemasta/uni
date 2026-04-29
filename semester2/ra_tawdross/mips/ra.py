@@ -1,0 +1,1 @@
+print(f"Ja, {jahr} ist ein Schaltjahr" if not ((jahr := int(input("Geben Sie das zu überprüfende jahr ein:"))) % 4) and (jahr % 100 or not jahr % 400) else f"Nein, {jahr} ist kein Schaltjahr")
