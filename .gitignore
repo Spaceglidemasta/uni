@@ -10,12 +10,16 @@ semester3/compnet/aufgabe44.c
 
 # auto generated folders & files
 
-*/.vscode
+.vscode/
 
-*/__pycache__
+__pycache__/
 
 
 # File Formats
+
+*.py[cod]
+*.pyo
+*.pyd
 
 *.exe
 
