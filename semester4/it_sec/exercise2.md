@@ -95,3 +95,6 @@ This is weak compared to other block ciphers like AES, because
 2. There is only 1 round of "diffusion" over the whole plaintext, while AES has (a lot) more rounds
 
 #### iii
+Only one ciphertext letter is changed when changing the plaintext, highlighting that is not really diffusion, as diffusion is defined to spread plaintext information over multiple bits in the ciphertext.
+
+=> The strength of the diffusion is very weak
