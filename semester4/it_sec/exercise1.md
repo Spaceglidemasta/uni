@@ -1,4 +1,8 @@
-# Exercise 1 (Introduction)
+# Exercise 1
+
+Introduction
+
+Prof. Dr. Robin Müller-Bady
 
 ### 1
 . . . 
