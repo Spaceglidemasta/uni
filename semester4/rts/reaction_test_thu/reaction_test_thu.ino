@@ -1,4 +1,3 @@
-
 #define PIN_3 3
 #define PIN_4 4
 
@@ -19,23 +18,25 @@ void loop() {
   unsigned long time2;
   unsigned long result;
 
-
-  while(digitalRead(PIN_3));
+  while (digitalRead(PIN_3));
 
   time1 = micros();
 
-  Serial.println(F("Time 1: %d microseconds", time1));
+  Serial.print("Time 1: ");
+  Serial.print(time1);
+  Serial.println(" microseconds");
 
-  while(digitalRead(PIN_4));
+  while (digitalRead(PIN_4));
 
   time2 = micros();
 
-  Serial.println(F("Time 2: %d microseconds", time2));
+  Serial.print("Time 2: ");
+  Serial.print(time2);
+  Serial.println(" microseconds");
 
-  Serial.println(F("Result: %.6d microseconds", time2 - time1));
+  result = time2 - time1;
 
-
-  
-
-
+  Serial.print("Result: ");
+  Serial.print(result);
+  Serial.println(" microseconds");
 }
