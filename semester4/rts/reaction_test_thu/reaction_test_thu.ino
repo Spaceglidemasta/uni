@@ -15,9 +15,9 @@ void setup() {
 
 void loop() {
 
-  int time1;
-  int time2;
-  int result;
+  unsigned long time1;
+  unsigned long time2;
+  unsigned long result;
 
 
   while(digitalRead(PIN_3));
