@@ -1,3 +1,8 @@
+// Luca De Simone 1592157
+// 07.05.2026
+// Reaction Test THU
+// MIT License
+
 #define PIN_3 3
 #define PIN_4 4
 
@@ -16,7 +21,7 @@ void loop() {
 
   unsigned long time1;
   unsigned long time2;
-  unsigned long result;
+  double        result;
 
   while (digitalRead(PIN_3));
 
@@ -34,9 +39,9 @@ void loop() {
   Serial.print(time2);
   Serial.println(" microseconds");
 
-  result = time2 - time1;
+  result = (time2 - time1) / 1000000.0;
 
   Serial.print("Result: ");
-  Serial.print(result);
+  Serial.print(result, 6);
   Serial.println(" microseconds");
 }
