@@ -1,6 +1,8 @@
 package Client;
 
 
+import java.io.ByteArrayInputStream;
+import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -12,7 +14,6 @@ public class BuildingProxy {
 
     private String name;
     private String port;
-    private HashSet<Room> rooms = new HashSet<>();
     private DatagramSocket socket;
 
     
@@ -24,7 +25,7 @@ public class BuildingProxy {
     }
 
 
-    private void send(String msg){
+    private byte[] send(String msg){
 
         try {
 
@@ -34,14 +35,40 @@ public class BuildingProxy {
             DatagramPacket request = new DatagramPacket (m, m.length,
                                                         aHost, serverPort);
             socket.send (request);
+
+
+
+
+            byte[] buffer = new byte[1000];
+            DatagramPacket reply = new DatagramPacket(buffer, buffer.length);
+            socket.receive (reply);
+
+            return reply.getData();
             
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
 
+        
 
         
-    } 
+    }
+
+    private Object bytesToObject(byte[] arr){
+
+        try {
+            ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(arr));
+            
+            return ois.readObject();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        
+    }
     
 
 
@@ -50,14 +77,14 @@ public class BuildingProxy {
      * @param name
      * @return room with the given name
      */
-    public void searchRoom(String name){
+    public Room searchRoom(String name){
 
-        send(this.name + " search " + name);
+        return (Room) bytesToObject(send("call " + this.name + " searchRoom " + name));
 
     }
 
     public void addRoom(Room room) {
-        send("call " + this.name + " addRoom");
+        send("call " + this.name + " addRoom " + room.getName() + " " + room.getFloor() + " " + room.getSize_sqm());
     }
 
     public void addRoom(String name, int floor, double size){
@@ -69,13 +96,13 @@ public class BuildingProxy {
         ));
     }
 
-    public void getRooms() {
-        send("call " + this.name + " getRooms");
+    public Room[] getRooms() {
+        return (Room[]) bytesToObject(send("call " + this.name + " getRooms"));
     }
 
-    public void getName() {
-        send("call " + this.name + " getName");
+    public String getName() {
+        return (String) bytesToObject(send("call " + this.name + " getName"));
     }
     
-
+    
 }

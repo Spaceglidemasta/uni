@@ -16,14 +16,15 @@ public class UDPServer{
 	static private ArrayList<Building> buildings = new ArrayList<>();
 
 	public static Building searchBuilding(String bname){
+
 		for(Building b : buildings){
-			if (b.getName() == bname) return b;
+			if (b.getName().equals(bname)) return b;
 		}
 		return null;
 	}
 
 
-	public static void evalCommand(String rawStr){
+	public static byte[] evalCommand(String rawStr){
 
 		ArrayList<String> strings =  new ArrayList<>(Arrays.asList(rawStr.split(" ")));
 
@@ -34,10 +35,12 @@ public class UDPServer{
 
 				try {
 					buildings.add(new Building(strings.get(1)));
+					return "ok".getBytes();
 
 				} catch (IndexOutOfBoundsException e) {
 					System.err.printf("Error: Index out of bounds: \n");
 					e.printStackTrace();
+					return "error".getBytes();
 				}
 
 			//Source: https://stackoverflow.com/questions/160970/how-do-i-invoke-a-java-method-when-given-the-method-name-as-a-string
@@ -45,23 +48,52 @@ public class UDPServer{
 
 				Building target = searchBuilding(strings.get(1));
 
-				System.out.printf("call got called: %s\n", target.getName());
+				if (target == null) {
+					System.err.println("Could not find target.");
+					return "error".getBytes();
+				} 
 
-
+				String methodName = strings.get(2);
 				try {
-					Method method = target.getClass().getMethod(strings.get(2));
+					Object result = null;
+					if (methodName.equals("searchRoom")) {
+						Method method = target.getClass().getMethod(methodName, String.class);
+						result = method.invoke(target, strings.get(3));
 
-					System.out.println(method.invoke(target).toString());
+					} else if (methodName.equals("getRooms") || methodName.equals("getName")) {
+						Method method = target.getClass().getMethod(methodName);
+						result = method.invoke(target);
 
-					} catch (Exception e) { e.printStackTrace(); }
+					} else if (methodName.equals("addRoom")) {
+						Method method = target.getClass().getMethod(methodName, String.class, int.class, double.class);
+						result = method.invoke(target, strings.get(3), Integer.parseInt(strings.get(4)), Double.parseDouble(strings.get(5)));
+						
+
+					} else {
+						System.err.println("Invalid method or args");
+						return "error: invalid method or args".getBytes();
+					}
+
 					
+					if (result == null) {
+						return "null".getBytes();
+					} else {
+						ByteArrayOutputStream baos = new ByteArrayOutputStream();
+						ObjectOutputStream oos = new ObjectOutputStream(baos);
+						oos.writeObject(result);
+						oos.close();
+						return baos.toByteArray();
 
-				break;
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+					return "error".getBytes();
+				}
 
 				
 		
 			default:
-				break;
+				return "error: unknown command".getBytes();
 		}
 
 
@@ -73,6 +105,7 @@ public static void main( String args[]){
 
 	Building uni = new Building("FRAUAS");
 	uni.addRoom(new Room("DS Übung", 2, 40));
+	uni.addRoom(new Room("RTS Weronek", 2, 50));
 
 	buildings.add(uni);
 
@@ -84,14 +117,12 @@ public static void main( String args[]){
 		DatagramPacket request = new DatagramPacket (buffer, buffer.length);
 		aSocket.receive (request);
 		String msgString = new String(request.getData(), 0, request.getLength());
-		System.out.println(" New Building: " + msgString);
+		System.out.println(" New Call: " + msgString);
 
-		Building b = new Building(msgString);
-
-		buildings.add(b);
+		byte[] response = evalCommand(msgString);
 																		
-		DatagramPacket reply = new DatagramPacket (request.getData(),
-				request.getLength(), request.getAddress(), request.getPort());
+		DatagramPacket reply = new DatagramPacket (response,
+				response.length, request.getAddress(), request.getPort());
 		aSocket.send (reply);
 	}
 	
