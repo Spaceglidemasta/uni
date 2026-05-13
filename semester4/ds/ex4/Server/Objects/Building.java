@@ -1,8 +1,10 @@
 package Server.Objects;
 import java.net.DatagramSocket;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.io.Serializable;
 
-public class Building {
+public class Building implements Serializable {
 
 
     private String name;
@@ -38,8 +40,8 @@ public class Building {
         rooms.add(new Room(name, floor, size));
     }
 
-    public HashSet<Room> getRooms() {
-        return rooms;
+    public Room[] getRooms() {
+        return rooms.toArray(new Room[0]);
     }
 
     public String getName() {

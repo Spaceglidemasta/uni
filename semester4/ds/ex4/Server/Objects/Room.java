@@ -1,6 +1,8 @@
 package Server.Objects;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable {
 
     private String name;
     private int floor;
