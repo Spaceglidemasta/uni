@@ -14,6 +14,10 @@ semester3/compnet/aufgabe44.c
 
 semester2/algdat_schaefer/uebungen_pdfs
 
+semester2/algdat_schaefer/Python-algorithms
+
+semester4/swe_d/ex3/seq_dia_ex3.PNG
+
 # auto generated folders & files
 
 .vscode/
@@ -32,3 +36,6 @@ __pycache__/
 *.docx
 
 *.ser
+
+
+
