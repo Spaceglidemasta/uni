@@ -8,47 +8,45 @@ import Server.Objects.Room;
 import java.io.*;
 
 public class UDPClient{
-  public static void main( String args[]){
+	public static void main( String args[]){
 
+	// args[0]: Message
+	// args[1]: Server
+	try (DatagramSocket aSocket = new DatagramSocket()) {
+		
+		String port = args[args.length - 1];
+		
+		//byte [] m = args[0].getBytes();
+		//InetAddress aHost = InetAddress.getByName(port);
+		//int serverPort = 9898;
+		//DatagramPacket request = new DatagramPacket(m, m.length,
+		//                                             aHost, serverPort);
+		//aSocket.send (request);
 
-    
+		BuildingProxy bproxy = new BuildingProxy("FRAUAS", aSocket, port);
 
-  // args[0]: Message
-  // args[1]: Server
-    try (DatagramSocket aSocket = new DatagramSocket()) {
-    
-      String port = args[args.length - 1];
-    
-      
-      //byte [] m = args[0].getBytes();      
-      //InetAddress aHost = InetAddress.getByName(port);
-      //int serverPort = 9898;
-      //DatagramPacket request = new DatagramPacket (m, m.length,
-      //                                             aHost, serverPort);
-      //aSocket.send (request);
+		String rname = bproxy.getName();
 
+		System.out.println(rname);
 
-      BuildingProxy bproxy = new BuildingProxy("FRAUAS", aSocket, port);
+		Room[] rooms = bproxy.getRooms();
 
-      String rname = bproxy.getName();
+		bproxy.addRoom(new Room("Secret Room", -1, 100));
 
-      System.out.println(rname);
+		for (Room r : rooms){
+			System.out.printf("Room %s is %.2fm² big and is on the %d. floor.\n",
+				r.getName(), r.getSize_sqm(), r.getFloor()
+			);
+		}
 
-      Room[] rooms = bproxy.getRooms();
+		//Room room = bproxy.searchRoom("DS Übung");
 
-      for (Room r : rooms){
-        System.out.println(r.getName());
-      }
+		//System.out.printf("Returned Size: %d\n",room.getSize_sqm());
 
-      //Room room = bproxy.searchRoom("DS Übung");
+		//System.out.println(" Reply: " + new String(reply.getData()));
 
-      //System.out.printf("Returned Size: %d\n",room.getSize_sqm());
-
-      
-      //System.out.println(" Reply: " + new String(reply.getData()));
-
-
-    }catch (SocketException e){ System.out.println(" Socket: " + e.getMessage());
-    }
-  }
+		} catch (SocketException e){
+			System.out.println("Socket: " + e.getMessage());
+		}
+	}
 } 

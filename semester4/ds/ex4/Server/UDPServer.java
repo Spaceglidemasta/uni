@@ -54,6 +54,7 @@ public class UDPServer{
 				} 
 
 				String methodName = strings.get(2);
+				
 				try {
 					Object result = null;
 					if (methodName.equals("searchRoom")) {
