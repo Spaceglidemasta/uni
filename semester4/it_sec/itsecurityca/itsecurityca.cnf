@@ -1,0 +1,26 @@
+[ ca ]
+default_ca = itsecurityca
+
+[ itsecurityca ]
+dir = /home/sgmasta/code/uni/semester4/it_sec/itsecurityca
+certificate = $dir/cacert.pem
+database = $dir/index.txt
+private_key = $dir/private/cakey.pem
+serial = $dir/serial
+
+default_crl_days = 7
+default_days = 365
+default_md = sha256
+
+policy = itsecurityca_policy
+x509_extensions = certificate_extensions
+
+[ itsecurityca_policy ]
+commonName = sg_cer
+stateOrProvinceName = Hesse
+countryName = Germany
+emailAdress = exampleemail@gmail.com
+organizationName = FRAUAS
+
+[ certificate_extensions ]
+basicConstraints = CA:false
