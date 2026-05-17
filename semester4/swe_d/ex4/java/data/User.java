@@ -1,4 +1,9 @@
+package data;
 import java.util.ArrayList;
+
+//Afferent Coupling: 1
+//Efferent Coupling: 1
+//   -> Instability: 1/2
 
 public class User {
     
@@ -24,6 +29,10 @@ public class User {
 
     public int getId(){
         return uid;
+    }
+
+    public ArrayList<WebsiteHook> getWebHooks() {
+        return webhooks;
     }
 
 

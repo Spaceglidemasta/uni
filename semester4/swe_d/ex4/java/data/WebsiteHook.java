@@ -1,3 +1,11 @@
+package data;
+
+import _notifications.SMS_Notification;
+
+//Afferent Coupling: 2
+//Efferent Coupling: 1
+//   -> Instability: 1/3
+
 public class WebsiteHook {
 
     private String url;
@@ -12,6 +20,10 @@ public class WebsiteHook {
     public void checkWebsite(){
 
         System.out.printf("Checking \"%s\"...\n", url);
+
+        SMS_Notification smsnot = new SMS_Notification();
+
+        smsnot.notify_user();
 
     }
 

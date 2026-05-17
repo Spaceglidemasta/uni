@@ -1,4 +1,5 @@
-public class SMS_Notification extends Notification {
+package _notifications;
+public class SMS_Notification extends _Notification {
     
 
     @Override

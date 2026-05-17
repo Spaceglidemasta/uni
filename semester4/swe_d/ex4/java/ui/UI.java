@@ -1,16 +1,22 @@
+package ui;
 import java.util.Scanner;
+
+import controlling.DataController;
+import data.User;
+import data.WebsiteHook;
+
+//Afferent Coupling: 0
+//Efferent Coupling: 3
+//   -> Instability: 1
 
 public class UI {
     
 
     private DataController dc;
     
-
-
     public UI(DataController dc){
         this.dc = dc;
     }
-
 
     public void createUser(){
 

@@ -3,13 +3,13 @@ import random as r
 import matplotlib.pyplot as plt
 import numpy as np
 
-K = 3
+K = 4
 
 X, y = make_blobs( # type: ignore
     n_samples=500,
     centers=K,
     cluster_std=2,
-    random_state=42
+    random_state=43
 )
 
 def eudist(p1, p2) -> float:
