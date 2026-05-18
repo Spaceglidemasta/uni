@@ -1,4 +1,4 @@
-package data;
+package model;
 
 import _notifications.SMS_Notification;
 

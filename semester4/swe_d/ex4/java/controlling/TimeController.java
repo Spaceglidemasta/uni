@@ -2,8 +2,8 @@ package controlling;
 
 import java.util.ArrayList;
 
-import data.User;
-import data.WebsiteHook;
+import model.User;
+import model.WebsiteHook;
 
 public class TimeController {
 

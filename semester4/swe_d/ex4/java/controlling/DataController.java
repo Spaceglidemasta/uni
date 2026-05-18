@@ -1,8 +1,8 @@
 package controlling;
 import java.util.ArrayList;
 
-import data.User;
-import data.WebsiteHook;
+import model.User;
+import model.WebsiteHook;
 
 //Afferent Coupling: 1
 //Efferent Coupling: 2
