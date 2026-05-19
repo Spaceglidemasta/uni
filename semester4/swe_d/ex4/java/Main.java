@@ -14,8 +14,10 @@ public class Main {
 
         UI gui = new UI(dc);
 
+        System.out.println("You create a user via gui...");
         gui.createUser();
 
+        System.out.println("You create a webhook via gui...");
         gui.createWebhook();
 
         tc.notificationLoop();

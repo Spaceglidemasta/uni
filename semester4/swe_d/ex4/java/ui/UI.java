@@ -2,8 +2,8 @@ package ui;
 import java.util.Scanner;
 
 import controlling.DataController;
-import data.User;
-import data.WebsiteHook;
+import model.User;
+import model.WebsiteHook;
 
 //Afferent Coupling: 0
 //Efferent Coupling: 3
