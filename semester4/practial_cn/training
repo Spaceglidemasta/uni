@@ -1,0 +1,68 @@
+DHCP
+DORA
+
+Discover:
+Is there a DHCP server here?
+
+Offer:
+Yes, you can have < IPv4 Address >
+
+Reply:
+May I take this address?
+
+Ack:
+You may
+
+
+ICMP
+
+Ping
+ICMP Request: HELLO
+
+Awnser:
+ICMP Reply: Yes
+Timeout
+Unreachable
+Other route is better
+
+Interface:
+eth0, wlan0, etc
+
+(sudo) ip link set dev < ip > < UP / DOWN >
+
+DHCP
+
+Discover    -> HALLO=??=???=??  A
+Offer       -> take this ?      B
+Reply       -> yes please       A
+Ack         -> yea go for it    B
+
+ICMP
+
+Request -> PING HELLOO
+
+Reply   -> Yes here /
+timeout 
+Unreachable
+go for another route
+
+
+
+traceroute / -I / T -> traceroute UDP / ICMP / TCP 
+-> TTL for loop increase 1 -> *
+-> gets error (timout) from every router when TTL = 0, showing full path
+
+IP fragmentation ip4 -> router: PACKAGE to big  -> overhead??
+
+ip link set dev 10.168.0.11 / 14
+
+
+DHCP 
+
+DORA#
+
+Discover    -> HELLO DHCP SERVER HERE???
+Offer       -> yes, take this ip?
+Request     -> yes, i want this
+Ack         -> u may
+
