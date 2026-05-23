@@ -43,7 +43,7 @@ void loop() {
 
   Serial.print("Result: ");
   Serial.print(result, 6);
-  Serial.println(" microseconds");
+  Serial.println(" seconds");
 
 }
 
