@@ -37,7 +37,7 @@ The sender creates a session key $k_s$, which they encrypt __asymmetrically__ ($
 
 $c_1 = \text{Enc}_{pk_R}(k_s)$
 
-they then encrypt the actual message __symmetrically__ using the sesson key  and send both the reciever:
+they then encrypt the actual message __symmetrically__ using the session key  and send both the reciever:
 
 $c_2 = \text{Enc}_{k_s}(m)$
 
