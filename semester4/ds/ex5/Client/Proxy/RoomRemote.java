@@ -2,7 +2,7 @@ package Proxy;
 
 import java.rmi.Remote;
 
-public interface RoomProxy extends Remote{
+public interface RoomRemote extends Remote{
 
     public String getName();
 

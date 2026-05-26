@@ -2,8 +2,8 @@
 import java.rmi.Naming;
 
 
-import Proxy.BuildingProxy;
-import Proxy.RoomProxy;
+import Proxy.BuildingRemote;
+import Proxy.RoomRemote;
 
 
 public class Main {
@@ -13,10 +13,10 @@ public class Main {
           
     try {    
       
-      BuildingProxy bprox = (BuildingProxy) Naming.lookup("rmi://" + args[0] + "/frauas");
-      RoomProxy[] rooms = bprox.getRooms();
+      BuildingRemote bprox = (BuildingRemote) Naming.lookup("rmi://" + args[0] + "/gebfrauas");
+      RoomRemote[] rooms = bprox.getRooms();
 
-      for (RoomProxy room : rooms){
+      for (RoomRemote room : rooms){
         System.out.println(room.getName());
       }
         

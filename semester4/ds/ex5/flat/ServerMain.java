@@ -2,12 +2,9 @@
 
 import java.rmi.*;
 
-import Objects.Building;
-import Objects.BuildingRemote;
 
 
-
-public class Main {
+public class ServerMain {
 
 
   public static void main (String[] args) {
@@ -15,6 +12,7 @@ public class Main {
     try {
 
       BuildingRemote frauas = new Building("FRAUAS");
+      
       
 
       Naming.rebind("gebfrauas", frauas);

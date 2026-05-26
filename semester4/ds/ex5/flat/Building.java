@@ -1,6 +1,7 @@
-package Objects;
 
-import java.util.HashSet;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -8,7 +9,7 @@ public class Building extends UnicastRemoteObject implements BuildingRemote {
 
 
     private String name;
-    private HashSet<RoomProxy> rooms = new HashSet<>();
+    private List<RoomRemote> rooms = new ArrayList<>();
 
 
     public Building(String n) throws RemoteException{
@@ -21,9 +22,9 @@ public class Building extends UnicastRemoteObject implements BuildingRemote {
      * @param name
      * @return room with the given name
      */
-    public RoomProxy searchRoom(String name) {
+    public RoomRemote searchRoom(String name)throws RemoteException {
 
-        for(RoomProxy room : rooms){
+        for(RoomRemote room : rooms){
             if (room.getName().equals(name)){
                 return room;
             }
@@ -32,11 +33,11 @@ public class Building extends UnicastRemoteObject implements BuildingRemote {
 
     }
 
-    public void addRoom(RoomProxy room) {
+    public void addRoom(RoomRemote room)throws RemoteException {
         rooms.add(room);
     }
 
-    public void addRoom(String name, int floor, double size) {
+    public void addRoom(String name, int floor, double size) throws RemoteException{
 
         try {
             rooms.add(new Room(name, floor, size));    
@@ -46,11 +47,11 @@ public class Building extends UnicastRemoteObject implements BuildingRemote {
         
     }
 
-    public RoomProxy[] getRooms() {
-        return rooms.toArray(new Room[0]);
+    public List<RoomRemote> getRooms() throws RemoteException {
+        return rooms;
     }
 
-    public String getName() {
+    public String getName()throws RemoteException {
         return name;
     }
     
