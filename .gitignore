@@ -30,9 +30,8 @@ __pycache__/
 # File Formats
 
 *.class
+
 *.py[cod]
-*.pyo
-*.pyd
 
 *.exe
 
