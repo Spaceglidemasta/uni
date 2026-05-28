@@ -16,9 +16,9 @@ The Blockchain trilemma consists of the 3 following aspects of blockchaining:
 
 Altough Bitcoin and Etherium both implement __Security__ to a high degree, but lack __Scalability__ and __Decentralisation__ respectivly.
 
-If you increase Scalability, you lose out on stronger hardware for validation $\rarr$ higher cost for validation $\rarr$ less people beeing able to run validation $\rarr$ less decentrelisation.
+If you increase Scalability, you lose out on stronger hardware for validation $\rightarrow$ higher cost for validation $\rightarrow$ less people beeing able to run validation $\rightarrow$ less decentrelisation.
 
-On the other way around, if you want to maximize decentrelisation, you need to restrict hardware / troughput $\rarr$ less Scalability / performance
+On the other way around, if you want to maximize decentrelisation, you need to restrict hardware / troughput $\rightarrow$ less Scalability / performance
 
 And if you want to maximize both, youd need to soften security measures in order to increase scaleablity whilest still keeping decentrelisation, sacrificing security in the process.
 
@@ -36,9 +36,9 @@ The problem with this is, that the hashed pointer to the data is still a small, 
 
 ## 2 Hash Functions and Block Chaining
 ### a)
-- Preimage resistance $\rarr$ "cant be undone"
-- Collision Resistance $\rarr \forall^- x,y : \text{Hash}(x) \neq \text{Hash}(y)$ 
-- Avalanche Effect: $\rarr$ 1 change in value $\rarr$ completly new hash value
+- Preimage resistance $\rightarrow$ "cant be undone"
+- Collision Resistance $\rightarrow \forall^- x,y : \text{Hash}(x) \neq \text{Hash}(y)$ 
+- Avalanche Effect: $\rightarrow$ 1 change in value $\rightarrow$ completly new hash value
 
 #### Preimage resistance
 Without Preimage resistance one could alter past transactions, violating the core principle of a blockchain
