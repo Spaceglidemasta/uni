@@ -2,6 +2,7 @@ package ui;
 import java.util.Scanner;
 
 import controlling.DataController;
+import model.Comparison_t;
 import model.User;
 import model.WebsiteHook;
 
@@ -52,11 +53,19 @@ public class UI {
         System.out.println("Provide the interval for the webhook:");
         int interval = sc.nextInt();
 
+        System.out.println("Provide the comparision type for the webhook:");
+        System.out.println("    Content Size (0)");
+        System.out.println("    HTML content (1)");
+        System.out.println("    Text content (2)");
+        int ct = sc.nextInt();
+
         dc.addWebHook(
             user,
             new WebsiteHook(
                 url,
-                interval
+                interval,
+                Comparison_t.values()[ct]
+
             )
         );
 

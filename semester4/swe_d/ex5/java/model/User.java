@@ -6,12 +6,12 @@ import java.util.ArrayList;
 //   -> Instability: 1/2
 
 //Concrete Subject
-public class User {
+public class User  implements Subject{
     
 
     private String name;
     private int uid;
-    private ArrayList<WebsiteHook> webhooks = new ArrayList<>();
+    private ArrayList<Observer> webhooks = new ArrayList<>();
     //public UserPrefencres preferences;
 
     public User(String name, int uid){
@@ -27,7 +27,8 @@ public class User {
         this.uid = new_uid;
     }
 
-    public void add_webhook(WebsiteHook webhook){
+    @Override
+    public void attach(Observer webhook){
         webhooks.add(webhook);
     }
 
@@ -35,8 +36,24 @@ public class User {
         return uid;
     }
 
-    public ArrayList<WebsiteHook> getWebHooks() {
+    public ArrayList<Observer> getWebHooks() {
         return webhooks;
+    }
+
+    @Override
+    public void detach(Observer obs) {
+        webhooks.remove(obs);
+        
+    }
+
+    @Override
+    public void updateObservers() {
+        
+        for (Observer obs : webhooks){
+            obs.update();
+            
+        }
+    
     }
 
 

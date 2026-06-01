@@ -30,7 +30,7 @@ public class DataController {
     }
     
     public void addWebHook(User user, WebsiteHook webhook){
-        user.add_webhook(webhook);
+        user.attach(webhook);
     }
 
     public User getUser(int uid){
