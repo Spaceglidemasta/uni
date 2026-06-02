@@ -1,0 +1,13 @@
+h1 {
+    font-size: 40px;
+    color: #000000;
+    line-height: 1.5;
+    font-family: JetBrains Mono, monospace;
+}
+
+* {
+    font-size: 20px;
+    color: #000000;
+    line-height: 1.5;
+    font-family: JetBrains Mono, monospace;
+}
