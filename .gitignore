@@ -1,4 +1,25 @@
+# auto generated folders & files
+
+.vscode/
+
+__pycache__/
+
+
+# File Formats
+
+*.class
+
+*.py[cod]
+
+*.exe
+
+*.docx
+
+*.ser
+
 # Specific files and folders
+
+semester4/ai/ex7_computer_vision/Exercise_7.pdf
 
 semester3/opsys/unfall
 
@@ -23,24 +44,6 @@ semester4/ai/ex6_neural_networks/.venv/
 semester4/it_sec/itsecurityca/
 
 
-# auto generated folders & files
-
-.vscode/
-
-__pycache__/
-
-
-# File Formats
-
-*.class
-
-*.py[cod]
-
-*.exe
-
-*.docx
-
-*.ser
 
 
 
