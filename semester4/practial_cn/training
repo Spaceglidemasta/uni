@@ -1,3 +1,5 @@
+# Ipv4
+
 DHCP
 DORA
 
@@ -47,7 +49,6 @@ Unreachable
 go for another route
 
 
-
 traceroute / -I / T -> traceroute UDP / ICMP / TCP 
 -> TTL for loop increase 1 -> *
 -> gets error (timout) from every router when TTL = 0, showing full path
@@ -66,3 +67,86 @@ Offer       -> yes, take this ip?
 Request     -> yes, i want this
 Ack         -> u may
 
+
+# Ipv6
+
+SLAAC
+
+    Hello router?
+    Yes here, take this subnet / prefix
+    (select an adress inside the subnet)
+    does someone have this address?
+    No awnser -> activate the ipv6 address
+
+
+Subnets
+
+    ::1/128 -> localhost
+
+    fe80::/10   -> link local
+    fc00::/7    -> unique local address
+    ff00::/8   -> multicast
+        ff02::/8 -> link local multicast
+            ff02::1 -> local multi
+            ff02::2 -> router 
+            ff02::1:ffxx:xxxx -> neighbour discovery
+
+
+    2000::/3    -> global unicast
+
+
+
+
+std prefix len = 64
+
+::1/128 -> loopback
+
+fe80::/10   -> link local
+fc00::/7    -> ULA
+ff00::/8    -> multicast
+    ff02::      -> link local multicast
+        ff02::2             ->  router
+        ff02::1:ffxx:xxxx   ->  nd
+        ff02::1             ->  local multi
+
+2000::/3 -> global unicast
+
+fe80::\10 -> link local unicast
+ff00::1\8 -> link local multicast
+ff00::2\8 -> link local router unicast
+fc00::\7 -> ULA
+
+
+
+RS -> is there a router    -> ff02::2
+RA -> i am a router with this subnet mask in this network ff02::1
+NS -> are there neighbours -> ff02::1(ffxx:xxxx)
+NA -> this is my MAC       -> z.B. fe80::... -> unicast
+
+NUD (NS + NA) -> is this target reachable (unicast or ff02::1 if no cache)
+DAD (NS + NA) -> is this address still free (mc ff02::1)
+
+
+
+
+
+
+ff  multicast
+
+ff02/8 -> link local multicast
+    ff02::2 -> router
+    ff02::1:ffxx:xxxx -> ND
+    ff02::1 -> link local broadcast
+
+fc00/7 -> ULA
+
+2000::/3 global unicast
+
+fe80/10 -> link local unicast
+
+
+SLAAC   
+    RA (or wait for unsoficified RS)
+    RS  
+    DAD
+    
