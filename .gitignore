@@ -1,5 +1,7 @@
 # auto generated folders & files
 
+.venv/
+
 .vscode/
 
 __pycache__/
