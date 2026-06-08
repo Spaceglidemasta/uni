@@ -2,4 +2,4 @@
 
 *.ipynb linguist-detectable=false
 
-*.md linguist-detectable
+*.md linguist-detectable=true
