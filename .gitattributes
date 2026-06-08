@@ -1,3 +1,5 @@
 # Jupyter notebook
 
 *.ipynb linguist-detectable=false
+
+*.md linguist-detectable
