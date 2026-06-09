@@ -13,7 +13,7 @@ public class Room {
     }
 
 
-    String getName() {
+    public String getName() {
         return name;
     };
 
