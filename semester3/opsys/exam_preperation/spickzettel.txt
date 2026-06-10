@@ -1,0 +1,11 @@
+
+
+VFAT:
+nur dir entries, keine inodes.
+
+ext3:
+dir entries die auf inodes zeigen.
+4kb pro address cluster
+ 12 pointer pro block -> 4 * 12 = 48kb,
+ alles darüber hinaus mit indirect pointers:
+ pointer auf einen block mit 12 pointer: ...
