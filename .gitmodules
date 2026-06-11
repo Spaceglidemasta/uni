@@ -1,3 +1,6 @@
 [submodule "semester3/java"]
 	path = semester3/java
 	url = https://github.com/Spaceglidemasta/Java-Sumo-Projekt-UAS
+[submodule "semester2/cpp_unthan/makefile_python"]
+	path = semester2/cpp_unthan/makefile_python
+	url = https://github.com/Spaceglidemasta/makefile
