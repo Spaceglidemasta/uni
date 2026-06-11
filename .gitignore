@@ -21,6 +21,8 @@ __pycache__/
 
 *.ser
 
+*.jar
+
 # Specific files and folders
 
 semester4/ai/ex7_computer_vision/Exercise_7.pdf
