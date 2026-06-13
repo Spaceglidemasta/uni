@@ -1,3 +1,3 @@
-javac src/java/Main.java
+javac -d bin $(find src/java -name "*.java")
 
-jar -cf app.jar --main-class=Main Main.class
+jar -cfe webmon.jar Main -C bin .

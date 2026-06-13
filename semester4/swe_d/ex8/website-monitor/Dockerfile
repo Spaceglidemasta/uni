@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY webmon.jar .
 
-CMD ["java", "-jar", "webmon.jar", ""]
+CMD ["java", "-jar", "webmon.jar"]
