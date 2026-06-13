@@ -22,13 +22,26 @@ Also, because every person has access to multiple independent devices which __co
 
 ## 2
 
++ JIT Infrastructure: Just like every JIT principle, this allows for fast changes on the fly, without effecting modules of the application that have already been built. (dynamic software, modularity)
+
++ Very low upfront cost investment. Because cloud based infrastructure relies on hardware from the client / other hosts, onyl a small amount of hardware is needed to start the project.
+
+My implementation wouldve relied on a single, company owned, expensive webserver, which wouldve monitored every website. In this cloud architecture example however, one wouldve put all the dirty regex / comparing work into the hardware of the clients (Smartphones running the application in the background, PCs on startup)
+
+
+###### We only designed Class Diagrams, not a physical structural design of the application, so its hard to compare it.
 
 
 ## 3
 
-#### Amazon SQS
+To further use the cloud architecture, I implemented a Premium feature for Users with a payed subscription, which lets them use the Servers power for scanning websites. This is usefull if the user wants to scan alot of data, or cant have their device active at all times.
 
-![]()
+The Host and with that the whole cloud architecture would be reduntant without this feature, as there is no reason for a server to exist, when the client-side app does all the work.
+
+![Cloud Architecture Diagram](./cloud_arch.PNG)
+
+###### Mistake: The Arrow "Client Device -> Website" should be "Regex logic -> Website"
+
 
 ## 4
 
