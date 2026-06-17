@@ -17,18 +17,33 @@ h1 {
 }
 
 h2  {
-    color: black;
     font-family: "Jet Brains Mono Regular";
     font-size: 20px;
 }
 
 .travelbox {
-    background-color: #000;
     color: #fff;
+    background-color: #f29719;
     font-family: "Jet Brains Mono Regular";
     font-size: 16px;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    margin-top: 20px;
+}
+
+.warning {
+    color: red;
+    font-family: "Jet Brains Mono Regular";
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.croomsize {
+    color: black;
+    font-family: "Jet Brains Mono Regular";
+    font-size: 16px;
+    text-align: center;
     margin-top: 20px;
 }

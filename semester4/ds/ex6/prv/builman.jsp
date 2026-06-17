@@ -30,8 +30,6 @@ if (g_buildings == null) {
 
 }
 
-
-
 %>
 
 
@@ -45,13 +43,21 @@ if (g_buildings == null) {
         <h2>Building: <%= b.getName() %></h2>
         <ul>
             <% for (Room r : b.getRooms()) { %>
-                <li><%= r.getName() %> - Capacity: <%= r.getSize_sqm()%>m²</li>
+                <li><%= r.getName() %> - Capacity: <%= r.getSize_sqm()%>m², Floor: <%= r.getFloor()%></li>
+                <form action="add_room.jsp" method="post">
+
+                    <input type="hidden" value="<%= r.getName()%>" name="rname">
+                    <input type="hidden" value="<%= b.getName()%>" name="rname">
+                    <input type="submit" value="Change Room Size" class="croomsize">
+
+                </form>
+                
             <% } %>
 
-            <form action="add_room.jsp" method="post" class="travelbox">
+            <form action="add_room.jsp" method="post">
 
                 <input type="hidden" value="<%= b.getName()%>" name="bname">
-                <input type="submit" value="Add a Room">
+                <input type="submit" value="Add a Room" class="travelbox">
 
             </form>
 
@@ -61,9 +67,9 @@ if (g_buildings == null) {
 
     
 
-    <form action="add_building.jsp" method="post" class="travelbox">
+    <form action="add_building.jsp" method="post" >
 
-        <input type="submit" value="Add a building">
+        <input type="submit" value="Add a building" class="travelbox">
 
     </form>
 

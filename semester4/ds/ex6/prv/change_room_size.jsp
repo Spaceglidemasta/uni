@@ -10,6 +10,8 @@
 <%
 
     ArrayList<Building> g_buildings = (ArrayList<Building>) session.getAttribute("buildings"); 
+    
+
 
 %>
 
@@ -17,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <body bgcolor="white">
 
-    <h1> Add a Building </h1>
+    <h1> Change Room Size of  <%= %></h1>
 
 
     <form method = "post">
