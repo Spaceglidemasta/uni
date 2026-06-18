@@ -44,10 +44,10 @@ if (g_buildings == null) {
         <ul>
             <% for (Room r : b.getRooms()) { %>
                 <li><%= r.getName() %> - Capacity: <%= r.getSize_sqm()%>m², Floor: <%= r.getFloor()%></li>
-                <form action="add_room.jsp" method="post">
+                <form action="change_room_size.jsp" method="post">
 
                     <input type="hidden" value="<%= r.getName()%>" name="rname">
-                    <input type="hidden" value="<%= b.getName()%>" name="rname">
+                    <input type="hidden" value="<%= b.getName()%>" name="bname">
                     <input type="submit" value="Change Room Size" class="croomsize">
 
                 </form>
