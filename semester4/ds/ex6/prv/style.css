@@ -7,7 +7,7 @@ p {
 h1 {
     color: black;
     font-family: "Jet Brains Mono Regular";
-    font-size: 24px;
+    font-size: 32px;
     text-align: center;
     margin-top: 5%;
 
@@ -23,7 +23,7 @@ h2  {
 
 .travelbox {
     color: #fff;
-    background-color: #f29719;
+    background-color: #2e2e2e;
     font-family: "Jet Brains Mono Regular";
     font-size: 16px;
     padding: 10px 20px;
@@ -36,7 +36,7 @@ h2  {
     color: red;
     font-family: "Jet Brains Mono Regular";
     font-size: 16px;
-    text-align: center;
+
     margin-top: 20px;
 }
 
@@ -46,4 +46,11 @@ h2  {
     font-size: 16px;
     text-align: center;
     margin-top: 20px;
+}
+
+body {
+    background-color: #dadada;
+    margin-left: 20%;
+    margin-right: 20%;
+    padding: 20px;
 }

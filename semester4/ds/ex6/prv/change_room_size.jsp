@@ -9,7 +9,9 @@
 
 <%
 
-    ArrayList<Building> g_buildings = (ArrayList<Building>) session.getAttribute("buildings"); 
+    ArrayList<Building> g_buildings = (ArrayList<Building>) session.getAttribute("buildings");
+    String rname = request.getParameter("rname");
+    String bname = request.getParameter("bname");
     
 
 
@@ -19,16 +21,10 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <body bgcolor="white">
 
-    <h1> Change Room Size of  <%= %></h1>
+    <h1> Change Room Size of  <%=rname%> (<%=bname%>)</h1>
 
 
-    <form method = "post">
-
-        <input type="text", name = "bname">
-
-        <input type="submit", value = "Add building">
-
-    </form>
+    
 
     <%
 
