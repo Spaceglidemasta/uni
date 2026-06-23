@@ -46,7 +46,7 @@
             
         }
 
-        if(rsize != null)
+        if(rsize != null && !rsize.isEmpty())
         for(Building b : g_buildings){
 
             if(b.getName().equals(bname)){
