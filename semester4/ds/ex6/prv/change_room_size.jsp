@@ -23,22 +23,54 @@
 
     <h1> Change Room Size of  <%=rname%> (<%=bname%>)</h1>
 
-
     
+
+    <form method = "post" >
+
+        Size:
+        <input type="number" name="rsize">
+
+        <br>
+        <input type="submit" value = "Change Size" class="travelbox">
+        <input type="hidden" name="bname" value="<%=bname%>">
+        <input type="hidden" name="rname" value="<%=rname%>">
+
+    </form>
 
     <%
+        
+        String rsize = request.getParameter("rsize");
 
-        String name = request.getParameter("bname");
-
-        if (name != null) {
-            g_buildings.add(
-                new Building(name)
-            );
+        if(rsize != null && rsize.isEmpty()){
+            %> <p class="warning">Size darf nicht leer sein! </p> <%
+            
         }
 
-        
+        if(rsize != null && !rsize.isEmpty())
+        for(Building b : g_buildings){
+
+            if(b.getName().equals(bname)){
+
+                for(Room r : b.getRooms()){
+
+                    if(r.getName().equals(rname)){
+
+                        r.setSize_sqm(Double.parseDouble(rsize));
+                        break;
+
+                    }
+
+                }
+                break;
+
+
+            }
+
+
+        }
+
+
     %>
-    
 
     <form action="builman.jsp" method="post" >
 

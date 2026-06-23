@@ -34,7 +34,7 @@ if (g_buildings == null) {
 
 
 <link rel="stylesheet" type="text/css" href="style.css">
-<body bgcolor="white">
+<body bgcolor="white" class="mainpage">
 
     <h1>Manage your buildings</h1>
 
