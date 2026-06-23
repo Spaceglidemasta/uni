@@ -56,10 +56,12 @@
                     if(r.getName().equals(rname)){
 
                         r.setSize_sqm(Double.parseDouble(rsize));
+                        break;
 
                     }
 
                 }
+                break;
 
 
             }
