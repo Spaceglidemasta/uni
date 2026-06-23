@@ -12,7 +12,7 @@
 
     ArrayList<Building> g_buildings = (ArrayList<Building>) session.getAttribute("buildings"); 
 
-    String bname = null;;
+    String bname = null;
     if(bname == null) {
         bname = request.getParameter("bname");
     }
