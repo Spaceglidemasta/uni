@@ -33,15 +33,18 @@
 
         <br>
         Room name:
+        <br>
         <input type="text" name = "rname">
 
         <br>
         Size:
-        <input type="number" name="rsize">
+        <br>
+        <input type="number" name="rsize" step="0.1">
 
         <br>
         Floor:
-        <input type="number" step="0.1" name="rfloor">
+        <br>
+        <input type="number" name="rfloor">
         <br>
         
 
