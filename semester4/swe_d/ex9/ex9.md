@@ -61,6 +61,6 @@ Often, "Test Suites" are used, which are collections of tests which ensure that 
 
 ## 5
 
-__Whitebox__ testing means to test software like / as a developer, meaning you know the code and test it internally. Typically you would use knowladge about code structure and singular statements inside the code.
+__Whitebox__ testing means to test software like / as a developer, meaning you know the code and test it internally. Typically you would use knowladge about code sructure and singular statements inside the code.
 
 __Blackbox__ testing means to test software like / as a User, which means that you dont really touch the code and focus on wheter the Software behaves from the perspective of a user. Typically you would use designated Tester Personal or automatic UI tests, or both.
