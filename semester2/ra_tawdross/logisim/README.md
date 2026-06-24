@@ -2,10 +2,10 @@
 ![Von Neumann Rechner](./screenshots/vnr.png)
 
 ### Speicherwerk
-![Speicherwerk / 4 Register](./screenshots/speicherwerk.png)
+![Speicherwerk / 4 Register](./screenshots/speicherwerk.PNG)
 
 ### Rechenwerk
-![Rechenwerk / 8 Bit ALU](./screenshots/rechenwerk.png)
+![Rechenwerk / 8 Bit ALU](./screenshots/rechenwerk.PNG)
 
 ### ALU
-![1 Bit ALU](./screenshots/alu.png)
+![1 Bit ALU](./screenshots/alu.PNG)
