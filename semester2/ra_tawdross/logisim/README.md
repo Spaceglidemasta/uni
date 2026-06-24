@@ -1,11 +1,11 @@
 # Preview: Aufg11_1.circ
-![](screenshots/vnr.png)
+![Von Neumann Rechner](./screenshots/vnr.png)
 
 ### Speicherwerk
-![](screenshots/speicherwerk.png)
+![Speicherwerk / 4 Register](./screenshots/speicherwerk.png)
 
 ### Rechenwerk
-![](screenshots/rechenwerk.png)
+![Rechenwerk / 8 Bit ALU](./screenshots/rechenwerk.png)
 
 ### ALU
-![](screenshots/alu.png)
+![1 Bit ALU](./screenshots/alu.png)
