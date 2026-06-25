@@ -3,7 +3,7 @@
 // ApproachLights2
 
 // debug print loop times
-#define TIMECHECK false
+#define TIMECHECK true
 
 #define AREAD A0
 #define BUTTON1 2
@@ -42,21 +42,27 @@ unsigned int OffTime_MICROSECONDS = 0;
 int GetLedCount() { return (analogRead(AREAD)) / 128 + 1; }
 
 void SetLedCount(int count) {
+
 	LedCount = count;
 	double FOffTime = 500.0 / LedCount - ON_TIME_MS;
+
 	OffTime_MS = (unsigned long)FOffTime;
 	OffTime_MICROSECONDS = round((FOffTime - OffTime_MS) * 1000);
+
 }
 
 void OnButton1Pressed() { Button1Pressed = true; }
 void OnButton2Pressed() { Button2Pressed = true; }
 
 void setup() {
+
 	Serial.begin(9600);
+
 	for (int Led : Leds) {
 		pinMode(Led, OUTPUT);
 		digitalWrite(Led, OFF);
 	}
+
 	pinMode(BUTTON1, INPUT_PULLUP);
 	pinMode(BUTTON2, INPUT_PULLUP);
 
@@ -130,30 +136,38 @@ void loop() {
 
 	switch (mode) {
 	case CONFIG:
+
 		SetLedCount(GetLedCount());
+
 		Serial.print(analogRead(AREAD));
 		Serial.print(" - LedCount: ");
 		Serial.println(LedCount);
+
 		for (int i = 0; i < 8; i++) {
 			digitalWrite(Leds[i], i < LedCount ? ON : OFF);
 		}
 		break;
 
 	case RUN:
-		// Led Sequence
+		
 		for (int i = 0; i < LedCount; i++) {
+
 			if (i != LedSequenceState[0]) {
 				digitalWrite(Leds[i], OFF);
 			}
+
 			LedSequence(Leds[LedSequenceState[0]], LedSequenceState[1]);
 			LedSequenceState[1]++;
+
 			if (LedSequenceState[1] > 4) {
 				LedSequenceState[1] = 0;
 
 				LedSequenceState[0]++;
+
 				if (LedSequenceState[0] >= LedCount) {
 					LedSequenceState[0] = 0;
 				}
+
 			}
 		}
 		break;
