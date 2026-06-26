@@ -78,7 +78,7 @@ $W \rightarrow S$
 
 CNF:
 
-$ \lnot W  \lor  S$
+$\lnot W  \lor  S$
 
 
 ### iii
@@ -86,7 +86,7 @@ W: we will go Swimming
 
 C: we take a canoe trip
 
-$ \lnot W \rightarrow C$
+$\lnot W \rightarrow C$
 
 CNF:
 
@@ -102,24 +102,24 @@ $C \rightarrow H$
 
 CNF:
 
-$ \lnot C  \lor  H$
+$\lnot C  \lor  H$
 
 
 ### c 
 
-- $ \lnot S  \land  C$
+- $\lnot S  \land  C$
 
-- $ \lnot W  \lor  S$
+- $\lnot W  \lor  S$
 
 - $W  \lor  C$
 
-- $ \lnot C  \lor  H$
+- $\lnot C  \lor  H$
 
-$ \lnot S  \land  C +  \lnot W  \lor  S =  \lnot W  \land  C$
+$\lnot S  \land  C +  \lnot W  \lor  S =  \lnot W  \land  C$
 
-$ \lnot W  \land  C + W  \lor  C = C$
+$\lnot W  \land  C + W  \lor  C = C$
 
-$ \lnot C  \lor  H + C = H$
+$\lnot C  \lor  H + C = H$
 
 $\Rightarrow$ We will be home by sunset
 
