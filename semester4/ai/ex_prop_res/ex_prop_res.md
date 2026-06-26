@@ -2,20 +2,20 @@
 
 ## 1
 ### a
-$(¬p ∨ q) ∧ (r ∨ ¬s) ∧ (¬p ∨ ¬q)$
+$( \lnot p  \lor  q)  \land  (r  \lor   \lnot s)  \land  ( \lnot p  \lor   \lnot q)$
 
 ###### (Already NNF)
 
 ### b
-$((¬p ∨ q) ∧ (r ∨ ¬s)) → ¬(¬p ∨ ¬q)$
+$(( \lnot p  \lor  q)  \land  (r  \lor   \lnot s)) →  \lnot ( \lnot p  \lor   \lnot q)$
 
-$=((¬p ∨ q) ∧ (r ∨ ¬s)) → (p ∧ q)$
+$=(( \lnot p  \lor  q)  \land  (r  \lor   \lnot s)) → (p  \land  q)$
 
-$=¬((¬p ∨ q) ∧ (r ∨ ¬s)) ∨ (p ∧ q)$
+$= \lnot (( \lnot p  \lor  q)  \land  (r  \lor   \lnot s))  \lor  (p  \land  q)$
 
-$=(¬(¬p ∨ q) ∨ ¬(r ∨ ¬s)) ∨ (p ∧ q)$
+$=( \lnot ( \lnot p  \lor  q)  \lor   \lnot (r  \lor   \lnot s))  \lor  (p  \land  q)$
 
-$=(p ∧ ¬q) ∨ (¬r ∧ s) ∨ (p ∧ q)$
+$=(p  \land   \lnot q)  \lor  ( \lnot r  \land  s)  \lor  (p  \land  q)$
 
 
 
@@ -23,38 +23,38 @@ $=(p ∧ ¬q) ∨ (¬r ∧ s) ∨ (p ∧ q)$
 
 Note:
 
-$A ↔ B = (A→B)∧(B→A) = (¬A∨B)∧(¬B∨A)$
+$A ↔ B = (A→B) \land (B→A) = ( \lnot A \lor B) \land ( \lnot B \lor A)$
 
 This means:
 
-$(¬p ∨ q) ↔ (¬r ∧ s)$
+$( \lnot p  \lor  q) ↔ ( \lnot r  \land  s)$
 
-$=((¬p ∨ q) → (¬r ∧ s))∧((¬r ∧ s)→(¬p ∨ q))$
+$=(( \lnot p  \lor  q) → ( \lnot r  \land  s)) \land (( \lnot r  \land  s)→( \lnot p  \lor  q))$
 
-$=(¬(¬p ∨ q) ∨ (¬r ∧ s))∧(¬(¬r ∧ s)∨(¬p ∨ q))$
+$=( \lnot ( \lnot p  \lor  q)  \lor  ( \lnot r  \land  s)) \land ( \lnot ( \lnot r  \land  s) \lor ( \lnot p  \lor  q))$
 
-$=((p ∧ ¬q) ∨ (¬r ∧ s))∧((r ∨ ¬s)∨(¬p ∨ q))$
+$=((p  \land   \lnot q)  \lor  ( \lnot r  \land  s)) \land ((r  \lor   \lnot s) \lor ( \lnot p  \lor  q))$
 
 ## 2
 ### a
-$(¬p ∨ q) ∧ (r ∨ ¬s) ∧ (¬p ∨ ¬q)$´
+$( \lnot p  \lor  q)  \land  (r  \lor   \lnot s)  \land  ( \lnot p  \lor   \lnot q)$´
 ###### (Already CNF)
 
 ### b
-$(p ∧ ¬q) ∨ (¬r ∧ s) ∨ (p ∧ q)$
+$(p  \land   \lnot q)  \lor  ( \lnot r  \land  s)  \lor  (p  \land  q)$
 
-$=p ∨ (¬r ∧ s)$
+$=p  \lor  ( \lnot r  \land  s)$
 
-$=(p ∨ ¬r) ∧ (p ∨ s)$
+$=(p  \lor   \lnot r)  \land  (p  \lor  s)$
 
 ### c
-$=((p ∧ ¬q) ∨ (¬r ∧ s))∧((r ∨ ¬s)∨(¬p ∨ q))$
+$=((p  \land   \lnot q)  \lor  ( \lnot r  \land  s)) \land ((r  \lor   \lnot s) \lor ( \lnot p  \lor  q))$
 
-$=((p ∧ ¬q) ∨ (¬r ∧ s)) ∧ (r ∨ ¬s ∨ ¬p ∨ q)$
+$=((p  \land   \lnot q)  \lor  ( \lnot r  \land  s))  \land  (r  \lor   \lnot s  \lor   \lnot p  \lor  q)$
 
-$=(((p ∧ ¬q) ∨ ¬r ) ∧ ((p ∧ ¬q) ∨ s)) ∧ (r ∨ ¬s ∨ ¬p ∨ q)$
+$=(((p  \land   \lnot q)  \lor   \lnot r )  \land  ((p  \land   \lnot q)  \lor  s))  \land  (r  \lor   \lnot s  \lor   \lnot p  \lor  q)$
 
-$=(p ∨ ¬r) ∧ (¬q ∨ ¬r) ∧ (p ∨ s) ∧ (¬q ∨ s) ∧ (r ∨ ¬s ∨ ¬p ∨ q)$
+$=(p  \lor   \lnot r)  \land  ( \lnot q  \lor   \lnot r)  \land  (p  \lor  s)  \land  ( \lnot q  \lor  s)  \land  (r  \lor   \lnot s  \lor   \lnot p  \lor  q)$
 
 ## 3
 ### i
@@ -62,11 +62,11 @@ S: weather is Sunny
 
 C: today is colder then yesterday
 
-$¬S ∧ C$
+$ \lnot S  \land  C$
 
 CNF:
 
-$¬S ∧ C$
+$ \lnot S  \land  C$
 
 
 ### ii
@@ -78,7 +78,7 @@ $W \rightarrow S$
 
 CNF:
 
-$¬W ∨ S$
+$ \lnot W  \lor  S$
 
 
 ### iii
@@ -86,11 +86,11 @@ W: we will go Swimming
 
 C: we take a canoe trip
 
-$¬W \rightarrow C$
+$ \lnot W \rightarrow C$
 
 CNF:
 
-$W ∨ C$
+$W  \lor  C$
 
 
 ### iv
@@ -102,24 +102,24 @@ $C \rightarrow H$
 
 CNF:
 
-$¬C ∨ H$
+$ \lnot C  \lor  H$
 
 
 ### c 
 
-- $¬S ∧ C$
+- $ \lnot S  \land  C$
 
-- $¬W ∨ S$
+- $ \lnot W  \lor  S$
 
-- $W ∨ C$
+- $W  \lor  C$
 
-- $¬C ∨ H$
+- $ \lnot C  \lor  H$
 
-$¬S ∧ C + ¬W ∨ S = ¬W ∧ C$
+$ \lnot S  \land  C +  \lnot W  \lor  S =  \lnot W  \land  C$
 
-$¬W ∧ C + W ∨ C = C$
+$ \lnot W  \land  C + W  \lor  C = C$
 
-$¬C ∨ H + C = H$
+$ \lnot C  \lor  H + C = H$
 
 $\Rightarrow$ We will be home by sunset
 
@@ -127,48 +127,48 @@ $\Rightarrow$ We will be home by sunset
 ### a + b
 #### Anna claims that Barbara is lying:
 
-$(¬ℓ_a → ℓ_b) ∧ (ℓ_a → ¬ℓ_b)$
+$( \lnot ℓ_a → ℓ_b)  \land  (ℓ_a →  \lnot ℓ_b)$
 
 CNF:
 
-$=(ℓ_a ∨ ℓ_b) ∧ (¬ℓ_a ∨ ¬ℓ_b)$
+$=(ℓ_a  \lor  ℓ_b)  \land  ( \lnot ℓ_a  \lor   \lnot ℓ_b)$
 
 (Because this equals a xor statement, one can already see that Anna and Barbara cannot be telling the truth at the same time and one of them is lying)
 
 #### Barbara claims that Chris is lying:
 
-$(¬ℓ_b → ℓ_c) ∧ (ℓ_b → ¬ℓ_c)$
+$( \lnot ℓ_b → ℓ_c)  \land  (ℓ_b →  \lnot ℓ_c)$
 
 CNF:
 
-$=(ℓ_b ∨ ℓ_c) ∧ (¬ℓ_b ∨ ¬ℓ_c)$
+$=(ℓ_b  \lor  ℓ_c)  \land  ( \lnot ℓ_b  \lor   \lnot ℓ_c)$
 
 (Because ...)
 
 #### Chris claims that Anna and Barbara are lying:
 
-$(¬ℓ_c → (ℓ_a ∨ ℓ_b)) ∧ (ℓ_c → (¬ℓ_a ∧ ¬ℓ_b))$
+$( \lnot ℓ_c → (ℓ_a  \lor  ℓ_b))  \land  (ℓ_c → ( \lnot ℓ_a  \land   \lnot ℓ_b))$
 
 CNF:
 
-$=(¬ℓ_c ∨ ¬ℓ_a) ∧ (¬ℓ_c ∨ ¬ℓ_b) ∧ (ℓ_c ∨ ℓ_a ∨ ℓ_b)$
+$=( \lnot ℓ_c  \lor   \lnot ℓ_a)  \land  ( \lnot ℓ_c  \lor   \lnot ℓ_b)  \land  (ℓ_c  \lor  ℓ_a  \lor  ℓ_b)$
 
 ### c
 
-- $A =(ℓ_a ∨ ℓ_b) ∧ (¬ℓ_a ∨ ¬ℓ_b)$
+- $A =(ℓ_a  \lor  ℓ_b)  \land  ( \lnot ℓ_a  \lor   \lnot ℓ_b)$
 
-- $B =(ℓ_b ∨ ℓ_c) ∧ (¬ℓ_b ∨ ¬ℓ_c)$
+- $B =(ℓ_b  \lor  ℓ_c)  \land  ( \lnot ℓ_b  \lor   \lnot ℓ_c)$
 
-- $C =(¬ℓ_c ∨ ¬ℓ_a) ∧ (¬ℓ_c ∨ ¬ℓ_b) ∧ (ℓ_c ∨ ℓ_a ∨ ℓ_b)$
+- $C =( \lnot ℓ_c  \lor   \lnot ℓ_a)  \land  ( \lnot ℓ_c  \lor   \lnot ℓ_b)  \land  (ℓ_c  \lor  ℓ_a  \lor  ℓ_b)$
 
 <br>
 
-$K_0 = B_0 + C_0 = (ℓ_b ∨ ℓ_c) + (¬ℓ_c ∨ ¬ℓ_a) =(ℓ_b ∨ ¬ℓ_a)$
+$K_0 = B_0 + C_0 = (ℓ_b  \lor  ℓ_c) + ( \lnot ℓ_c  \lor   \lnot ℓ_a) =(ℓ_b  \lor   \lnot ℓ_a)$
 
-$K_1 = K_0 + C_1 = (¬ℓ_c ∨ ¬ℓ_a)$
+$K_1 = K_0 + C_1 = ( \lnot ℓ_c  \lor   \lnot ℓ_a)$
 
 $K_2 = K_1 + C_2 = ℓ_b$
 
-$K_3 = K_2 + A_0 = ¬ℓ_a$
+$K_3 = K_2 + A_0 =  \lnot ℓ_a$
 
 $K_4 = K_3 + A_1 = \bold{ℓ_b}$
