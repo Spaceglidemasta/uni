@@ -7,9 +7,9 @@ $( \lnot p  \lor  q)  \land  (r  \lor   \lnot s)  \land  ( \lnot p  \lor   \lnot
 ###### (Already NNF)
 
 ### b
-$(( \lnot p  \lor  q)  \land  (r  \lor   \lnot s)) →  \lnot ( \lnot p  \lor   \lnot q)$
+$(( \lnot p  \lor  q)  \land  (r  \lor   \lnot s))  \rightarrow   \lnot ( \lnot p  \lor   \lnot q)$
 
-$=(( \lnot p  \lor  q)  \land  (r  \lor   \lnot s)) → (p  \land  q)$
+$=(( \lnot p  \lor  q)  \land  (r  \lor   \lnot s))  \rightarrow  (p  \land  q)$
 
 $= \lnot (( \lnot p  \lor  q)  \land  (r  \lor   \lnot s))  \lor  (p  \land  q)$
 
@@ -23,13 +23,13 @@ $=(p  \land   \lnot q)  \lor  ( \lnot r  \land  s)  \lor  (p  \land  q)$
 
 Note:
 
-$A ↔ B = (A→B) \land (B→A) = ( \lnot A \lor B) \land ( \lnot B \lor A)$
+$A  \leftrightarrow  B = (A \rightarrow B) \land (B \rightarrow A) = ( \lnot A \lor B) \land ( \lnot B \lor A)$
 
 This means:
 
-$( \lnot p  \lor  q) ↔ ( \lnot r  \land  s)$
+$( \lnot p  \lor  q)  \leftrightarrow  ( \lnot r  \land  s)$
 
-$=(( \lnot p  \lor  q) → ( \lnot r  \land  s)) \land (( \lnot r  \land  s)→( \lnot p  \lor  q))$
+$=(( \lnot p  \lor  q)  \rightarrow  ( \lnot r  \land  s)) \land (( \lnot r  \land  s) \rightarrow ( \lnot p  \lor  q))$
 
 $=( \lnot ( \lnot p  \lor  q)  \lor  ( \lnot r  \land  s)) \land ( \lnot ( \lnot r  \land  s) \lor ( \lnot p  \lor  q))$
 
@@ -62,11 +62,11 @@ S: weather is Sunny
 
 C: today is colder then yesterday
 
-$ \lnot S  \land  C$
+$\lnot S \land C$
 
 CNF:
 
-$ \lnot S  \land  C$
+$\lnot S \land C$
 
 
 ### ii
@@ -127,7 +127,7 @@ $\Rightarrow$ We will be home by sunset
 ### a + b
 #### Anna claims that Barbara is lying:
 
-$( \lnot ℓ_a → ℓ_b)  \land  (ℓ_a →  \lnot ℓ_b)$
+$( \lnot ℓ_a  \rightarrow  ℓ_b)  \land  (ℓ_a  \rightarrow   \lnot ℓ_b)$
 
 CNF:
 
@@ -137,7 +137,7 @@ $=(ℓ_a  \lor  ℓ_b)  \land  ( \lnot ℓ_a  \lor   \lnot ℓ_b)$
 
 #### Barbara claims that Chris is lying:
 
-$( \lnot ℓ_b → ℓ_c)  \land  (ℓ_b →  \lnot ℓ_c)$
+$( \lnot ℓ_b  \rightarrow  ℓ_c)  \land  (ℓ_b  \rightarrow   \lnot ℓ_c)$
 
 CNF:
 
@@ -147,7 +147,7 @@ $=(ℓ_b  \lor  ℓ_c)  \land  ( \lnot ℓ_b  \lor   \lnot ℓ_c)$
 
 #### Chris claims that Anna and Barbara are lying:
 
-$( \lnot ℓ_c → (ℓ_a  \lor  ℓ_b))  \land  (ℓ_c → ( \lnot ℓ_a  \land   \lnot ℓ_b))$
+$( \lnot ℓ_c  \rightarrow  (ℓ_a  \lor  ℓ_b))  \land  (ℓ_c  \rightarrow  ( \lnot ℓ_a  \land   \lnot ℓ_b))$
 
 CNF:
 
