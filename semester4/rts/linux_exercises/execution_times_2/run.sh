@@ -15,5 +15,5 @@ done
 
 for i in {1..5}
 do 
-    ./load_$i $i 10 15 $1 &
+    ./load_$i $i 20 15 $1 &
 done
