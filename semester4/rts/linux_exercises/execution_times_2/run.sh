@@ -7,7 +7,7 @@ fi
 
 gcc load.c -o load_1
 
-#copy program 5 times
+
 for i in {2..5}
 do
     cp load_1 load_$i
@@ -15,5 +15,6 @@ done
 
 for i in {1..5}
 do 
-    ./load_$i $i 20 15 $1 &
+    prio=19-$i
+    ./load_$i $i 20 $prio $1 &
 done
