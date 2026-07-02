@@ -2,11 +2,11 @@
 #define POT A0
 #define PART2 A1
 
-#define LEDS
+#define LEDS 3
 
 
 void setup() {
-  Serial.begin(20000000)
+  Serial.begin(20000000);
 
 }
 
