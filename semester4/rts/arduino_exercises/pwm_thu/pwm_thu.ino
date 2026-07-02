@@ -1,6 +1,5 @@
 //Luca De Simone 1592157
 //02.07.2026
-//
 
 #define POT A0
 #define PART2 A1
