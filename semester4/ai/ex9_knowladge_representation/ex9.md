@@ -154,7 +154,5 @@ Satisfied, trivial
 
 Satisfied:
 
-$$
-\{b, c\} \subseteq \{a, b, c\} \cup \{b\}
-$$
+$ \{b, c\} \subseteq \{a, b, c\} \cup \{b\} $
 
