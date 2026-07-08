@@ -1,9 +1,11 @@
+###### Luca De Simone 1592157
+
 # HW 9: Petri Nets 1
 ## 1
 
 ![Reachability Graph](./screenshots/hw9reab_petri.PNG)
 
-Because of the Deadlock $m_{15}$, the system is not __alive__.
+Because of the Deadlock $m_{15}$, the system is __not alive__.
 
 It is however __safe__, because no node ever holds more then 1 Token.
 
