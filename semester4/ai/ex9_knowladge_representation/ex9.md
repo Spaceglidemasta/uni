@@ -160,6 +160,7 @@ $$
 
 \subseteq
 
-(\{a, b, c\} \cup \{b\})
+\{a, b, c\} \cup \{b\}
 
 $$
+
