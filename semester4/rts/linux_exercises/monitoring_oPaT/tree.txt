@@ -1,0 +1,1313 @@
+[1msystemd,1,1[0m --switched-root --system --deserialize=52 splash
+  ├─ModemManager,1861,1861
+  │   ├─{ModemManager},1869,1861
+  │   ├─{ModemManager},1870,1861
+  │   └─{ModemManager},1873,1861
+  ├─NetworkManager,1755,1755 --no-daemon
+  │   ├─{NetworkManager},1855,1755
+  │   ├─{NetworkManager},1857,1755
+  │   └─{NetworkManager},1858,1755
+  ├─accounts-daemon,1657,1657
+  │   ├─{accounts-daemon},1718,1657
+  │   ├─{accounts-daemon},1719,1657
+  │   └─{accounts-daemon},1749,1657
+  ├─avahi-daemon,1619,1619,avahi
+  │   └─avahi-daemon,1682,1619
+  ├─bluetoothd,1620,1620
+  ├─chronyd-starter,1622,1622 /usr/lib/systemd/scripts/chronyd-starter.sh -n -F 1
+  │   └─chronyd,1743,1622,_chrony -n -F 1
+  │       └─chronyd,1754,1622 -n -F 1
+  ├─colord,3278,3278,colord
+  │   ├─{colord},3282,3278
+  │   ├─{colord},3283,3278
+  │   └─{colord},3285,3278
+  ├─containerd,1971,1971
+  │   ├─{containerd},2021,1971
+  │   ├─{containerd},2023,1971
+  │   ├─{containerd},2024,1971
+  │   ├─{containerd},2025,1971
+  │   ├─{containerd},2026,1971
+  │   ├─{containerd},2074,1971
+  │   ├─{containerd},2075,1971
+  │   ├─{containerd},2077,1971
+  │   ├─{containerd},2088,1971
+  │   ├─{containerd},2089,1971
+  │   ├─{containerd},2090,1971
+  │   ├─{containerd},2103,1971
+  │   ├─{containerd},2164,1971
+  │   ├─{containerd},2165,1971
+  │   ├─{containerd},2166,1971
+  │   ├─{containerd},3234,1971
+  │   ├─{containerd},3235,1971
+  │   └─{containerd},3236,1971
+  ├─cron,1658,1658 -f -P
+  ├─cups-browsed,2894,2894,cups-browsed
+  │   ├─{cups-browsed},2929,2894
+  │   ├─{cups-browsed},2930,2894
+  │   └─{cups-browsed},2931,2894
+  ├─cupsd,1922,1922 -l
+  │   └─dbus,3277,3277,lp dbus://
+  ├─dbus-daemon,1623,1623,messagebus --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  ├─dockerd,2896,2896 -H fd:// --containerd=/run/containerd/containerd.sock
+  │   ├─{dockerd},2924,2896
+  │   ├─{dockerd},2925,2896
+  │   ├─{dockerd},2926,2896
+  │   ├─{dockerd},2927,2896
+  │   ├─{dockerd},2928,2896
+  │   ├─{dockerd},2937,2896
+  │   ├─{dockerd},2938,2896
+  │   ├─{dockerd},2939,2896
+  │   ├─{dockerd},2940,2896
+  │   ├─{dockerd},2941,2896
+  │   ├─{dockerd},2946,2896
+  │   ├─{dockerd},2947,2896
+  │   ├─{dockerd},2948,2896
+  │   ├─{dockerd},3081,2896
+  │   ├─{dockerd},3082,2896
+  │   ├─{dockerd},3083,2896
+  │   ├─{dockerd},3084,2896
+  │   ├─{dockerd},3166,2896
+  │   └─{dockerd},3167,2896
+  ├─geoclue,4317,4317,geoclue
+  │   ├─{geoclue},4377,4317
+  │   ├─{geoclue},4378,4317
+  │   └─{geoclue},4380,4317
+  ├─ksecretd,3486,3485,sgmasta --pam-login 13 14
+  │   ├─{ksecretd},3940,3485
+  │   ├─{ksecretd},3947,3485
+  │   ├─{ksecretd},3948,3485
+  │   ├─{ksecretd},3952,3485
+  │   ├─{ksecretd},3953,3485
+  │   ├─{ksecretd},3954,3485
+  │   ├─{ksecretd},3955,3485
+  │   ├─{ksecretd},3959,3485
+  │   ├─{ksecretd},3962,3485
+  │   └─{ksecretd},3964,3485
+  ├─networkd-dispat,1638,1638 /usr/bin/networkd-dispatcher --run-startup-triggers
+  ├─polkitd,1642,1642,polkitd --no-debug --log-level=notice
+  │   ├─{polkitd},1812,1642
+  │   ├─{polkitd},1815,1642
+  │   └─{polkitd},1818,1642
+  ├─power-profiles-,3168,3168
+  │   ├─{power-profiles-},3171,3168
+  │   ├─{power-profiles-},3172,3168
+  │   └─{power-profiles-},3173,3168
+  ├─rsyslogd,1744,1744,syslog -n -iNONE
+  │   ├─{rsyslogd},1847,1744
+  │   ├─{rsyslogd},1848,1744
+  │   └─{rsyslogd},1849,1744
+  ├─rtkit-daemon,2500,2500,rtkit
+  │   ├─{rtkit-daemon},2531,2500
+  │   └─{rtkit-daemon},2532,2500
+  ├─sddm,2292,2292
+  │   ├─sddm-helper,3294,2292 --socket /tmp/sddm-auth-1fd8a0eb-daa0-4f24-91a3-88791c1d91e8 --id 1 --start /usr/lib/x86_64-linux-gnu/libexec/plasma-dbus-run-session-if-needed /usr/bin/startplasma-wayland --user sgmasta
+  │   │   └─startplasma-way,3487,3487,sgmasta
+  │   │       └─{startplasma-way},3661,3487
+  │   └─{sddm},2317,2292
+  ├─smartd,1650,1650 -n
+  ├─snapd,1656,1656
+  │   ├─{snapd},2123,1656
+  │   ├─{snapd},2136,1656
+  │   ├─{snapd},2137,1656
+  │   ├─{snapd},2138,1656
+  │   ├─{snapd},2157,1656
+  │   ├─{snapd},2457,1656
+  │   ├─{snapd},2458,1656
+  │   ├─{snapd},2476,1656
+  │   ├─{snapd},2478,1656
+  │   ├─{snapd},2477,1656
+  │   ├─{snapd},2567,1656
+  │   ├─{snapd},2568,1656
+  │   ├─{snapd},2578,1656
+  │   ├─{snapd},2579,1656
+  │   ├─{snapd},2599,1656
+  │   ├─{snapd},2611,1656
+  │   ├─{snapd},2628,1656
+  │   ├─{snapd},2649,1656
+  │   ├─{snapd},2658,1656
+  │   ├─{snapd},2744,1656
+  │   └─{snapd},2754,1656
+  ├─switcheroo-cont,1659,1659
+  │   ├─{switcheroo-cont},1692,1659
+  │   ├─{switcheroo-cont},1693,1659
+  │   └─{switcheroo-cont},1751,1659
+  ├─[1msystemd,3314,3314,sgmasta[0m --user
+  │   ├─(sd-pam),3316,3314
+  │   ├─DiscoverNotifie,4321,4321 --check-delay 20
+  │   │   ├─{DiscoverNotifie},4373,4321
+  │   │   ├─{DiscoverNotifie},4406,4321
+  │   │   ├─{DiscoverNotifie},4407,4321
+  │   │   ├─{DiscoverNotifie},4433,4321
+  │   │   ├─{DiscoverNotifie},4440,4321
+  │   │   ├─{DiscoverNotifie},4441,4321
+  │   │   ├─{DiscoverNotifie},4442,4321
+  │   │   ├─{DiscoverNotifie},4443,4321
+  │   │   ├─{DiscoverNotifie},4444,4321
+  │   │   ├─{DiscoverNotifie},4447,4321
+  │   │   ├─{DiscoverNotifie},4484,4321
+  │   │   ├─{DiscoverNotifie},4485,4321
+  │   │   └─{DiscoverNotifie},4486,4321
+  │   ├─agent,4316,4316
+  │   │   ├─{agent},4341,4316
+  │   │   ├─{agent},4342,4316
+  │   │   └─{agent},4349,4316
+  │   ├─at-spi-bus-laun,3884,3884
+  │   │   ├─dbus-daemon,3918,3884 --config-file=/usr/share/defaults/at-spi2/accessibility.conf --nofork --print-address 11 --address=unix:path=/run/user/1000/at-spi/bus_0
+  │   │   ├─{at-spi-bus-laun},3912,3884
+  │   │   ├─{at-spi-bus-laun},3913,3884
+  │   │   ├─{at-spi-bus-laun},3914,3884
+  │   │   └─{at-spi-bus-laun},3916,3884
+  │   ├─at-spi2-registr,4004,3884 --use-gnome-session
+  │   │   ├─{at-spi2-registr},4026,3884
+  │   │   ├─{at-spi2-registr},4027,3884
+  │   │   └─{at-spi2-registr},4028,3884
+  │   ├─baloorunner,5911,5911
+  │   │   ├─{baloorunner},5912,5911
+  │   │   ├─{baloorunner},5913,5911
+  │   │   ├─{baloorunner},5914,5911
+  │   │   ├─{baloorunner},5915,5911
+  │   │   ├─{baloorunner},5916,5911
+  │   │   ├─{baloorunner},5917,5911
+  │   │   ├─{baloorunner},5918,5911
+  │   │   ├─{baloorunner},5919,5911
+  │   │   ├─{baloorunner},5920,5911
+  │   │   └─{baloorunner},5921,5911
+  │   ├─bwrap,4488,4488 --args 72 -- launch-script.sh
+  │   │   └─bwrap,4555,4488 --args 72 -- launch-script.sh
+  │   │       └─zen,4558,4488 --name app.zen_browser.zen
+  │   │           ├─forkserver,4870,4488 -contentproc -ipcHandle 0 -signalPipe 1 -initialChannelId {f5787501-4ccc-46e6-b50d-65dc4f93be4e} -parentPid 2 -greomni /app/zen/omni.ja -appomni /app/zen/browser/omni.ja -appDir /app/zen/browser 1 forkserver
+  │   │           │   ├─Privileged Cont,5205,4488
+  │   │           │   │   ├─{Privileged Cont},5207,4488
+  │   │           │   │   ├─{Privileged Cont},5209,4488
+  │   │           │   │   ├─{Privileged Cont},5217,4488
+  │   │           │   │   ├─{Privileged Cont},5218,4488
+  │   │           │   │   ├─{Privileged Cont},5219,4488
+  │   │           │   │   ├─{Privileged Cont},5220,4488
+  │   │           │   │   ├─{Privileged Cont},5221,4488
+  │   │           │   │   ├─{Privileged Cont},5222,4488
+  │   │           │   │   ├─{Privileged Cont},5223,4488
+  │   │           │   │   ├─{Privileged Cont},5224,4488
+  │   │           │   │   ├─{Privileged Cont},5229,4488
+  │   │           │   │   ├─{Privileged Cont},5238,4488
+  │   │           │   │   ├─{Privileged Cont},5240,4488
+  │   │           │   │   ├─{Privileged Cont},5241,4488
+  │   │           │   │   ├─{Privileged Cont},5257,4488
+  │   │           │   │   ├─{Privileged Cont},5262,4488
+  │   │           │   │   ├─{Privileged Cont},5263,4488
+  │   │           │   │   ├─{Privileged Cont},5329,4488
+  │   │           │   │   ├─{Privileged Cont},5330,4488
+  │   │           │   │   ├─{Privileged Cont},5331,4488
+  │   │           │   │   ├─{Privileged Cont},5332,4488
+  │   │           │   │   ├─{Privileged Cont},5333,4488
+  │   │           │   │   ├─{Privileged Cont},5334,4488
+  │   │           │   │   ├─{Privileged Cont},5335,4488
+  │   │           │   │   ├─{Privileged Cont},5336,4488
+  │   │           │   │   └─{Privileged Cont},5576,4488
+  │   │           │   ├─RDD Process,5213,4488
+  │   │           │   │   ├─{RDD Process},5215,4488
+  │   │           │   │   ├─{RDD Process},5216,4488
+  │   │           │   │   ├─{RDD Process},5361,4488
+  │   │           │   │   └─{RDD Process},5752,4488
+  │   │           │   ├─Socket Process,4891,4488
+  │   │           │   │   ├─{Socket Process},4894,4488
+  │   │           │   │   ├─{Socket Process},4895,4488
+  │   │           │   │   ├─{Socket Process},4911,4488
+  │   │           │   │   ├─{Socket Process},4917,4488
+  │   │           │   │   └─{Socket Process},5753,4488
+  │   │           │   ├─Utility Process,5586,4488
+  │   │           │   │   ├─{Utility Process},5588,4488
+  │   │           │   │   ├─{Utility Process},5589,4488
+  │   │           │   │   ├─{Utility Process},5599,4488
+  │   │           │   │   └─{Utility Process},5754,4488
+  │   │           │   ├─Web Content,5416,4488
+  │   │           │   │   ├─{Web Content},5419,4488
+  │   │           │   │   ├─{Web Content},5420,4488
+  │   │           │   │   ├─{Web Content},5430,4488
+  │   │           │   │   ├─{Web Content},5431,4488
+  │   │           │   │   ├─{Web Content},5432,4488
+  │   │           │   │   ├─{Web Content},5433,4488
+  │   │           │   │   ├─{Web Content},5434,4488
+  │   │           │   │   ├─{Web Content},5435,4488
+  │   │           │   │   ├─{Web Content},5436,4488
+  │   │           │   │   ├─{Web Content},5437,4488
+  │   │           │   │   ├─{Web Content},5439,4488
+  │   │           │   │   ├─{Web Content},5466,4488
+  │   │           │   │   ├─{Web Content},5467,4488
+  │   │           │   │   ├─{Web Content},5468,4488
+  │   │           │   │   ├─{Web Content},5472,4488
+  │   │           │   │   ├─{Web Content},5473,4488
+  │   │           │   │   ├─{Web Content},5474,4488
+  │   │           │   │   ├─{Web Content},5475,4488
+  │   │           │   │   ├─{Web Content},5476,4488
+  │   │           │   │   ├─{Web Content},5477,4488
+  │   │           │   │   ├─{Web Content},5478,4488
+  │   │           │   │   ├─{Web Content},5479,4488
+  │   │           │   │   ├─{Web Content},5480,4488
+  │   │           │   │   ├─{Web Content},5481,4488
+  │   │           │   │   ├─{Web Content},5482,4488
+  │   │           │   │   └─{Web Content},5577,4488
+  │   │           │   ├─Web Content,7483,4488
+  │   │           │   │   ├─{Web Content},7486,4488
+  │   │           │   │   ├─{Web Content},7488,4488
+  │   │           │   │   ├─{Web Content},7498,4488
+  │   │           │   │   ├─{Web Content},7501,4488
+  │   │           │   │   ├─{Web Content},7502,4488
+  │   │           │   │   ├─{Web Content},7503,4488
+  │   │           │   │   ├─{Web Content},7504,4488
+  │   │           │   │   ├─{Web Content},7505,4488
+  │   │           │   │   ├─{Web Content},7506,4488
+  │   │           │   │   ├─{Web Content},7510,4488
+  │   │           │   │   ├─{Web Content},7518,4488
+  │   │           │   │   ├─{Web Content},7530,4488
+  │   │           │   │   ├─{Web Content},7532,4488
+  │   │           │   │   ├─{Web Content},7535,4488
+  │   │           │   │   ├─{Web Content},7537,4488
+  │   │           │   │   ├─{Web Content},7539,4488
+  │   │           │   │   ├─{Web Content},7540,4488
+  │   │           │   │   ├─{Web Content},7548,4488
+  │   │           │   │   ├─{Web Content},7551,4488
+  │   │           │   │   ├─{Web Content},7553,4488
+  │   │           │   │   ├─{Web Content},7556,4488
+  │   │           │   │   ├─{Web Content},7558,4488
+  │   │           │   │   ├─{Web Content},7560,4488
+  │   │           │   │   ├─{Web Content},7561,4488
+  │   │           │   │   └─{Web Content},7562,4488
+  │   │           │   ├─Web Content,7485,4488
+  │   │           │   │   ├─{Web Content},7490,4488
+  │   │           │   │   ├─{Web Content},7491,4488
+  │   │           │   │   ├─{Web Content},7500,4488
+  │   │           │   │   ├─{Web Content},7507,4488
+  │   │           │   │   ├─{Web Content},7508,4488
+  │   │           │   │   ├─{Web Content},7509,4488
+  │   │           │   │   ├─{Web Content},7512,4488
+  │   │           │   │   ├─{Web Content},7513,4488
+  │   │           │   │   ├─{Web Content},7514,4488
+  │   │           │   │   ├─{Web Content},7515,4488
+  │   │           │   │   ├─{Web Content},7525,4488
+  │   │           │   │   ├─{Web Content},7529,4488
+  │   │           │   │   ├─{Web Content},7531,4488
+  │   │           │   │   ├─{Web Content},7536,4488
+  │   │           │   │   ├─{Web Content},7538,4488
+  │   │           │   │   ├─{Web Content},7541,4488
+  │   │           │   │   ├─{Web Content},7542,4488
+  │   │           │   │   ├─{Web Content},7547,4488
+  │   │           │   │   ├─{Web Content},7549,4488
+  │   │           │   │   ├─{Web Content},7550,4488
+  │   │           │   │   ├─{Web Content},7552,4488
+  │   │           │   │   ├─{Web Content},7554,4488
+  │   │           │   │   ├─{Web Content},7555,4488
+  │   │           │   │   ├─{Web Content},7557,4488
+  │   │           │   │   └─{Web Content},7559,4488
+  │   │           │   ├─Web Content,7493,4488
+  │   │           │   │   ├─{Web Content},7496,4488
+  │   │           │   │   ├─{Web Content},7497,4488
+  │   │           │   │   ├─{Web Content},7511,4488
+  │   │           │   │   ├─{Web Content},7517,4488
+  │   │           │   │   ├─{Web Content},7519,4488
+  │   │           │   │   ├─{Web Content},7520,4488
+  │   │           │   │   ├─{Web Content},7521,4488
+  │   │           │   │   ├─{Web Content},7522,4488
+  │   │           │   │   ├─{Web Content},7523,4488
+  │   │           │   │   ├─{Web Content},7526,4488
+  │   │           │   │   ├─{Web Content},7528,4488
+  │   │           │   │   ├─{Web Content},7533,4488
+  │   │           │   │   ├─{Web Content},7534,4488
+  │   │           │   │   ├─{Web Content},7543,4488
+  │   │           │   │   ├─{Web Content},7544,4488
+  │   │           │   │   ├─{Web Content},7545,4488
+  │   │           │   │   ├─{Web Content},7546,4488
+  │   │           │   │   ├─{Web Content},7563,4488
+  │   │           │   │   ├─{Web Content},7564,4488
+  │   │           │   │   ├─{Web Content},7565,4488
+  │   │           │   │   ├─{Web Content},7566,4488
+  │   │           │   │   ├─{Web Content},7567,4488
+  │   │           │   │   ├─{Web Content},7568,4488
+  │   │           │   │   ├─{Web Content},7569,4488
+  │   │           │   │   └─{Web Content},7570,4488
+  │   │           │   └─WebExtensions,5541,4488
+  │   │           │       ├─{WebExtensions},5544,4488
+  │   │           │       ├─{WebExtensions},5545,4488
+  │   │           │       ├─{WebExtensions},5547,4488
+  │   │           │       ├─{WebExtensions},5548,4488
+  │   │           │       ├─{WebExtensions},5549,4488
+  │   │           │       ├─{WebExtensions},5550,4488
+  │   │           │       ├─{WebExtensions},5551,4488
+  │   │           │       ├─{WebExtensions},5552,4488
+  │   │           │       ├─{WebExtensions},5553,4488
+  │   │           │       ├─{WebExtensions},5554,4488
+  │   │           │       ├─{WebExtensions},5556,4488
+  │   │           │       ├─{WebExtensions},5557,4488
+  │   │           │       ├─{WebExtensions},5558,4488
+  │   │           │       ├─{WebExtensions},5559,4488
+  │   │           │       ├─{WebExtensions},5560,4488
+  │   │           │       ├─{WebExtensions},5561,4488
+  │   │           │       ├─{WebExtensions},5562,4488
+  │   │           │       ├─{WebExtensions},5563,4488
+  │   │           │       ├─{WebExtensions},5564,4488
+  │   │           │       ├─{WebExtensions},5565,4488
+  │   │           │       ├─{WebExtensions},5566,4488
+  │   │           │       ├─{WebExtensions},5567,4488
+  │   │           │       ├─{WebExtensions},5568,4488
+  │   │           │       ├─{WebExtensions},5569,4488
+  │   │           │       ├─{WebExtensions},5570,4488
+  │   │           │       └─{WebExtensions},5581,4488
+  │   │           ├─{zen},4599,4488
+  │   │           ├─{zen},4601,4488
+  │   │           ├─{zen},4610,4488
+  │   │           ├─{zen},4611,4488
+  │   │           ├─{zen},4612,4488
+  │   │           ├─{zen},4615,4488
+  │   │           ├─{zen},4643,4488
+  │   │           ├─{zen},4645,4488
+  │   │           ├─{zen},4662,4488
+  │   │           ├─{zen},4663,4488
+  │   │           ├─{zen},4664,4488
+  │   │           ├─{zen},4665,4488
+  │   │           ├─{zen},4735,4488
+  │   │           ├─{zen},4739,4488
+  │   │           ├─{zen},4740,4488
+  │   │           ├─{zen},4741,4488
+  │   │           ├─{zen},4742,4488
+  │   │           ├─{zen},4743,4488
+  │   │           ├─{zen},4748,4488
+  │   │           ├─{zen},4777,4488
+  │   │           ├─{zen},4778,4488
+  │   │           ├─{zen},4788,4488
+  │   │           ├─{zen},4789,4488
+  │   │           ├─{zen},4790,4488
+  │   │           ├─{zen},4791,4488
+  │   │           ├─{zen},4792,4488
+  │   │           ├─{zen},4793,4488
+  │   │           ├─{zen},4794,4488
+  │   │           ├─{zen},4795,4488
+  │   │           ├─{zen},4801,4488
+  │   │           ├─{zen},4802,4488
+  │   │           ├─{zen},4806,4488
+  │   │           ├─{zen},4809,4488
+  │   │           ├─{zen},4810,4488
+  │   │           ├─{zen},4811,4488
+  │   │           ├─{zen},4812,4488
+  │   │           ├─{zen},4813,4488
+  │   │           ├─{zen},4814,4488
+  │   │           ├─{zen},4842,4488
+  │   │           ├─{zen},4843,4488
+  │   │           ├─{zen},4844,4488
+  │   │           ├─{zen},4845,4488
+  │   │           ├─{zen},4846,4488
+  │   │           ├─{zen},4847,4488
+  │   │           ├─{zen},4848,4488
+  │   │           ├─{zen},4849,4488
+  │   │           ├─{zen},4850,4488
+  │   │           ├─{zen},4851,4488
+  │   │           ├─{zen},4852,4488
+  │   │           ├─{zen},4853,4488
+  │   │           ├─{zen},4854,4488
+  │   │           ├─{zen},4855,4488
+  │   │           ├─{zen},4856,4488
+  │   │           ├─{zen},4857,4488
+  │   │           ├─{zen},4858,4488
+  │   │           ├─{zen},4859,4488
+  │   │           ├─{zen},4860,4488
+  │   │           ├─{zen},4861,4488
+  │   │           ├─{zen},4862,4488
+  │   │           ├─{zen},4863,4488
+  │   │           ├─{zen},4864,4488
+  │   │           ├─{zen},4865,4488
+  │   │           ├─{zen},4866,4488
+  │   │           ├─{zen},4867,4488
+  │   │           ├─{zen},4868,4488
+  │   │           ├─{zen},4869,4488
+  │   │           ├─{zen},4878,4488
+  │   │           ├─{zen},4889,4488
+  │   │           ├─{zen},4916,4488
+  │   │           ├─{zen},4965,4488
+  │   │           ├─{zen},5208,4488
+  │   │           ├─{zen},5210,4488
+  │   │           ├─{zen},5211,4488
+  │   │           ├─{zen},5212,4488
+  │   │           ├─{zen},5225,4488
+  │   │           ├─{zen},5226,4488
+  │   │           ├─{zen},5227,4488
+  │   │           ├─{zen},5337,4488
+  │   │           ├─{zen},5338,4488
+  │   │           ├─{zen},5339,4488
+  │   │           ├─{zen},5340,4488
+  │   │           ├─{zen},5363,4488
+  │   │           ├─{zen},5418,4488
+  │   │           ├─{zen},5484,4488
+  │   │           ├─{zen},5506,4488
+  │   │           ├─{zen},5507,4488
+  │   │           ├─{zen},5539,4488
+  │   │           ├─{zen},5540,4488
+  │   │           ├─{zen},5543,4488
+  │   │           ├─{zen},5546,4488
+  │   │           ├─{zen},5574,4488
+  │   │           ├─{zen},5575,4488
+  │   │           ├─{zen},5578,4488
+  │   │           ├─{zen},5580,4488
+  │   │           ├─{zen},5598,4488
+  │   │           ├─{zen},5603,4488
+  │   │           ├─{zen},6076,4488
+  │   │           ├─{zen},6114,4488
+  │   │           ├─{zen},7489,4488
+  │   │           ├─{zen},7492,4488
+  │   │           └─{zen},7494,4488
+  │   ├─bwrap,4549,4488 --args 74 -- xdg-dbus-proxy --args=73
+  │   │   └─xdg-dbus-proxy,4551,4488 --args=73
+  │   │       ├─{xdg-dbus-proxy},4553,4488
+  │   │       └─{xdg-dbus-proxy},4554,4488
+  │   ├─dbus-daemon,3424,3424 --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+  │   ├─dconf-service,4034,4034
+  │   │   ├─{dconf-service},4036,4034
+  │   │   ├─{dconf-service},4037,4034
+  │   │   └─{dconf-service},4038,4034
+  │   ├─drkonqi-coredum,4071,4071 --settle-first --pickup --uid 1000
+  │   ├─evolution-addre,4218,4218
+  │   │   ├─{evolution-addre},4239,4218
+  │   │   ├─{evolution-addre},4240,4218
+  │   │   ├─{evolution-addre},4242,4218
+  │   │   ├─{evolution-addre},4244,4218
+  │   │   ├─{evolution-addre},4245,4218
+  │   │   └─{evolution-addre},4251,4218
+  │   ├─evolution-alarm,4287,4287
+  │   │   ├─{evolution-alarm},4359,4287
+  │   │   ├─{evolution-alarm},4360,4287
+  │   │   ├─{evolution-alarm},4361,4287
+  │   │   ├─{evolution-alarm},4363,4287
+  │   │   ├─{evolution-alarm},4365,4287
+  │   │   ├─{evolution-alarm},4404,4287
+  │   │   └─{evolution-alarm},4559,4287
+  │   ├─evolution-calen,4560,4560
+  │   │   ├─{evolution-calen},4568,4560
+  │   │   ├─{evolution-calen},4569,4560
+  │   │   ├─{evolution-calen},4570,4560
+  │   │   ├─{evolution-calen},4575,4560
+  │   │   ├─{evolution-calen},4576,4560
+  │   │   ├─{evolution-calen},4580,4560
+  │   │   ├─{evolution-calen},4581,4560
+  │   │   ├─{evolution-calen},4584,4560
+  │   │   └─{evolution-calen},4587,4560
+  │   ├─evolution-sourc,4172,4172
+  │   │   ├─{evolution-sourc},4180,4172
+  │   │   ├─{evolution-sourc},4181,4172
+  │   │   ├─{evolution-sourc},4182,4172
+  │   │   └─{evolution-sourc},4184,4172
+  │   ├─flatpak-session,4517,4517
+  │   │   ├─{flatpak-session},4529,4517
+  │   │   ├─{flatpak-session},4530,4517
+  │   │   └─{flatpak-session},4531,4517
+  │   ├─gcr-ssh-agent,3714,3714 --base-dir /run/user/1000/gcr
+  │   │   ├─{gcr-ssh-agent},3729,3714
+  │   │   └─{gcr-ssh-agent},3730,3714
+  │   ├─gmenudbusmenupr,4074,4074
+  │   │   ├─{gmenudbusmenupr},4080,4074
+  │   │   └─{gmenudbusmenupr},4084,4074
+  │   ├─gnome-keyring-d,3429,3429 --foreground --components=pkcs11,secrets --control-directory=/run/user/1000/keyring
+  │   │   ├─{gnome-keyring-d},3445,3429
+  │   │   ├─{gnome-keyring-d},3446,3429
+  │   │   ├─{gnome-keyring-d},3448,3429
+  │   │   └─{gnome-keyring-d},3449,3429
+  │   ├─gnome-text-edit,7023,3424 --gapplication-service
+  │   │   ├─{gnome-text-edit},7024,3424
+  │   │   ├─{gnome-text-edit},7025,3424
+  │   │   ├─{gnome-text-edit},7026,3424
+  │   │   ├─{gnome-text-edit},7027,3424
+  │   │   ├─{gnome-text-edit},7028,3424
+  │   │   ├─{gnome-text-edit},7033,3424
+  │   │   ├─{gnome-text-edit},7039,3424
+  │   │   ├─{gnome-text-edit},7040,3424
+  │   │   ├─{gnome-text-edit},7041,3424
+  │   │   ├─{gnome-text-edit},7042,3424
+  │   │   └─{gnome-text-edit},7043,3424
+  │   ├─goa-daemon,4205,3424
+  │   │   ├─{goa-daemon},4220,3424
+  │   │   ├─{goa-daemon},4221,3424
+  │   │   └─{goa-daemon},4223,3424
+  │   ├─goa-identity-se,4226,3424
+  │   │   ├─{goa-identity-se},4229,3424
+  │   │   ├─{goa-identity-se},4230,3424
+  │   │   └─{goa-identity-se},4232,3424
+  │   ├─gvfs-afc-volume,6607,6607
+  │   │   ├─{gvfs-afc-volume},6608,6607
+  │   │   ├─{gvfs-afc-volume},6609,6607
+  │   │   ├─{gvfs-afc-volume},6610,6607
+  │   │   └─{gvfs-afc-volume},6612,6607
+  │   ├─gvfs-goa-volume,6602,6602
+  │   │   ├─{gvfs-goa-volume},6603,6602
+  │   │   ├─{gvfs-goa-volume},6604,6602
+  │   │   └─{gvfs-goa-volume},6605,6602
+  │   ├─gvfs-gphoto2-vo,6613,6613
+  │   │   ├─{gvfs-gphoto2-vo},6614,6613
+  │   │   ├─{gvfs-gphoto2-vo},6615,6613
+  │   │   └─{gvfs-gphoto2-vo},6617,6613
+  │   ├─gvfs-mtp-volume,6597,6597
+  │   │   ├─{gvfs-mtp-volume},6598,6597
+  │   │   ├─{gvfs-mtp-volume},6599,6597
+  │   │   └─{gvfs-mtp-volume},6601,6597
+  │   ├─gvfs-udisks2-vo,6591,6591
+  │   │   ├─{gvfs-udisks2-vo},6592,6591
+  │   │   ├─{gvfs-udisks2-vo},6593,6591
+  │   │   ├─{gvfs-udisks2-vo},6594,6591
+  │   │   └─{gvfs-udisks2-vo},6595,6591
+  │   ├─gvfsd,3736,3736
+  │   │   ├─{gvfsd},3743,3736
+  │   │   ├─{gvfsd},3744,3736
+  │   │   └─{gvfsd},3746,3736
+  │   ├─gvfsd-fuse,3756,3736 /run/user/1000/gvfs -f
+  │   │   ├─{gvfsd-fuse},3765,3736
+  │   │   ├─{gvfsd-fuse},3766,3736
+  │   │   ├─{gvfsd-fuse},3767,3736
+  │   │   ├─{gvfsd-fuse},3768,3736
+  │   │   └─{gvfsd-fuse},3769,3736
+  │   ├─gvfsd-metadata,4781,4781
+  │   │   ├─{gvfsd-metadata},4798,4781
+  │   │   ├─{gvfsd-metadata},4799,4781
+  │   │   └─{gvfsd-metadata},4800,4781
+  │   ├─kaccess,4075,4075
+  │   │   ├─{kaccess},4088,4075
+  │   │   ├─{kaccess},4090,4075
+  │   │   ├─{kaccess},4133,4075
+  │   │   ├─{kaccess},4138,4075
+  │   │   ├─{kaccess},4139,4075
+  │   │   ├─{kaccess},4140,4075
+  │   │   ├─{kaccess},4142,4075
+  │   │   ├─{kaccess},4143,4075
+  │   │   └─{kaccess},4144,4075
+  │   ├─kactivitymanage,4069,4069
+  │   │   ├─{kactivitymanage},4079,4069
+  │   │   ├─{kactivitymanage},4081,4069
+  │   │   ├─{kactivitymanage},4082,4069
+  │   │   ├─{kactivitymanage},4083,4069
+  │   │   ├─{kactivitymanage},4085,4069
+  │   │   └─{kactivitymanage},4086,4069
+  │   ├─kdeconnectd,4293,4293
+  │   │   ├─{kdeconnectd},4367,4293
+  │   │   ├─{kdeconnectd},4398,4293
+  │   │   ├─{kdeconnectd},4399,4293
+  │   │   ├─{kdeconnectd},4432,4293
+  │   │   ├─{kdeconnectd},4434,4293
+  │   │   ├─{kdeconnectd},4435,4293
+  │   │   ├─{kdeconnectd},4436,4293
+  │   │   ├─{kdeconnectd},4437,4293
+  │   │   ├─{kdeconnectd},4438,4293
+  │   │   ├─{kdeconnectd},4439,4293
+  │   │   └─{kdeconnectd},4504,4293
+  │   ├─kded6,3925,3925
+  │   │   ├─{kded6},3941,3925
+  │   │   ├─{kded6},3949,3925
+  │   │   ├─{kded6},3950,3925
+  │   │   ├─{kded6},3951,3925
+  │   │   ├─{kded6},3956,3925
+  │   │   ├─{kded6},3957,3925
+  │   │   ├─{kded6},3958,3925
+  │   │   ├─{kded6},3960,3925
+  │   │   ├─{kded6},3961,3925
+  │   │   ├─{kded6},3963,3925
+  │   │   ├─{kded6},4029,3925
+  │   │   ├─{kded6},4030,3925
+  │   │   ├─{kded6},4031,3925
+  │   │   ├─{kded6},4032,3925
+  │   │   ├─{kded6},4033,3925
+  │   │   ├─{kded6},4073,3925
+  │   │   ├─{kded6},4109,3925
+  │   │   └─{kded6},4146,3925
+  │   ├─kitty,6389,6389
+  │   │   ├─bash,6421,6421 --posix
+  │   │   ├─kitten,6414,6389 __atexit__
+  │   │   │   ├─{kitten},6416,6389
+  │   │   │   ├─{kitten},6417,6389
+  │   │   │   ├─{kitten},6418,6389
+  │   │   │   ├─{kitten},6419,6389
+  │   │   │   ├─{kitten},6420,6389
+  │   │   │   ├─{kitten},6422,6389
+  │   │   │   ├─{kitten},6423,6389
+  │   │   │   ├─{kitten},6424,6389
+  │   │   │   └─{kitten},6425,6389
+  │   │   ├─{kitty},6391,6389
+  │   │   ├─{kitty},6392,6389
+  │   │   ├─{kitty},6393,6389
+  │   │   ├─{kitty},6394,6389
+  │   │   ├─{kitty},6395,6389
+  │   │   ├─{kitty},6396,6389
+  │   │   ├─{kitty},6397,6389
+  │   │   ├─{kitty},6398,6389
+  │   │   ├─{kitty},6399,6389
+  │   │   ├─{kitty},6400,6389
+  │   │   ├─{kitty},6401,6389
+  │   │   ├─{kitty},6410,6389
+  │   │   ├─{kitty},6411,6389
+  │   │   ├─{kitty},6412,6389
+  │   │   ├─{kitty},6413,6389
+  │   │   └─{kitty},6415,6389
+  │   ├─knighttimed,4273,4273
+  │   │   └─{knighttimed},4298,4273
+  │   ├─ksmserver,3923,3923
+  │   │   ├─{ksmserver},3945,3923
+  │   │   ├─{ksmserver},3946,3923
+  │   │   ├─{ksmserver},3980,3923
+  │   │   ├─{ksmserver},3982,3923
+  │   │   ├─{ksmserver},3983,3923
+  │   │   ├─{ksmserver},3984,3923
+  │   │   ├─{ksmserver},3985,3923
+  │   │   ├─{ksmserver},3986,3923
+  │   │   └─{ksmserver},3987,3923
+  │   ├─kunifiedpush-di,4304,4304
+  │   │   └─{kunifiedpush-di},4345,4304
+  │   ├─kwin_wayland_wr,3717,3717 --xwayland
+  │   │   ├─kwin_wayland,3735,3717 --wayland-fd 7 --socket wayland-0 --xwayland-fd 8 --xwayland-fd 9 --xwayland-display :0 --xwayland-xauthority /run/user/1000/xauth_hjtBQj --xwayland
+  │   │   │   ├─Xwayland,3834,3717 :0 -auth /run/user/1000/xauth_hjtBQj -listenfd 8 -listenfd 9 -displayfd 68 -wm 73 -rootless -enable-ei-portal
+  │   │   │   │   ├─{Xwayland},3853,3717
+  │   │   │   │   ├─{Xwayland},3854,3717
+  │   │   │   │   ├─{Xwayland},3855,3717
+  │   │   │   │   ├─{Xwayland},3856,3717
+  │   │   │   │   ├─{Xwayland},3857,3717
+  │   │   │   │   ├─{Xwayland},3858,3717
+  │   │   │   │   ├─{Xwayland},3859,3717
+  │   │   │   │   ├─{Xwayland},3860,3717
+  │   │   │   │   ├─{Xwayland},3861,3717
+  │   │   │   │   └─{Xwayland},3862,3717
+  │   │   │   ├─{kwin_wayland},3773,3717
+  │   │   │   ├─{kwin_wayland},3775,3717
+  │   │   │   ├─{kwin_wayland},3777,3717
+  │   │   │   ├─{kwin_wayland},3778,3717
+  │   │   │   ├─{kwin_wayland},3779,3717
+  │   │   │   ├─{kwin_wayland},3780,3717
+  │   │   │   ├─{kwin_wayland},3781,3717
+  │   │   │   ├─{kwin_wayland},3782,3717
+  │   │   │   ├─{kwin_wayland},3786,3717
+  │   │   │   ├─{kwin_wayland},3790,3717
+  │   │   │   ├─{kwin_wayland},3801,3717
+  │   │   │   ├─{kwin_wayland},3802,3717
+  │   │   │   ├─{kwin_wayland},3803,3717
+  │   │   │   ├─{kwin_wayland},3804,3717
+  │   │   │   ├─{kwin_wayland},3822,3717
+  │   │   │   ├─{kwin_wayland},6214,3717
+  │   │   │   ├─{kwin_wayland},7094,3717
+  │   │   │   ├─{kwin_wayland},7095,3717
+  │   │   │   ├─{kwin_wayland},7440,3717
+  │   │   │   ├─{kwin_wayland},7441,3717
+  │   │   │   ├─{kwin_wayland},7442,3717
+  │   │   │   ├─{kwin_wayland},7452,3717
+  │   │   │   ├─{kwin_wayland},7453,3717
+  │   │   │   ├─{kwin_wayland},7454,3717
+  │   │   │   ├─{kwin_wayland},7480,3717
+  │   │   │   ├─{kwin_wayland},7481,3717
+  │   │   │   ├─{kwin_wayland},7482,3717
+  │   │   │   ├─{kwin_wayland},8252,3717
+  │   │   │   ├─{kwin_wayland},8253,3717
+  │   │   │   ├─{kwin_wayland},8254,3717
+  │   │   │   ├─{kwin_wayland},8255,3717
+  │   │   │   ├─{kwin_wayland},8399,3717
+  │   │   │   └─{kwin_wayland},8454,3717
+  │   │   └─{kwin_wayland_wr},3737,3717
+  │   ├─librewolf,4358,4358 --sm-client-id 101a217310715e000178237418100000038790000
+  │   │   ├─Socket Process,4623,4358 -contentproc -parentBuildID 20260508075913 -prefsHandle 0:31107 -prefMapHandle 1:286691 -sandboxReporter 2 -chrootClient 3 -ipcHandle 4 -initialChannelId {7dc0e9ce-1886-49ad-b049-18baf13a04b7} -parentPid 4358 -appDir /usr/share/librewolf/browser 1 socket
+  │   │   │   ├─{Socket Process},4629,4358
+  │   │   │   ├─{Socket Process},4630,4358
+  │   │   │   ├─{Socket Process},4634,4358
+  │   │   │   ├─{Socket Process},4636,4358
+  │   │   │   └─{Socket Process},5750,4358
+  │   │   ├─forkserver,4736,4358 -contentproc -ipcHandle 0 -signalPipe 1 -initialChannelId {3cbaf0dd-7a10-4bc0-9676-43e40237639c} -parentPid 4358 -greomni /usr/share/librewolf/omni.ja -appomni /usr/share/librewolf/browser/omni.ja -appDir /usr/share/librewolf/browser 2 forkserver
+  │   │   │   ├─Isolated Web Co,5230,4358
+  │   │   │   │   ├─{Isolated Web Co},5234,4358
+  │   │   │   │   ├─{Isolated Web Co},5235,4358
+  │   │   │   │   ├─{Isolated Web Co},5236,4358
+  │   │   │   │   ├─{Isolated Web Co},5244,4358
+  │   │   │   │   ├─{Isolated Web Co},5246,4358
+  │   │   │   │   ├─{Isolated Web Co},5247,4358
+  │   │   │   │   ├─{Isolated Web Co},5248,4358
+  │   │   │   │   ├─{Isolated Web Co},5250,4358
+  │   │   │   │   ├─{Isolated Web Co},5251,4358
+  │   │   │   │   ├─{Isolated Web Co},5252,4358
+  │   │   │   │   ├─{Isolated Web Co},5254,4358
+  │   │   │   │   ├─{Isolated Web Co},5281,4358
+  │   │   │   │   ├─{Isolated Web Co},5283,4358
+  │   │   │   │   ├─{Isolated Web Co},5284,4358
+  │   │   │   │   ├─{Isolated Web Co},5287,4358
+  │   │   │   │   ├─{Isolated Web Co},5288,4358
+  │   │   │   │   ├─{Isolated Web Co},5289,4358
+  │   │   │   │   ├─{Isolated Web Co},5301,4358
+  │   │   │   │   ├─{Isolated Web Co},5302,4358
+  │   │   │   │   ├─{Isolated Web Co},5303,4358
+  │   │   │   │   ├─{Isolated Web Co},5304,4358
+  │   │   │   │   ├─{Isolated Web Co},5305,4358
+  │   │   │   │   ├─{Isolated Web Co},5306,4358
+  │   │   │   │   ├─{Isolated Web Co},5307,4358
+  │   │   │   │   ├─{Isolated Web Co},5308,4358
+  │   │   │   │   └─{Isolated Web Co},5511,4358
+  │   │   │   ├─Isolated Web Co,5237,4358
+  │   │   │   │   ├─{Isolated Web Co},5245,4358
+  │   │   │   │   ├─{Isolated Web Co},5249,4358
+  │   │   │   │   ├─{Isolated Web Co},5259,4358
+  │   │   │   │   ├─{Isolated Web Co},5265,4358
+  │   │   │   │   ├─{Isolated Web Co},5266,4358
+  │   │   │   │   ├─{Isolated Web Co},5267,4358
+  │   │   │   │   ├─{Isolated Web Co},5268,4358
+  │   │   │   │   ├─{Isolated Web Co},5269,4358
+  │   │   │   │   ├─{Isolated Web Co},5270,4358
+  │   │   │   │   ├─{Isolated Web Co},5271,4358
+  │   │   │   │   ├─{Isolated Web Co},5273,4358
+  │   │   │   │   ├─{Isolated Web Co},5290,4358
+  │   │   │   │   ├─{Isolated Web Co},5291,4358
+  │   │   │   │   ├─{Isolated Web Co},5292,4358
+  │   │   │   │   ├─{Isolated Web Co},5293,4358
+  │   │   │   │   ├─{Isolated Web Co},5294,4358
+  │   │   │   │   ├─{Isolated Web Co},5295,4358
+  │   │   │   │   ├─{Isolated Web Co},5312,4358
+  │   │   │   │   ├─{Isolated Web Co},5313,4358
+  │   │   │   │   ├─{Isolated Web Co},5315,4358
+  │   │   │   │   ├─{Isolated Web Co},5316,4358
+  │   │   │   │   ├─{Isolated Web Co},5317,4358
+  │   │   │   │   ├─{Isolated Web Co},5318,4358
+  │   │   │   │   ├─{Isolated Web Co},5319,4358
+  │   │   │   │   ├─{Isolated Web Co},5320,4358
+  │   │   │   │   └─{Isolated Web Co},5513,4358
+  │   │   │   ├─Isolated Web Co,5255,4358
+  │   │   │   │   ├─{Isolated Web Co},5261,4358
+  │   │   │   │   ├─{Isolated Web Co},5264,4358
+  │   │   │   │   ├─{Isolated Web Co},5274,4358
+  │   │   │   │   ├─{Isolated Web Co},5275,4358
+  │   │   │   │   ├─{Isolated Web Co},5276,4358
+  │   │   │   │   ├─{Isolated Web Co},5277,4358
+  │   │   │   │   ├─{Isolated Web Co},5278,4358
+  │   │   │   │   ├─{Isolated Web Co},5279,4358
+  │   │   │   │   ├─{Isolated Web Co},5280,4358
+  │   │   │   │   ├─{Isolated Web Co},5282,4358
+  │   │   │   │   ├─{Isolated Web Co},5286,4358
+  │   │   │   │   ├─{Isolated Web Co},5298,4358
+  │   │   │   │   ├─{Isolated Web Co},5299,4358
+  │   │   │   │   ├─{Isolated Web Co},5300,4358
+  │   │   │   │   ├─{Isolated Web Co},5321,4358
+  │   │   │   │   ├─{Isolated Web Co},5322,4358
+  │   │   │   │   ├─{Isolated Web Co},5323,4358
+  │   │   │   │   ├─{Isolated Web Co},5341,4358
+  │   │   │   │   ├─{Isolated Web Co},5342,4358
+  │   │   │   │   ├─{Isolated Web Co},5343,4358
+  │   │   │   │   ├─{Isolated Web Co},5344,4358
+  │   │   │   │   ├─{Isolated Web Co},5345,4358
+  │   │   │   │   ├─{Isolated Web Co},5346,4358
+  │   │   │   │   ├─{Isolated Web Co},5347,4358
+  │   │   │   │   ├─{Isolated Web Co},5348,4358
+  │   │   │   │   └─{Isolated Web Co},5514,4358
+  │   │   │   ├─Isolated Web Co,5650,4358
+  │   │   │   │   ├─{Isolated Web Co},5654,4358
+  │   │   │   │   ├─{Isolated Web Co},5655,4358
+  │   │   │   │   ├─{Isolated Web Co},5657,4358
+  │   │   │   │   ├─{Isolated Web Co},5658,4358
+  │   │   │   │   ├─{Isolated Web Co},5659,4358
+  │   │   │   │   ├─{Isolated Web Co},5660,4358
+  │   │   │   │   ├─{Isolated Web Co},5661,4358
+  │   │   │   │   ├─{Isolated Web Co},5662,4358
+  │   │   │   │   ├─{Isolated Web Co},5663,4358
+  │   │   │   │   ├─{Isolated Web Co},5664,4358
+  │   │   │   │   ├─{Isolated Web Co},5666,4358
+  │   │   │   │   ├─{Isolated Web Co},5667,4358
+  │   │   │   │   ├─{Isolated Web Co},5668,4358
+  │   │   │   │   ├─{Isolated Web Co},5669,4358
+  │   │   │   │   ├─{Isolated Web Co},5670,4358
+  │   │   │   │   ├─{Isolated Web Co},5671,4358
+  │   │   │   │   ├─{Isolated Web Co},5672,4358
+  │   │   │   │   ├─{Isolated Web Co},5673,4358
+  │   │   │   │   ├─{Isolated Web Co},5674,4358
+  │   │   │   │   ├─{Isolated Web Co},5675,4358
+  │   │   │   │   ├─{Isolated Web Co},5676,4358
+  │   │   │   │   ├─{Isolated Web Co},5677,4358
+  │   │   │   │   ├─{Isolated Web Co},5678,4358
+  │   │   │   │   ├─{Isolated Web Co},5679,4358
+  │   │   │   │   ├─{Isolated Web Co},5680,4358
+  │   │   │   │   ├─{Isolated Web Co},5681,4358
+  │   │   │   │   └─{Isolated Web Co},5699,4358
+  │   │   │   ├─Privileged Cont,4880,4358
+  │   │   │   │   ├─{Privileged Cont},4884,4358
+  │   │   │   │   ├─{Privileged Cont},4885,4358
+  │   │   │   │   ├─{Privileged Cont},4902,4358
+  │   │   │   │   ├─{Privileged Cont},4903,4358
+  │   │   │   │   ├─{Privileged Cont},4904,4358
+  │   │   │   │   ├─{Privileged Cont},4905,4358
+  │   │   │   │   ├─{Privileged Cont},4906,4358
+  │   │   │   │   ├─{Privileged Cont},4907,4358
+  │   │   │   │   ├─{Privileged Cont},4908,4358
+  │   │   │   │   ├─{Privileged Cont},4909,4358
+  │   │   │   │   ├─{Privileged Cont},4914,4358
+  │   │   │   │   ├─{Privileged Cont},4919,4358
+  │   │   │   │   ├─{Privileged Cont},4920,4358
+  │   │   │   │   ├─{Privileged Cont},4921,4358
+  │   │   │   │   ├─{Privileged Cont},4922,4358
+  │   │   │   │   ├─{Privileged Cont},4923,4358
+  │   │   │   │   ├─{Privileged Cont},4924,4358
+  │   │   │   │   ├─{Privileged Cont},4925,4358
+  │   │   │   │   ├─{Privileged Cont},4926,4358
+  │   │   │   │   ├─{Privileged Cont},4927,4358
+  │   │   │   │   ├─{Privileged Cont},4928,4358
+  │   │   │   │   ├─{Privileged Cont},4929,4358
+  │   │   │   │   ├─{Privileged Cont},4930,4358
+  │   │   │   │   ├─{Privileged Cont},4931,4358
+  │   │   │   │   ├─{Privileged Cont},4932,4358
+  │   │   │   │   └─{Privileged Cont},5512,4358
+  │   │   │   ├─RDD Process,4890,4358
+  │   │   │   │   ├─{RDD Process},4897,4358
+  │   │   │   │   ├─{RDD Process},4898,4358
+  │   │   │   │   ├─{RDD Process},4942,4358
+  │   │   │   │   ├─{RDD Process},5705,4358
+  │   │   │   │   ├─{RDD Process},5706,4358
+  │   │   │   │   ├─{RDD Process},5707,4358
+  │   │   │   │   ├─{RDD Process},5708,4358
+  │   │   │   │   ├─{RDD Process},5709,4358
+  │   │   │   │   ├─{RDD Process},5710,4358
+  │   │   │   │   ├─{RDD Process},5719,4358
+  │   │   │   │   ├─{RDD Process},5720,4358
+  │   │   │   │   ├─{RDD Process},5721,4358
+  │   │   │   │   ├─{RDD Process},5722,4358
+  │   │   │   │   ├─{RDD Process},5723,4358
+  │   │   │   │   ├─{RDD Process},5724,4358
+  │   │   │   │   ├─{RDD Process},5725,4358
+  │   │   │   │   ├─{RDD Process},5726,4358
+  │   │   │   │   └─{RDD Process},5749,4358
+  │   │   │   ├─Utility Process,5515,4358
+  │   │   │   │   ├─{Utility Process},5518,4358
+  │   │   │   │   ├─{Utility Process},5519,4358
+  │   │   │   │   ├─{Utility Process},5521,4358
+  │   │   │   │   └─{Utility Process},5751,4358
+  │   │   │   ├─Web Content,6290,4358
+  │   │   │   │   ├─{Web Content},6298,4358
+  │   │   │   │   ├─{Web Content},6299,4358
+  │   │   │   │   ├─{Web Content},6307,4358
+  │   │   │   │   ├─{Web Content},6309,4358
+  │   │   │   │   ├─{Web Content},6314,4358
+  │   │   │   │   ├─{Web Content},6315,4358
+  │   │   │   │   ├─{Web Content},6317,4358
+  │   │   │   │   ├─{Web Content},6318,4358
+  │   │   │   │   ├─{Web Content},6319,4358
+  │   │   │   │   ├─{Web Content},6322,4358
+  │   │   │   │   ├─{Web Content},6331,4358
+  │   │   │   │   ├─{Web Content},6336,4358
+  │   │   │   │   ├─{Web Content},6338,4358
+  │   │   │   │   ├─{Web Content},6343,4358
+  │   │   │   │   ├─{Web Content},6345,4358
+  │   │   │   │   ├─{Web Content},6347,4358
+  │   │   │   │   ├─{Web Content},6349,4358
+  │   │   │   │   ├─{Web Content},6356,4358
+  │   │   │   │   ├─{Web Content},6359,4358
+  │   │   │   │   ├─{Web Content},6361,4358
+  │   │   │   │   ├─{Web Content},6363,4358
+  │   │   │   │   ├─{Web Content},6365,4358
+  │   │   │   │   ├─{Web Content},6367,4358
+  │   │   │   │   ├─{Web Content},6368,4358
+  │   │   │   │   └─{Web Content},6369,4358
+  │   │   │   ├─Web Content,6300,4358
+  │   │   │   │   ├─{Web Content},6304,4358
+  │   │   │   │   ├─{Web Content},6305,4358
+  │   │   │   │   ├─{Web Content},6320,4358
+  │   │   │   │   ├─{Web Content},6323,4358
+  │   │   │   │   ├─{Web Content},6324,4358
+  │   │   │   │   ├─{Web Content},6325,4358
+  │   │   │   │   ├─{Web Content},6326,4358
+  │   │   │   │   ├─{Web Content},6327,4358
+  │   │   │   │   ├─{Web Content},6328,4358
+  │   │   │   │   ├─{Web Content},6333,4358
+  │   │   │   │   ├─{Web Content},6335,4358
+  │   │   │   │   ├─{Web Content},6340,4358
+  │   │   │   │   ├─{Web Content},6341,4358
+  │   │   │   │   ├─{Web Content},6350,4358
+  │   │   │   │   ├─{Web Content},6351,4358
+  │   │   │   │   ├─{Web Content},6352,4358
+  │   │   │   │   ├─{Web Content},6353,4358
+  │   │   │   │   ├─{Web Content},6370,4358
+  │   │   │   │   ├─{Web Content},6371,4358
+  │   │   │   │   ├─{Web Content},6372,4358
+  │   │   │   │   ├─{Web Content},6373,4358
+  │   │   │   │   ├─{Web Content},6374,4358
+  │   │   │   │   ├─{Web Content},6375,4358
+  │   │   │   │   ├─{Web Content},6376,4358
+  │   │   │   │   └─{Web Content},6377,4358
+  │   │   │   ├─Web Content,6847,4358
+  │   │   │   │   ├─{Web Content},6851,4358
+  │   │   │   │   ├─{Web Content},6852,4358
+  │   │   │   │   ├─{Web Content},6853,4358
+  │   │   │   │   ├─{Web Content},6854,4358
+  │   │   │   │   ├─{Web Content},6855,4358
+  │   │   │   │   ├─{Web Content},6856,4358
+  │   │   │   │   ├─{Web Content},6857,4358
+  │   │   │   │   ├─{Web Content},6858,4358
+  │   │   │   │   ├─{Web Content},6859,4358
+  │   │   │   │   ├─{Web Content},6860,4358
+  │   │   │   │   ├─{Web Content},6862,4358
+  │   │   │   │   ├─{Web Content},6863,4358
+  │   │   │   │   ├─{Web Content},6864,4358
+  │   │   │   │   ├─{Web Content},6865,4358
+  │   │   │   │   ├─{Web Content},6866,4358
+  │   │   │   │   ├─{Web Content},6867,4358
+  │   │   │   │   ├─{Web Content},6868,4358
+  │   │   │   │   ├─{Web Content},6869,4358
+  │   │   │   │   ├─{Web Content},6870,4358
+  │   │   │   │   ├─{Web Content},6871,4358
+  │   │   │   │   ├─{Web Content},6872,4358
+  │   │   │   │   ├─{Web Content},6873,4358
+  │   │   │   │   ├─{Web Content},6874,4358
+  │   │   │   │   ├─{Web Content},6875,4358
+  │   │   │   │   └─{Web Content},6876,4358
+  │   │   │   └─WebExtensions,5409,4358
+  │   │   │       ├─{WebExtensions},5413,4358
+  │   │   │       ├─{WebExtensions},5414,4358
+  │   │   │       ├─{WebExtensions},5415,4358
+  │   │   │       ├─{WebExtensions},5421,4358
+  │   │   │       ├─{WebExtensions},5422,4358
+  │   │   │       ├─{WebExtensions},5423,4358
+  │   │   │       ├─{WebExtensions},5424,4358
+  │   │   │       ├─{WebExtensions},5425,4358
+  │   │   │       ├─{WebExtensions},5426,4358
+  │   │   │       ├─{WebExtensions},5427,4358
+  │   │   │       ├─{WebExtensions},5429,4358
+  │   │   │       ├─{WebExtensions},5444,4358
+  │   │   │       ├─{WebExtensions},5446,4358
+  │   │   │       ├─{WebExtensions},5447,4358
+  │   │   │       ├─{WebExtensions},5449,4358
+  │   │   │       ├─{WebExtensions},5450,4358
+  │   │   │       ├─{WebExtensions},5451,4358
+  │   │   │       ├─{WebExtensions},5452,4358
+  │   │   │       ├─{WebExtensions},5453,4358
+  │   │   │       ├─{WebExtensions},5454,4358
+  │   │   │       ├─{WebExtensions},5455,4358
+  │   │   │       ├─{WebExtensions},5456,4358
+  │   │   │       ├─{WebExtensions},5457,4358
+  │   │   │       ├─{WebExtensions},5459,4358
+  │   │   │       ├─{WebExtensions},5460,4358
+  │   │   │       └─{WebExtensions},5538,4358
+  │   │   ├─{librewolf},4416,4358
+  │   │   ├─{librewolf},4417,4358
+  │   │   ├─{librewolf},4418,4358
+  │   │   ├─{librewolf},4420,4358
+  │   │   ├─{librewolf},4421,4358
+  │   │   ├─{librewolf},4422,4358
+  │   │   ├─{librewolf},4423,4358
+  │   │   ├─{librewolf},4490,4358
+  │   │   ├─{librewolf},4497,4358
+  │   │   ├─{librewolf},4513,4358
+  │   │   ├─{librewolf},4514,4358
+  │   │   ├─{librewolf},4515,4358
+  │   │   ├─{librewolf},4523,4358
+  │   │   ├─{librewolf},4562,4358
+  │   │   ├─{librewolf},4563,4358
+  │   │   ├─{librewolf},4564,4358
+  │   │   ├─{librewolf},4565,4358
+  │   │   ├─{librewolf},4566,4358
+  │   │   ├─{librewolf},4567,4358
+  │   │   ├─{librewolf},4577,4358
+  │   │   ├─{librewolf},4594,4358
+  │   │   ├─{librewolf},4595,4358
+  │   │   ├─{librewolf},4602,4358
+  │   │   ├─{librewolf},4603,4358
+  │   │   ├─{librewolf},4604,4358
+  │   │   ├─{librewolf},4605,4358
+  │   │   ├─{librewolf},4606,4358
+  │   │   ├─{librewolf},4607,4358
+  │   │   ├─{librewolf},4608,4358
+  │   │   ├─{librewolf},4609,4358
+  │   │   ├─{librewolf},4621,4358
+  │   │   ├─{librewolf},4622,4358
+  │   │   ├─{librewolf},4628,4358
+  │   │   ├─{librewolf},4631,4358
+  │   │   ├─{librewolf},4632,4358
+  │   │   ├─{librewolf},4635,4358
+  │   │   ├─{librewolf},4650,4358
+  │   │   ├─{librewolf},4655,4358
+  │   │   ├─{librewolf},4656,4358
+  │   │   ├─{librewolf},4657,4358
+  │   │   ├─{librewolf},4658,4358
+  │   │   ├─{librewolf},4659,4358
+  │   │   ├─{librewolf},4660,4358
+  │   │   ├─{librewolf},4693,4358
+  │   │   ├─{librewolf},4694,4358
+  │   │   ├─{librewolf},4695,4358
+  │   │   ├─{librewolf},4696,4358
+  │   │   ├─{librewolf},4697,4358
+  │   │   ├─{librewolf},4698,4358
+  │   │   ├─{librewolf},4699,4358
+  │   │   ├─{librewolf},4700,4358
+  │   │   ├─{librewolf},4701,4358
+  │   │   ├─{librewolf},4702,4358
+  │   │   ├─{librewolf},4703,4358
+  │   │   ├─{librewolf},4704,4358
+  │   │   ├─{librewolf},4705,4358
+  │   │   ├─{librewolf},4706,4358
+  │   │   ├─{librewolf},4707,4358
+  │   │   ├─{librewolf},4708,4358
+  │   │   ├─{librewolf},4709,4358
+  │   │   ├─{librewolf},4721,4358
+  │   │   ├─{librewolf},4722,4358
+  │   │   ├─{librewolf},4723,4358
+  │   │   ├─{librewolf},4724,4358
+  │   │   ├─{librewolf},4725,4358
+  │   │   ├─{librewolf},4726,4358
+  │   │   ├─{librewolf},4727,4358
+  │   │   ├─{librewolf},4729,4358
+  │   │   ├─{librewolf},4731,4358
+  │   │   ├─{librewolf},4734,4358
+  │   │   ├─{librewolf},4749,4358
+  │   │   ├─{librewolf},4750,4358
+  │   │   ├─{librewolf},4803,4358
+  │   │   ├─{librewolf},4882,4358
+  │   │   ├─{librewolf},4886,4358
+  │   │   ├─{librewolf},4887,4358
+  │   │   ├─{librewolf},4888,4358
+  │   │   ├─{librewolf},4899,4358
+  │   │   ├─{librewolf},4900,4358
+  │   │   ├─{librewolf},4901,4358
+  │   │   ├─{librewolf},4935,4358
+  │   │   ├─{librewolf},4936,4358
+  │   │   ├─{librewolf},4937,4358
+  │   │   ├─{librewolf},4938,4358
+  │   │   ├─{librewolf},5203,4358
+  │   │   ├─{librewolf},5204,4358
+  │   │   ├─{librewolf},5231,4358
+  │   │   ├─{librewolf},5239,4358
+  │   │   ├─{librewolf},5256,4358
+  │   │   ├─{librewolf},5360,4358
+  │   │   ├─{librewolf},5365,4358
+  │   │   ├─{librewolf},5368,4358
+  │   │   ├─{librewolf},5382,4358
+  │   │   ├─{librewolf},5410,4358
+  │   │   ├─{librewolf},5445,4358
+  │   │   ├─{librewolf},5483,4358
+  │   │   ├─{librewolf},5509,4358
+  │   │   ├─{librewolf},5510,4358
+  │   │   ├─{librewolf},5520,4358
+  │   │   ├─{librewolf},5522,4358
+  │   │   ├─{librewolf},5526,4358
+  │   │   ├─{librewolf},5643,4358
+  │   │   ├─{librewolf},5644,4358
+  │   │   ├─{librewolf},5646,4358
+  │   │   ├─{librewolf},5648,4358
+  │   │   ├─{librewolf},5656,4358
+  │   │   ├─{librewolf},6074,4358
+  │   │   ├─{librewolf},6296,4358
+  │   │   ├─{librewolf},6301,4358
+  │   │   ├─{librewolf},6840,4358
+  │   │   ├─{librewolf},6848,4358
+  │   │   └─{librewolf},8176,4358
+  │   ├─load_1,7657,7647 1 20 19-1 5000000000
+  │   ├─load_2,7658,7647 2 20 19-2 5000000000
+  │   ├─load_3,7659,7647 3 20 19-3 5000000000
+  │   ├─load_4,7660,7647 4 20 19-4 5000000000
+  │   ├─load_5,7661,7647 5 20 19-5 5000000000
+  │   ├─mpris-proxy,3435,3435
+  │   ├─obexd,4110,4110
+  │   │   ├─{obexd},4166,4110
+  │   │   ├─{obexd},4167,4110
+  │   │   ├─{obexd},4168,4110
+  │   │   ├─{obexd},4169,4110
+  │   │   ├─{obexd},4171,4110
+  │   │   └─{obexd},4213,4110
+  │   ├─org_kde_powerde,4077,4077
+  │   │   ├─{org_kde_powerde},4095,4077
+  │   │   ├─{org_kde_powerde},4096,4077
+  │   │   ├─{org_kde_powerde},4097,4077
+  │   │   ├─{org_kde_powerde},4100,4077
+  │   │   ├─{org_kde_powerde},4101,4077
+  │   │   ├─{org_kde_powerde},4102,4077
+  │   │   ├─{org_kde_powerde},4190,4077
+  │   │   └─{org_kde_powerde},4191,4077
+  │   ├─p11-kit-server,4533,4533 --sh -n /run/user/1000/.flatpak-helper/pkcs11-flatpak-4517 --provider p11-kit-trust.so pkcs11:model=p11-kit-trust?write-protected=yes
+  │   ├─pipewire,3425,3425
+  │   │   ├─{pipewire},3444,3425
+  │   │   └─{pipewire},3447,3425
+  │   ├─pipewire,3442,3442 -c filter-chain.conf
+  │   │   └─{pipewire},3454,3442
+  │   ├─pipewire-pulse,3443,3443
+  │   │   ├─{pipewire-pulse},3457,3443
+  │   │   └─{pipewire-pulse},3461,3443
+  │   ├─plasmashell,4002,4002 --no-respawn
+  │   │   ├─{plasmashell},4035,4002
+  │   │   ├─{plasmashell},4039,4002
+  │   │   ├─{plasmashell},4040,4002
+  │   │   ├─{plasmashell},4048,4002
+  │   │   ├─{plasmashell},4052,4002
+  │   │   ├─{plasmashell},4053,4002
+  │   │   ├─{plasmashell},4054,4002
+  │   │   ├─{plasmashell},4056,4002
+  │   │   ├─{plasmashell},4057,4002
+  │   │   ├─{plasmashell},4058,4002
+  │   │   ├─{plasmashell},4185,4002
+  │   │   ├─{plasmashell},4258,4002
+  │   │   ├─{plasmashell},4259,4002
+  │   │   ├─{plasmashell},4260,4002
+  │   │   ├─{plasmashell},4261,4002
+  │   │   ├─{plasmashell},4262,4002
+  │   │   ├─{plasmashell},4263,4002
+  │   │   ├─{plasmashell},4264,4002
+  │   │   ├─{plasmashell},4265,4002
+  │   │   ├─{plasmashell},4266,4002
+  │   │   ├─{plasmashell},4268,4002
+  │   │   ├─{plasmashell},4269,4002
+  │   │   ├─{plasmashell},4270,4002
+  │   │   ├─{plasmashell},4271,4002
+  │   │   ├─{plasmashell},4751,4002
+  │   │   ├─{plasmashell},4841,4002
+  │   │   ├─{plasmashell},4879,4002
+  │   │   ├─{plasmashell},4967,4002
+  │   │   ├─{plasmashell},5034,4002
+  │   │   ├─{plasmashell},5110,4002
+  │   │   ├─{plasmashell},5111,4002
+  │   │   ├─{plasmashell},5112,4002
+  │   │   ├─{plasmashell},5129,4002
+  │   │   ├─{plasmashell},5130,4002
+  │   │   ├─{plasmashell},5131,4002
+  │   │   ├─{plasmashell},5133,4002
+  │   │   ├─{plasmashell},5406,4002
+  │   │   ├─{plasmashell},5872,4002
+  │   │   ├─{plasmashell},5873,4002
+  │   │   ├─{plasmashell},5874,4002
+  │   │   ├─{plasmashell},5875,4002
+  │   │   ├─{plasmashell},5876,4002
+  │   │   ├─{plasmashell},5877,4002
+  │   │   ├─{plasmashell},5878,4002
+  │   │   ├─{plasmashell},5879,4002
+  │   │   ├─{plasmashell},5880,4002
+  │   │   ├─{plasmashell},5881,4002
+  │   │   ├─{plasmashell},5882,4002
+  │   │   ├─{plasmashell},5883,4002
+  │   │   ├─{plasmashell},5884,4002
+  │   │   ├─{plasmashell},5885,4002
+  │   │   ├─{plasmashell},5886,4002
+  │   │   ├─{plasmashell},5887,4002
+  │   │   ├─{plasmashell},5888,4002
+  │   │   ├─{plasmashell},5889,4002
+  │   │   ├─{plasmashell},5890,4002
+  │   │   ├─{plasmashell},5891,4002
+  │   │   ├─{plasmashell},5892,4002
+  │   │   ├─{plasmashell},5893,4002
+  │   │   ├─{plasmashell},5894,4002
+  │   │   ├─{plasmashell},5895,4002
+  │   │   ├─{plasmashell},5896,4002
+  │   │   ├─{plasmashell},5897,4002
+  │   │   ├─{plasmashell},5898,4002
+  │   │   ├─{plasmashell},5899,4002
+  │   │   ├─{plasmashell},5900,4002
+  │   │   ├─{plasmashell},5901,4002
+  │   │   ├─{plasmashell},5902,4002
+  │   │   ├─{plasmashell},5905,4002
+  │   │   ├─{plasmashell},5906,4002
+  │   │   ├─{plasmashell},5907,4002
+  │   │   ├─{plasmashell},5908,4002
+  │   │   ├─{plasmashell},6819,4002
+  │   │   ├─{plasmashell},6820,4002
+  │   │   ├─{plasmashell},6821,4002
+  │   │   ├─{plasmashell},6822,4002
+  │   │   ├─{plasmashell},6823,4002
+  │   │   ├─{plasmashell},6824,4002
+  │   │   ├─{plasmashell},6825,4002
+  │   │   ├─{plasmashell},8405,4002
+  │   │   ├─{plasmashell},8406,4002
+  │   │   └─{plasmashell},8407,4002
+  │   ├─polkit-kde-auth,4076,4076
+  │   │   ├─{polkit-kde-auth},4092,4076
+  │   │   ├─{polkit-kde-auth},4098,4076
+  │   │   ├─{polkit-kde-auth},4099,4076
+  │   │   ├─{polkit-kde-auth},4120,4076
+  │   │   ├─{polkit-kde-auth},4122,4076
+  │   │   ├─{polkit-kde-auth},4123,4076
+  │   │   ├─{polkit-kde-auth},4124,4076
+  │   │   ├─{polkit-kde-auth},4125,4076
+  │   │   ├─{polkit-kde-auth},4128,4076
+  │   │   ├─{polkit-kde-auth},4129,4076
+  │   │   ├─{polkit-kde-auth},4150,4076
+  │   │   ├─{polkit-kde-auth},4151,4076
+  │   │   └─{polkit-kde-auth},4152,4076
+  │   ├─[1mptyxis,5930,3424[0m --gapplication-service
+  │   │   ├─[1mptyxis-agent,5939,5939[0m --socket-fd=3 --rlimit-nofile=1024
+  │   │   │   ├─[1mbash,5960,5960[0m
+  │   │   │   │   └─[1mpstree,8469,8469[0m -acghlpsUu
+  │   │   │   ├─{ptyxis-agent},5941,5939
+  │   │   │   ├─{ptyxis-agent},5942,5939
+  │   │   │   ├─{ptyxis-agent},5943,5939
+  │   │   │   └─{ptyxis-agent},5958,5939
+  │   │   ├─{ptyxis},5931,3424
+  │   │   ├─{ptyxis},5932,3424
+  │   │   ├─{ptyxis},5933,3424
+  │   │   ├─{ptyxis},5935,3424
+  │   │   ├─{ptyxis},5937,3424
+  │   │   ├─{ptyxis},5952,3424
+  │   │   ├─{ptyxis},5953,3424
+  │   │   ├─{ptyxis},5954,3424
+  │   │   ├─{ptyxis},5955,3424
+  │   │   ├─{ptyxis},5956,3424
+  │   │   └─{ptyxis},8459,3424
+  │   ├─ssh-agent,3719,3719 -D
+  │   ├─user-session-he,3428,3428 /snap/snapd-desktop-integration/387/usr/bin/snapd-desktop-integration
+  │   │   ├─snapd-desktop-i,4557,3428
+  │   │   │   ├─{snapd-desktop-i},4596,3428
+  │   │   │   ├─{snapd-desktop-i},4597,3428
+  │   │   │   ├─{snapd-desktop-i},4598,3428
+  │   │   │   └─{snapd-desktop-i},4600,3428
+  │   │   ├─{user-session-he},3824,3428
+  │   │   ├─{user-session-he},3825,3428
+  │   │   └─{user-session-he},3826,3428
+  │   ├─wireplumber,3441,3441
+  │   │   ├─{wireplumber},3453,3441
+  │   │   ├─{wireplumber},3455,3441
+  │   │   ├─{wireplumber},3456,3441
+  │   │   ├─{wireplumber},3465,3441
+  │   │   ├─{wireplumber},3466,3441
+  │   │   ├─{wireplumber},3659,3441
+  │   │   ├─{wireplumber},3660,3441
+  │   │   └─{wireplumber},3662,3441
+  │   ├─xdg-desktop-por,4311,4311
+  │   │   ├─{xdg-desktop-por},4334,4311
+  │   │   ├─{xdg-desktop-por},4340,4311
+  │   │   ├─{xdg-desktop-por},4347,4311
+  │   │   ├─{xdg-desktop-por},4552,4311
+  │   │   ├─{xdg-desktop-por},4556,4311
+  │   │   ├─{xdg-desktop-por},8256,4311
+  │   │   └─{xdg-desktop-por},8470,4311
+  │   ├─xdg-desktop-por,4364,4364
+  │   │   ├─{xdg-desktop-por},4383,4364
+  │   │   ├─{xdg-desktop-por},4384,4364
+  │   │   ├─{xdg-desktop-por},4385,4364
+  │   │   ├─{xdg-desktop-por},4387,4364
+  │   │   └─{xdg-desktop-por},4388,4364
+  │   ├─xdg-desktop-por,4415,4415
+  │   │   ├─{xdg-desktop-por},4493,4415
+  │   │   ├─{xdg-desktop-por},4508,4415
+  │   │   ├─{xdg-desktop-por},4509,4415
+  │   │   ├─{xdg-desktop-por},4534,4415
+  │   │   ├─{xdg-desktop-por},4536,4415
+  │   │   ├─{xdg-desktop-por},4537,4415
+  │   │   ├─{xdg-desktop-por},4538,4415
+  │   │   ├─{xdg-desktop-por},4539,4415
+  │   │   ├─{xdg-desktop-por},4540,4415
+  │   │   └─{xdg-desktop-por},4541,4415
+  │   ├─xdg-document-po,3574,3574
+  │   │   ├─fusermount3,3609,3609,root -o rw,nosuid,nodev,fsname=portal,auto_unmount,subtype=portal -- /run/user/1000/doc
+  │   │   ├─{xdg-document-po},3583,3574
+  │   │   ├─{xdg-document-po},3584,3574
+  │   │   ├─{xdg-document-po},3585,3574
+  │   │   ├─{xdg-document-po},3607,3574
+  │   │   ├─{xdg-document-po},3613,3574
+  │   │   └─{xdg-document-po},3614,3574
+  │   ├─xdg-permission-,3589,3589
+  │   │   ├─{xdg-permission-},3600,3589
+  │   │   ├─{xdg-permission-},3601,3589
+  │   │   └─{xdg-permission-},3605,3589
+  │   ├─xembedsniproxy,4078,4078
+  │   │   ├─{xembedsniproxy},4087,4078
+  │   │   └─{xembedsniproxy},4089,4078
+  │   └─xsettingsd,4127,4126
+  ├─systemd-journal,752,752
+  ├─systemd-logind,1663,1663
+  ├─systemd-oomd,793,793,systemd-oom
+  ├─systemd-resolve,789,789,systemd-resolve
+  ├─systemd-udevd,797,797
+  ├─udisksd,1665,1665
+  │   ├─{udisksd},1701,1665
+  │   ├─{udisksd},1702,1665
+  │   ├─{udisksd},1750,1665
+  │   ├─{udisksd},1862,1665
+  │   ├─{udisksd},1863,1665
+  │   └─{udisksd},1875,1665
+  ├─unattended-upgr,1942,1942 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+  │   └─{unattended-upgr},2119,1942
+  ├─upowerd,2755,2755
+  │   ├─{upowerd},2758,2755
+  │   ├─{upowerd},2759,2755
+  │   └─{upowerd},2760,2755
+  └─wpa_supplicant,1760,1760 -u -s -O DIR=/run/wpa_supplicant GROUP=netdev
